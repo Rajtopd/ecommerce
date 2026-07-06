@@ -1,6 +1,7 @@
 import { supabaseAdmin } from '@/lib/supabase'
 import Image from 'next/image'
 import ProductCard from '@/components/product/ProductCard'
+import HeroScrollEffect from '@/components/HeroScrollEffect'
 import { getSiteData } from '@/lib/content'
 import { Truck, Undo2, ShieldCheck, Sparkles } from 'lucide-react'
 
@@ -53,24 +54,35 @@ export default async function Homepage() {
   return (
     <div className="bg-brand-bg min-h-screen overflow-x-hidden">
       {/* SECTION 1 — Hero */}
-      <section className="bg-gradient-to-br from-[#2C0A14] via-[#6E1A2C] to-[#8B2A3C] relative overflow-hidden min-h-[85vh] flex items-center">
+      <section id="hero-section" className="bg-gradient-to-br from-[#2C0A14] via-[#6E1A2C] to-[#8B2A3C] relative overflow-hidden min-h-[85vh] flex items-center">
+        <HeroScrollEffect targetId="hero-section" />
         {/* Decorative Circles */}
-        <div className="absolute -right-[100px] -top-[100px] w-[520px] h-[520px] rounded-full border border-brand-gold/10 pointer-events-none"></div>
-        <div className="absolute -right-[40px] -top-[40px] w-[360px] h-[360px] rounded-full border border-brand-gold/10 pointer-events-none"></div>
+        <div className="hero-circle-a absolute -right-[100px] -top-[100px] w-[520px] h-[520px] rounded-full border border-brand-gold/10 pointer-events-none"></div>
+        <div className="hero-circle-b absolute -right-[40px] -top-[40px] w-[360px] h-[360px] rounded-full border border-brand-gold/10 pointer-events-none"></div>
 
         <div className="max-w-[1280px] w-full mx-auto px-4 md:px-8 py-20 flex flex-col md:flex-row items-center justify-between gap-8 relative z-10">
-          <div className="flex-1 animate-fade-up">
-            <div className="flex items-center gap-3 mb-6">
+          <div className="flex-1">
+            <div className="hero-rise flex items-center gap-3 mb-6" style={{ '--rise-delay': '0.05s' }}>
               <svg width="100" height="12" viewBox="0 0 100 12"><line x1="0" y1="6" x2="38" y2="6" stroke="#C49B38" strokeWidth="0.8"></line><rect x="42" y="2" width="8" height="8" fill="#C49B38" transform="rotate(45 46 6)"></rect><circle cx="3" cy="6" r="1.5" fill="#C49B38"></circle><circle cx="85" cy="6" r="1.5" fill="#C49B38"></circle><line x1="50" y1="6" x2="88" y2="6" stroke="#C49B38" strokeWidth="0.8"></line></svg>
               <span className="text-[10px] tracking-[0.28em] text-brand-gold uppercase whitespace-nowrap">{c('hero.badge', 'New Arrivals · Eid 2026')}</span>
             </div>
-            <h1 className="font-display text-[48px] md:text-[72px] font-bold text-brand-bg leading-[1.06] mb-5 text-balance">
-              {c('hero.heading_line1', 'Dressed in')}<br/><span className="text-brand-gold italic font-light">{c('hero.heading_accent', 'Heritage,')}</span><br/>{c('hero.heading_line3', 'Living Modern')}
+            <h1 className="font-display text-[48px] md:text-[72px] font-bold text-brand-bg leading-[1.06] mb-5">
+              <span className="hero-line-mask">
+                <span className="hero-line-inner" style={{ '--line-delay': '0.15s' }}>{c('hero.heading_line1', 'Dressed in')}</span>
+              </span>
+              <span className="hero-line-mask">
+                <span className="hero-line-inner" style={{ '--line-delay': '0.32s' }}>
+                  <span className="gold-sheen text-brand-gold italic font-light">{c('hero.heading_accent', 'Heritage,')}</span>
+                </span>
+              </span>
+              <span className="hero-line-mask">
+                <span className="hero-line-inner" style={{ '--line-delay': '0.49s' }}>{c('hero.heading_line3', 'Living Modern')}</span>
+              </span>
             </h1>
-            <p className="text-[14px] md:text-[16px] text-brand-bg/70 max-w-[400px] leading-[1.65] mb-8 text-balance">
+            <p className="hero-rise text-[14px] md:text-[16px] text-brand-bg/70 max-w-[400px] leading-[1.65] mb-8 text-balance" style={{ '--rise-delay': '0.75s' }}>
               {c('hero.subtext', 'Curated Indian ethnic wear for the modern woman in Dubai. From bridal lehengas to everyday kurtis — your culture, beautifully worn.')}
             </p>
-            <div className="flex flex-wrap gap-4">
+            <div className="hero-rise flex flex-wrap gap-4" style={{ '--rise-delay': '0.95s' }}>
               <a href={c('hero.cta_primary_href', '/shop')} className="bg-brand-gold text-brand-dark px-[26px] py-[12px] text-[11px] font-bold tracking-[0.1em] uppercase rounded-sm hover:bg-[#E8C96A] transition-colors">
                 {c('hero.cta_primary_label', 'Explore Collection')}
               </a>
@@ -80,20 +92,25 @@ export default async function Homepage() {
             </div>
           </div>
 
-          <div className="flex-shrink-0 relative mt-6 md:mt-0 mx-auto md:mx-0 mb-8 md:mb-0">
-            <div className="w-[250px] h-[330px] md:w-[320px] md:h-[420px] rounded-t-[125px] md:rounded-t-[160px] rounded-b-[8px] relative overflow-hidden border border-brand-gold/30">
-              <Image
-                src={c('hero.image', '/images/hero-editorial.jpg')}
-                alt="Hero editorial"
-                fill
-                sizes="(max-width: 768px) 250px, 320px"
-                priority
-                className="object-cover object-top"
-              />
+          <div className="hero-parallax flex-shrink-0 relative mt-6 md:mt-0 mx-auto md:mx-0 mb-8 md:mb-0">
+            <div className="hero-arch w-[250px] h-[330px] md:w-[320px] md:h-[420px] rounded-t-[125px] md:rounded-t-[160px] rounded-b-[8px] relative overflow-hidden border border-brand-gold/30">
+              <div className="hero-image-settle absolute inset-0">
+                <div className="hero-image-breathe absolute inset-0">
+                  <Image
+                    src={c('hero.image', '/images/hero-editorial.jpg')}
+                    alt="Hero editorial"
+                    fill
+                    sizes="(max-width: 768px) 250px, 320px"
+                    priority
+                    className="object-cover object-top"
+                  />
+                </div>
+              </div>
               <div className="absolute inset-[12px] rounded-t-[113px] md:rounded-t-[148px] rounded-b-none border border-brand-gold/30 pointer-events-none z-10"></div>
               <div className="absolute bottom-0 left-0 right-0 h-[35%] bg-gradient-to-t from-[#2C0A14]/60 to-transparent"></div>
+              <div className="hero-curtain absolute inset-0 z-30 bg-gradient-to-br from-[#2C0A14] via-[#6E1A2C] to-[#8B2A3C] border-r-2 border-brand-gold/70 pointer-events-none"></div>
             </div>
-            <div className="absolute -bottom-6 -left-2 md:-left-8 bg-white rounded-md p-4 shadow-lg min-w-[160px] z-20">
+            <div className="hero-card absolute -bottom-6 -left-2 md:-left-8 bg-white rounded-md p-4 shadow-lg min-w-[160px] z-20">
               <div className="text-[9px] text-brand-gold tracking-[0.12em] uppercase mb-1">{c('hero.card_badge', 'New In')}</div>
               <div className="font-display text-[17px] font-semibold text-brand-dark leading-[1.2]">{c('hero.card_title', "Eid Collection '26")}</div>
               <div className="text-[11px] text-[#5C3D2E] mt-1">{c('hero.card_subtitle', '48 new styles added')}</div>
