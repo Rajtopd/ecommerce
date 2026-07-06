@@ -1,9 +1,16 @@
 const { Client } = require('pg')
 const fs = require('fs')
 
+function loadDatabaseUrl() {
+  const env = fs.readFileSync('.env.local', 'utf8')
+  const match = env.match(/^DATABASE_URL=(.*)$/m)
+  if (!match) throw new Error('DATABASE_URL not found in .env.local')
+  return match[1].trim().replace(/^['"]|['"]$/g, '')
+}
+
 async function run() {
   const client = new Client({
-    connectionString: "postgresql://postgres:Rajshroff52@@db.hhdfmjamwsvisjyobatk.supabase.co:5432/postgres",
+    connectionString: loadDatabaseUrl(),
     ssl: { rejectUnauthorized: false }
   })
 
