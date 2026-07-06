@@ -1,10 +1,12 @@
 import { stripe } from '@/lib/stripe'
 import { supabaseAdmin } from '@/lib/supabase'
 import { NextResponse } from 'next/server'
+import { getStoreSettings } from '@/lib/content'
+import { evaluateDiscount } from '@/lib/discounts'
 
 export async function POST(req) {
   try {
-    const { items } = await req.json()
+    const { items, discountCode } = await req.json()
 
     if (!items || items.length === 0) {
       return NextResponse.json({ error: 'Cart is empty' }, { status: 400 })
@@ -42,10 +44,26 @@ export async function POST(req) {
       subtotal += currentPrice * item.quantity
     }
 
-    const isFreeShipping = (subtotal / 100) >= 200
-    const shippingCharge = isFreeShipping ? 0 : 1500
-    const vatAmount = Math.round(subtotal * 0.05)
-    const totalAmount = subtotal + shippingCharge + vatAmount
+    // Delivery fee, free-delivery threshold and VAT rate are admin-managed settings
+    const settings = await getStoreSettings()
+
+    // Optional discount code (validated server-side)
+    let discountAmount = 0
+    let appliedCode = null
+    if (discountCode) {
+      const result = await evaluateDiscount(discountCode, subtotal)
+      if (result.error) {
+        return NextResponse.json({ error: result.error }, { status: 400 })
+      }
+      discountAmount = result.discount.amount
+      appliedCode = result.discount.code
+    }
+
+    const discountedSubtotal = subtotal - discountAmount
+    const isFreeShipping = discountedSubtotal >= settings.freeDeliveryThresholdFils
+    const shippingCharge = isFreeShipping ? 0 : settings.deliveryFeeFils
+    const vatAmount = Math.round(discountedSubtotal * (settings.vatRatePercent / 100))
+    const totalAmount = discountedSubtotal + shippingCharge + vatAmount
 
     // Create a PaymentIntent with the order amount and currency
     const paymentIntent = await stripe.paymentIntents.create({
@@ -55,7 +73,8 @@ export async function POST(req) {
         enabled: true,
       },
       metadata: {
-        cart_items: JSON.stringify(items.map(i => ({ v: i.variantId, q: i.quantity })))
+        cart_items: JSON.stringify(items.map(i => ({ v: i.variantId, q: i.quantity }))),
+        ...(appliedCode ? { discount_code: appliedCode } : {})
       }
     })
 
@@ -68,6 +87,8 @@ export async function POST(req) {
         subtotal: subtotal,
         vat_amount: vatAmount,
         shipping_charge: shippingCharge,
+        discount_code: appliedCode,
+        discount_amount: discountAmount,
         total: totalAmount,
         shipping_address: {}, // Will update on confirmation
         payment_intent_id: paymentIntent.id,
@@ -81,6 +102,15 @@ export async function POST(req) {
 
     return NextResponse.json({
       clientSecret: paymentIntent.client_secret,
+      totals: {
+        subtotal,
+        discountAmount,
+        discountCode: appliedCode,
+        shippingCharge,
+        vatAmount,
+        vatRatePercent: settings.vatRatePercent,
+        totalAmount,
+      },
     })
   } catch (error) {
     console.error('Payment intent error:', error)

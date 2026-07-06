@@ -1,0 +1,43 @@
+:root {
+  /* Colors */
+  --color-primary: #C8726A;
+  --color-primary-hover: #b5625a;
+
+  --color-bg-page: #FAFAF8;
+  --color-bg-dark: #1C1410;
+  --color-bg-card: #F2EDE8;
+  --color-bg-banner: #2D1F18;
+  --color-bg-accent-dark: #3D2820;
+  --color-bg-accent-darker: #4D3530;
+
+  --color-text-dark: #1C1410;
+  --color-text-light: #FAF7F4;
+  --color-text-muted: #B5A89E;
+  --color-text-secondary: #44382f;
+
+  --color-border: #B5A89E;
+
+  /* Typography Fallbacks */
+  --font-family-display: var(--font-display), "DM Serif Display", serif;
+  --font-family-body: var(--font-body), "Open Sans", sans-serif;
+
+  /* Typography Sizes */
+  --font-size-xs: 0.95rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.875rem;
+  --font-size-4xl: 2.25rem;
+  --font-size-5xl: 3rem;
+  --font-size-6xl: 3.75rem;
+  --font-size-7xl: 4.5rem;
+
+  /* Icon Sizes */
+  --icon-size-xs: 12px;
+  --icon-size-sm: 16px;
+  --icon-size-md: 22px;
+  --icon-size-lg: 28px;
+  --icon-size-xl: 36px;
+}

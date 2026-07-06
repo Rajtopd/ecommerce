@@ -1,18 +1,36 @@
+@import "./design-system.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    --background: #FAFAF8;
-    --foreground: #1C1410;
+    /* RGB triplets (not hex) so Tailwind's /opacity modifiers work, e.g. text-brand-bg/70 */
+    --color-bg: 250 247 240; /* Main background — #FAF7F0 */
+    --color-dark: 26 15 10; /* Primary dark / headings — #1A0F0A */
+    --color-accent: 110 26 44; /* Primary accent / CTAs — #6E1A2C */
+    --color-accent-2: 139 26 44; /* Secondary accent — #8B1A2C */
+    --color-muted: 92 61 46; /* Secondary text — #5C3D2E */
+    --color-soft: 156 123 94; /* Muted text / placeholders — #9C7B5E */
+    --color-border: 224 208 184; /* Borders and dividers — #E0D0B8 */
+    --color-card: 255 255 255; /* Card backgrounds — #FFFFFF */
+    --color-gold: 196 155 56; /* Gold accent — #C49B38 */
+    
+    --radius-btn: 2px;
+    --radius-card: 4px;
+    --pad-section: 64px;
+    --pad-card: 16px;
+
+    --background: var(--color-bg);
+    --foreground: var(--color-dark);
   }
 
   body {
     font-family: var(--font-body);
     font-weight: 300;
-    background-color: var(--background);
-    color: var(--foreground);
+    background-color: rgb(var(--background));
+    color: rgb(var(--foreground));
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
@@ -26,4 +44,194 @@
     font-family: var(--font-display);
     font-style: italic;
   }
+
+  ::selection {
+    background-color: rgb(var(--color-accent));
+    color: #FAF7F0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer utilities {
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* ── Hero motion (entrance stagger, ambient drift, scroll parallax) ──
+   Everything lives inside prefers-reduced-motion: no-preference, so
+   reduced-motion users get the fully static hero. */
+@media (prefers-reduced-motion: no-preference) {
+  .hero-rise {
+    animation: hero-rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation-delay: var(--rise-delay, 0s);
+  }
+
+  /* Gold ring pulse that fires on the arch frame right as the curtain
+     finishes wiping away — a "spotlight" flourish on reveal. */
+  .hero-arch {
+    animation: hero-arch-ring 2s ease-out 1.5s 1 both;
+  }
+
+  /* Curtain wipe: covers the image, then retracts to the right to
+     reveal it — the classic fashion-editorial "unveil". */
+  .hero-curtain {
+    transform-origin: right center;
+    animation: hero-curtain-wipe 1.15s cubic-bezier(0.65, 0, 0.35, 1) 0.4s both;
+  }
+
+  /* Two nested layers so the transforms compose instead of fighting on
+     the same property: settle does one dramatic zoom-out on load, then
+     breathe takes over with a slow infinite Ken Burns drift. */
+  .hero-image-settle {
+    animation: hero-image-settle 1.7s cubic-bezier(0.22, 1, 0.36, 1) 0.4s both;
+  }
+  .hero-image-breathe {
+    animation: hero-image-breathe 14s ease-in-out 2.1s infinite;
+  }
+
+  /* Each heading line hides behind an overflow-hidden mask and slides
+     up into view — the text "reveal" seen across fashion microsites. */
+  .hero-line-mask {
+    display: block;
+    overflow: hidden;
+    padding-bottom: 0.14em;
+    margin-bottom: -0.14em;
+  }
+  .hero-line-inner {
+    display: block;
+    animation: hero-line-reveal 0.9s cubic-bezier(0.16, 1, 0.3, 1) var(--line-delay, 0s) both;
+  }
+
+  /* Entrance pop with a bit of swagger (rotation + distance), then a
+     livelier breathing float with a synced gold glow pulse. */
+  .hero-card {
+    animation:
+      hero-card-pop 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) 1.5s both,
+      hero-card-float 6s ease-in-out 2.6s infinite,
+      hero-card-glow 6s ease-in-out 2.6s infinite;
+  }
+
+  .hero-circle-a { animation: hero-circle-drift 16s ease-in-out infinite; }
+  .hero-circle-b { animation: hero-circle-drift 22s ease-in-out 2s infinite reverse; }
+
+  /* Slow light sweep across the gold italic heading line */
+  .gold-sheen {
+    background: linear-gradient(110deg, #C49B38 0%, #C49B38 42%, #EAD08A 50%, #C49B38 58%, #C49B38 100%);
+    background-size: 250% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gold-sheen 9s ease-in-out 2s infinite;
+  }
+
+  /* Scroll parallax: --hero-progress (0 → 1) is set by HeroScrollEffect
+     as the hero scrolls out of view; the image group lags behind. */
+  .hero-parallax {
+    transform: translate3d(0, calc(var(--hero-progress, 0) * 52px), 0);
+    will-change: transform;
+  }
+}
+
+@keyframes hero-rise {
+  from { opacity: 0; transform: translateY(42px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes hero-arch-ring {
+  0% { box-shadow: 0 0 0 0 rgba(196, 155, 56, 0.55); }
+  65% { box-shadow: 0 0 0 20px rgba(196, 155, 56, 0); }
+  100% { box-shadow: 0 0 0 20px rgba(196, 155, 56, 0); }
+}
+
+@keyframes hero-curtain-wipe {
+  from { transform: scaleX(1); }
+  to { transform: scaleX(0); }
+}
+
+@keyframes hero-image-settle {
+  from { transform: scale(1.28); }
+  to { transform: scale(1.04); }
+}
+
+@keyframes hero-image-breathe {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.06); }
+}
+
+@keyframes hero-line-reveal {
+  from { transform: translateY(115%); }
+  to { transform: translateY(0); }
+}
+
+@keyframes hero-card-pop {
+  0% { opacity: 0; transform: translate(48px, 32px) rotate(-10deg) scale(0.72); }
+  100% { opacity: 1; transform: translate(0, 0) rotate(0deg) scale(1); }
+}
+
+@keyframes hero-card-float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-12px) rotate(-1.4deg); }
+}
+
+@keyframes hero-card-glow {
+  0%, 100% { box-shadow: 0 10px 25px rgba(26, 15, 10, 0.18); }
+  50% { box-shadow: 0 22px 42px rgba(196, 155, 56, 0.32); }
+}
+
+@keyframes hero-circle-drift {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(-22px, 18px, 0) scale(1.06); }
+}
+
+@keyframes gold-sheen {
+  0% { background-position: 120% 0; }
+  22% { background-position: -60% 0; }
+  100% { background-position: -60% 0; }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.4s ease-out both;
+}
+
+.animate-scale-in {
+  animation: scale-in 0.25s cubic-bezier(0.34, 1.56, 0.64, 1) both;
 }

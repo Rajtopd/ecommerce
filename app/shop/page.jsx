@@ -51,11 +51,14 @@ export default async function ShopPage({ searchParams }) {
   // Pagination
   query = query.range(from, to)
 
-  const { data: products, count, error } = await query
+  const [{ data: products, count, error }, { data: dbCategories }] = await Promise.all([
+    query,
+    supabaseAdmin.from('categories').select('name').eq('is_active', true).order('sort_order'),
+  ])
 
   const totalPages = Math.ceil((count || 0) / limitNum)
 
-  const categories = ['All', 'Tops', 'Bottoms', 'Dresses', 'Co-ords', 'Outerwear', 'Accessories']
+  const categories = ['All', ...(dbCategories?.length ? dbCategories.map(c => c.name) : ['Tops', 'Bottoms', 'Dresses', 'Co-ords', 'Outerwear', 'Accessories'])]
   const sizes = ['All', 'XS', 'S', 'M', 'L', 'XL', 'XXL']
 
   const getUpdatedUrl = (key, value) => {
@@ -75,79 +78,186 @@ export default async function ShopPage({ searchParams }) {
   const hasFilters = category || size || sort
 
   return (
-    <div className="pt-24 pb-20 px-5 md:px-10 max-w-7xl mx-auto min-h-screen">
+    <div className="bg-brand-bg min-h-screen pt-8 md:pt-12 pb-20">
       
-      {/* Page Header */}
-      <div className="mb-8 flex items-baseline gap-3">
-        <h1 className="font-display text-[36px] text-[#1C1410]">Shop</h1>
-        <span className="text-[14px] text-[#6B5E54] font-light">
-          ({count || 0} pieces)
-        </span>
+      {/* Page Header (Full Width) */}
+      <div className="max-w-[1280px] mx-auto px-4 md:px-8 mb-6 md:mb-10">
+        <div className="flex items-baseline gap-3 mb-2">
+          <h1 className="font-display text-[32px] md:text-[42px] font-bold text-brand-dark">{category || 'Shop All'}</h1>
+          <span className="text-[14px] text-brand-muted font-light">
+            ({count || 0} pieces)
+          </span>
+        </div>
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-brand-border pb-4">
+          <div className="text-[13px] text-brand-muted">
+            Viewing {products?.length || 0} of {count || 0} results
+          </div>
+          <div className="flex items-center gap-4">
+            <div className="relative">
+              <SortSelect currentSort={sort} />
+            </div>
+          </div>
+        </div>
       </div>
 
-      {/* Filter Bar */}
-      <div className="mb-10 flex flex-col gap-4">
-        
-        {/* Sort & active filters row - visually above categories on mobile, right aligned on desktop */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 order-3 md:order-1">
-          <div className="flex flex-wrap gap-2 items-center">
-            {hasFilters && (
-              <>
-                {category && (
-                  <a href={getUpdatedUrl('category', 'All')} className="bg-[#F2EDE8] text-[#1C1410] px-3 py-1 text-[9px] uppercase tracking-[0.1em] rounded-[2px] flex items-center gap-2">
-                    {category} &times;
-                  </a>
-                )}
-                {size && (
-                  <a href={getUpdatedUrl('size', 'All')} className="bg-[#F2EDE8] text-[#1C1410] px-3 py-1 text-[9px] uppercase tracking-[0.1em] rounded-[2px] flex items-center gap-2">
-                    Size: {size} &times;
-                  </a>
-                )}
-                {sort && (
-                  <a href={getUpdatedUrl('sort', 'All')} className="bg-[#F2EDE8] text-[#1C1410] px-3 py-1 text-[9px] uppercase tracking-[0.1em] rounded-[2px] flex items-center gap-2">
-                    Sort: {sort === 'price_asc' ? 'Low-High' : sort === 'price_desc' ? 'High-Low' : 'Sale'} &times;
-                  </a>
-                )}
-                <a href={clearAllUrl} className="text-[#C8726A] text-[9px] uppercase tracking-[0.1em] ml-2 hover:opacity-70">
+      <div className="max-w-[1280px] mx-auto px-4 md:px-8 flex flex-col md:flex-row gap-8">
+
+        {/* Filters — collapsible on mobile, sidebar on desktop */}
+        <div className="w-full md:w-[240px] flex-shrink-0 md:pr-6 md:border-r border-brand-border">
+
+          {/* Mobile: collapsed by default */}
+          <details className="md:hidden border border-brand-border rounded-[3px] bg-white mb-2 group">
+            <summary className="flex items-center justify-between px-4 py-3 cursor-pointer list-none [&::-webkit-details-marker]:hidden">
+              <span className="text-[13px] font-semibold text-brand-dark uppercase tracking-[0.08em]">
+                Filters {hasFilters && <span className="text-brand-accent">·</span>}
+              </span>
+              <svg className="transition-transform duration-200 group-open:rotate-180" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </summary>
+            <div className="px-4 pb-4 pt-1 border-t border-brand-border">
+              <FilterPanel
+                categories={categories} sizes={sizes}
+                category={category} size={size}
+                hasFilters={hasFilters} clearAllUrl={clearAllUrl}
+                getUpdatedUrl={getUpdatedUrl}
+              />
+            </div>
+          </details>
+
+          {/* Desktop: always visible */}
+          <div className="hidden md:block">
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="text-[15px] font-semibold text-brand-dark">Filters</h2>
+              {hasFilters && (
+                <a href={clearAllUrl} className="text-brand-accent text-[11px] uppercase tracking-[0.1em] font-medium hover:underline">
                   Clear all
                 </a>
-              </>
-            )}
-          </div>
-          
-          <div className="relative">
-            <SortSelect currentSort={sort} />
+              )}
+            </div>
+            <FilterPanel
+              categories={categories} sizes={sizes}
+              category={category} size={size}
+              hasFilters={hasFilters} clearAllUrl={clearAllUrl}
+              getUpdatedUrl={getUpdatedUrl}
+            />
           </div>
         </div>
 
-        {/* Categories */}
-        <div className="flex flex-row flex-wrap gap-2 order-1 md:order-2">
+        {/* Product Grid Area */}
+        <div className="flex-1 md:pl-2">
+          {products && products.length > 0 ? (
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-x-4 gap-y-8">
+              {products.map(product => (
+                <ProductCard key={product.id} product={product} />
+              ))}
+            </div>
+          ) : (
+            /* Empty State */
+            <div className="py-20 text-center flex flex-col items-center border border-brand-border border-dashed rounded-md bg-white/50">
+              <h3 className="font-display text-[22px] text-brand-dark mb-2">No pieces found.</h3>
+              <p className="text-[13px] text-brand-muted font-light mb-6">Try adjusting your filters.</p>
+              <a href={clearAllUrl} className="bg-brand-accent text-white px-[26px] py-[11px] text-[10px] uppercase tracking-[0.12em] font-medium rounded-sm hover:opacity-90 transition-opacity">
+                Clear filters
+              </a>
+            </div>
+          )}
+
+          {/* Pagination */}
+          {totalPages > 1 && (
+            <div className="mt-16 pt-8 border-t border-brand-border flex justify-center items-center gap-2">
+              {pageNum > 1 && (
+                <a href={getUpdatedUrl('page', pageNum - 1)} className="px-3 py-1 text-[11px] uppercase tracking-[0.1em] text-brand-muted hover:text-brand-dark">
+                  Prev
+                </a>
+              )}
+              
+              {Array.from({ length: totalPages }).map((_, i) => {
+                const p = i + 1
+                const isActive = p === pageNum
+                return (
+                  <a 
+                    key={p} 
+                    href={getUpdatedUrl('page', p)}
+                    className={`w-8 h-8 flex items-center justify-center text-[12px] transition-colors ${
+                      isActive 
+                        ? 'font-bold text-brand-dark border-b-2 border-brand-dark' 
+                        : 'text-brand-muted hover:text-brand-dark'
+                    }`}
+                  >
+                    {p}
+                  </a>
+                )
+              })}
+
+              {pageNum < totalPages && (
+                <a href={getUpdatedUrl('page', pageNum + 1)} className="px-3 py-1 text-[11px] uppercase tracking-[0.1em] text-brand-muted hover:text-brand-dark">
+                  Next
+                </a>
+              )}
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function FilterPanel({ categories, sizes, category, size, hasFilters, clearAllUrl, getUpdatedUrl }) {
+  return (
+    <>
+      {/* Active Filters display */}
+      {hasFilters && (
+        <div className="flex flex-wrap gap-2 mb-6 mt-3 md:mt-0">
+          {category && (
+            <a href={getUpdatedUrl('category', 'All')} className="bg-white border border-brand-border text-brand-dark px-3 py-1 text-[10px] uppercase tracking-[0.08em] rounded-sm flex items-center gap-2 hover:border-brand-accent transition-colors">
+              {category} &times;
+            </a>
+          )}
+          {size && (
+            <a href={getUpdatedUrl('size', 'All')} className="bg-white border border-brand-border text-brand-dark px-3 py-1 text-[10px] uppercase tracking-[0.08em] rounded-sm flex items-center gap-2 hover:border-brand-accent transition-colors">
+              Size: {size} &times;
+            </a>
+          )}
+        </div>
+      )}
+
+      <div className="mb-6 mt-3 md:mt-0">
+        <div className="text-[13px] font-semibold text-brand-dark mb-3">Category</div>
+        <div className="flex flex-col gap-2">
           {categories.map((c) => {
             const isActive = category === c || (c === 'All' && !category)
             return (
-              <a 
+              <a
                 key={c}
                 href={getUpdatedUrl('category', c)}
-                className={`px-[14px] py-[7px] rounded-[2px] text-[9px] uppercase tracking-[0.1em] transition-colors ${
-                  isActive ? 'bg-[#1C1410] text-white' : 'bg-[#F2EDE8] text-[#6B5E54] hover:bg-[#E8E4DF]'
+                className={`text-[13px] flex items-center gap-2 cursor-pointer ${
+                  isActive ? 'text-brand-accent font-medium' : 'text-brand-muted hover:text-brand-dark'
                 }`}
               >
+                <div className={`w-3.5 h-3.5 border ${isActive ? 'border-brand-accent bg-brand-accent' : 'border-brand-border bg-white'} rounded-sm flex items-center justify-center`}>
+                  {isActive && <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3"><path d="M20 6L9 17l-5-5"></path></svg>}
+                </div>
                 {c}
               </a>
             )
           })}
         </div>
+      </div>
 
-        {/* Sizes */}
-        <div className="flex flex-row flex-wrap gap-2 order-2 md:order-3">
+      <div className="h-[1px] bg-brand-border mb-6"></div>
+
+      <div className="mb-2 md:mb-6">
+        <div className="text-[13px] font-semibold text-brand-dark mb-3">Size</div>
+        <div className="flex flex-wrap gap-2">
           {sizes.map((s) => {
             const isActive = size === s || (s === 'All' && !size)
             return (
-              <a 
+              <a
                 key={s}
                 href={getUpdatedUrl('size', s)}
-                className={`px-[14px] py-[7px] rounded-[2px] text-[9px] uppercase tracking-[0.1em] transition-colors ${
-                  isActive ? 'bg-[#1C1410] text-white' : 'bg-[#F2EDE8] text-[#6B5E54] hover:bg-[#E8E4DF]'
+                className={`w-[38px] h-[38px] flex items-center justify-center text-[12px] font-medium border cursor-pointer transition-colors ${
+                  isActive
+                    ? 'border-brand-accent bg-brand-accent text-white'
+                    : 'border-brand-border bg-white text-brand-muted hover:border-brand-accent hover:text-brand-accent'
                 }`}
               >
                 {s}
@@ -157,59 +267,11 @@ export default async function ShopPage({ searchParams }) {
         </div>
       </div>
 
-      {/* Product Grid */}
-      {products && products.length > 0 ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
-          {products.map(product => (
-            <ProductCard key={product.id} product={product} />
-          ))}
-        </div>
-      ) : (
-        /* Empty State */
-        <div className="py-20 text-center flex flex-col items-center">
-          <h3 className="font-display text-[22px] text-[#1C1410] mb-2">No pieces found.</h3>
-          <p className="text-[13px] text-[#6B5E54] font-light mb-6">Try adjusting your filters.</p>
-          <a href={clearAllUrl} className="bg-[#1C1410] text-white px-[26px] py-[11px] text-[10px] uppercase tracking-[0.12em] rounded-[2px] hover:opacity-90">
-            Clear filters
-          </a>
-        </div>
+      {hasFilters && (
+        <a href={clearAllUrl} className="md:hidden inline-block text-brand-accent text-[11px] uppercase tracking-[0.1em] font-medium hover:underline mb-2">
+          Clear all filters
+        </a>
       )}
-
-      {/* Pagination */}
-      {totalPages > 1 && (
-        <div className="mt-16 flex justify-center items-center gap-2">
-          {pageNum > 1 && (
-            <a href={getUpdatedUrl('page', pageNum - 1)} className="px-3 py-1 text-[10px] text-[#6B5E54] hover:text-[#1C1410]">
-              Previous
-            </a>
-          )}
-          
-          {Array.from({ length: totalPages }).map((_, i) => {
-            const p = i + 1
-            const isActive = p === pageNum
-            return (
-              <a 
-                key={p} 
-                href={getUpdatedUrl('page', p)}
-                className={`w-8 h-8 flex items-center justify-center rounded-[2px] text-[10px] transition-colors ${
-                  isActive ? 'bg-[#1C1410] text-white' : 'bg-[#F2EDE8] text-[#6B5E54] hover:bg-[#E8E4DF]'
-                }`}
-              >
-                {p}
-              </a>
-            )
-          })}
-
-          {pageNum < totalPages && (
-            <a href={getUpdatedUrl('page', pageNum + 1)} className="px-3 py-1 text-[10px] text-[#6B5E54] hover:text-[#1C1410]">
-              Next
-            </a>
-          )}
-        </div>
-      )}
-
-    </div>
+    </>
   )
 }
-
-

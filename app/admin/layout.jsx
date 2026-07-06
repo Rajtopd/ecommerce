@@ -1,13 +1,52 @@
 'use client';
 
 import { usePathname, useRouter } from 'next/navigation';
-import { LayoutDashboard, Package, ShoppingBag, BarChart2, LogOut } from 'lucide-react';
+import { LayoutDashboard, Package, ShoppingBag, BarChart2, LogOut, ChevronLeft, Tags, PenSquare, Truck, TicketPercent, Users, ShieldCheck } from 'lucide-react';
 import Link from 'next/link';
+import { useState, useEffect } from 'react';
+import { supabase } from '@/lib/supabase';
 import '../globals.css';
 
 export default function AdminLayout({ children }) {
   const pathname = usePathname();
   const router = useRouter();
+  const [expanded, setExpanded] = useState(true);
+  const [pendingCount, setPendingCount] = useState(0);
+  const [role, setRole] = useState(null);
+
+  useEffect(() => {
+    if (pathname === '/admin/login') return;
+    fetch('/api/admin/auth')
+      .then(r => r.ok ? r.json() : null)
+      .then(d => { if (d?.role) setRole(d.role); })
+      .catch(() => {});
+  }, [pathname]);
+
+  useEffect(() => {
+    if (pathname === '/admin/login') return;
+
+    // Fetch initial count
+    const fetchCount = async () => {
+      const { count } = await supabase
+        .from('orders')
+        .select('*', { count: 'exact', head: true })
+        .eq('status', 'pending');
+      setPendingCount(count || 0);
+    };
+    fetchCount();
+
+    // Subscribe to changes
+    const channel = supabase
+      .channel('admin-sidebar')
+      .on('postgres_changes', { event: '*', schema: 'public', table: 'orders' }, () => {
+        fetchCount(); // Re-fetch on any order change
+      })
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
+  }, [pathname]);
 
   // If this is the login page, don't show the admin sidebar
   if (pathname === '/admin/login') {
@@ -21,77 +60,49 @@ export default function AdminLayout({ children }) {
 
   const navLinks = [
     { href: '/admin', label: 'Dashboard', icon: LayoutDashboard },
-    { href: '/admin/products', label: 'Products', icon: Package },
     { href: '/admin/orders', label: 'Orders', icon: ShoppingBag },
+    { href: '/admin/products', label: 'Products', icon: Package },
+    { href: '/admin/categories', label: 'Categories', icon: Tags },
+    { href: '/admin/content', label: 'Site Content', icon: PenSquare },
+    { href: '/admin/delivery', label: 'Delivery', icon: Truck },
+    { href: '/admin/discounts', label: 'Discounts', icon: TicketPercent },
+    { href: '/admin/customers', label: 'Customers', icon: Users },
     { href: '/admin/analytics', label: 'Analytics', icon: BarChart2 },
+    ...(role === 'owner' ? [{ href: '/admin/admins', label: 'Admins', icon: ShieldCheck }] : []),
   ];
 
-  // Helper to format pathname as a simple title
-  const getPageTitle = () => {
-    if (pathname === '/admin') return 'Dashboard';
-    if (pathname.startsWith('/admin/products/new')) return 'Add Product';
-    if (pathname.match(/^\/admin\/products\/[^/]+$/)) return 'Edit Product';
-    if (pathname.startsWith('/admin/products')) return 'Products';
-    if (pathname.startsWith('/admin/orders')) return 'Orders';
-    if (pathname.startsWith('/admin/analytics')) return 'Analytics';
-    return 'Admin Panel';
-  };
+  const sideW = expanded ? '220px' : '64px';
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'row', minHeight: '100vh', margin: 0, padding: 0 }}>
-      {/* LEFT — AdminSidebar */}
+    <div style={{ display: 'flex', minHeight: '100vh', background: '#F0EBE1', fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif' }}>
+      
+      {/* ── SIDEBAR ── */}
       <div style={{
-        backgroundColor: '#1C1410',
-        width: '240px',
-        height: '100vh',
-        padding: '28px 0',
+        width: sideW,
+        background: '#FAF7F0',
+        borderRight: '1px solid #E0D0B8',
+        display: 'flex',
+        flexDirection: 'column',
         position: 'fixed',
         left: 0,
         top: 0,
-        boxSizing: 'border-box',
-        display: 'flex',
-        flexDirection: 'column'
+        height: '100vh',
+        zIndex: 40,
+        transition: 'width 0.2s ease'
       }}>
-        <div style={{
-          fontFamily: '"DM Serif Display", serif',
-          fontSize: '16px',
-          color: '#FAF7F4',
-          letterSpacing: '0.08em',
-          padding: '0 24px',
-          marginBottom: '6px'
-        }}>
-          Soul Sisters
-        </div>
-        <div style={{
-          fontFamily: '"Josefin Sans", sans-serif',
-          fontWeight: 400,
-          fontSize: '8px',
-          textTransform: 'uppercase',
-          letterSpacing: '0.12em',
-          color: '#6B5E54',
-          padding: '0 24px',
-          marginBottom: '32px'
-        }}>
-          Admin Panel
+        <div style={{ padding: '24px', display: 'flex', alignItems: 'center', gap: '12px' }}>
+          <div style={{ width: '32px', height: '32px', background: '#6E1A2C', borderRadius: '4px', flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <span style={{ fontFamily: '"Cormorant Garamond", serif', color: '#E0D0B8', fontSize: '20px', fontWeight: 600, fontStyle: 'italic', lineHeight: 1 }}>S</span>
+          </div>
+          {expanded && (
+            <div style={{ fontFamily: '"Cormorant Garamond", serif', fontSize: '22px', fontWeight: 600, color: '#1A0F0A', whiteSpace: 'nowrap' }}>
+              Soul Sisters
+            </div>
+          )}
         </div>
 
-        <div style={{ borderBottom: '0.5px solid #2D1F18', width: '100%' }}></div>
-
-        <div style={{
-          fontFamily: '"Josefin Sans", sans-serif',
-          fontWeight: 400,
-          fontSize: '8px',
-          textTransform: 'uppercase',
-          letterSpacing: '0.14em',
-          color: '#4A3D35',
-          padding: '16px 24px 8px'
-        }}>
-          MANAGE
-        </div>
-
-        <div style={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
+        <nav style={{ flex: 1, padding: '10px 12px', display: 'flex', flexDirection: 'column', gap: '6px' }}>
           {navLinks.map((link) => {
-            // exact match for /admin, startsWith for others
             const isActive = link.href === '/admin' 
               ? pathname === '/admin' 
               : pathname.startsWith(link.href);
@@ -102,114 +113,113 @@ export default function AdminLayout({ children }) {
               <Link key={link.href} href={link.href} style={{ textDecoration: 'none' }}>
                 <div style={{
                   display: 'flex',
-                  flexDirection: 'row',
                   alignItems: 'center',
-                  gap: '10px',
-                  padding: '10px 24px',
-                  width: '100%',
-                  boxSizing: 'border-box',
-                  fontFamily: '"Josefin Sans", sans-serif',
-                  fontWeight: 400,
-                  fontSize: '10px',
-                  textTransform: 'uppercase',
-                  letterSpacing: '0.08em',
-                  color: isActive ? '#FAF7F4' : '#B5A89E',
-                  backgroundColor: isActive ? '#2D1F18' : 'transparent',
-                  borderLeft: isActive ? '2px solid #C8726A' : '2px solid transparent',
-                  transition: 'background-color 150ms, color 150ms'
+                  gap: '11px',
+                  padding: '10px 14px',
+                  borderRadius: '4px',
+                  cursor: 'pointer',
+                  background: isActive ? '#E0D0B8' : 'transparent',
+                  color: isActive ? '#1A0F0A' : '#9C7B5E',
+                  transition: 'all 0.15s ease'
                 }}
                 onMouseOver={(e) => {
                   if (!isActive) {
-                    e.currentTarget.style.backgroundColor = '#2D1F18';
-                    e.currentTarget.style.color = '#FAF7F4';
+                    e.currentTarget.style.backgroundColor = 'rgba(0,0,0,0.04)';
                   }
                 }}
                 onMouseOut={(e) => {
                   if (!isActive) {
                     e.currentTarget.style.backgroundColor = 'transparent';
-                    e.currentTarget.style.color = '#B5A89E';
                   }
                 }}>
-                  <Icon size={16} />
-                  {link.label}
+                  <Icon size={18} strokeWidth={isActive ? 2.5 : 2} style={{ flexShrink: 0 }} />
+                  {expanded && (
+                    <span style={{ fontSize: '14px', whiteSpace: 'nowrap', fontWeight: isActive ? 600 : 500, flex: 1 }}>
+                      {link.label}
+                    </span>
+                  )}
+                  {link.label === 'Orders' && pendingCount > 0 && (
+                    <div style={{
+                      background: '#C49B38',
+                      color: '#1A0F0A',
+                      borderRadius: '50%',
+                      minWidth: '18px',
+                      height: '18px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      fontFamily: '"Cormorant Garamond", serif',
+                      fontWeight: 600,
+                      fontSize: '10px',
+                      padding: '0 4px',
+                      marginLeft: expanded ? '0' : 'auto',
+                      position: expanded ? 'relative' : 'absolute',
+                      right: expanded ? 'auto' : '8px',
+                      top: expanded ? 'auto' : '8px'
+                    }}>
+                      {pendingCount}
+                    </div>
+                  )}
                 </div>
               </Link>
             );
           })}
-        </div>
+        </nav>
 
-        <div style={{ borderBottom: '0.5px solid #2D1F18', width: '100%' }}></div>
-        
-        <button onClick={handleSignOut} style={{
-          display: 'flex',
-          flexDirection: 'row',
-          alignItems: 'center',
-          gap: '10px',
-          padding: '10px 24px',
-          width: '100%',
-          background: 'none',
-          border: 'none',
-          cursor: 'pointer',
-          color: '#6B5E54',
-          fontFamily: '"Josefin Sans", sans-serif',
-          fontWeight: 400,
-          fontSize: '10px',
-          textTransform: 'uppercase',
-          marginTop: '16px'
-        }}
-        onMouseOver={(e) => e.currentTarget.style.color = '#C8726A'}
-        onMouseOut={(e) => e.currentTarget.style.color = '#6B5E54'}>
-          <LogOut size={16} />
-          Sign Out
-        </button>
+        <div style={{ padding: '12px 10px', borderTop: '1px solid #E0D0B8' }}>
+          {/* Sign Out */}
+          <div onClick={handleSignOut} style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '11px',
+            padding: '10px 14px',
+            borderRadius: '4px',
+            cursor: 'pointer',
+            color: '#9C7B5E',
+            marginBottom: '8px'
+          }}
+          onMouseOver={(e) => e.currentTarget.style.color = '#1A0F0A'}
+          onMouseOut={(e) => e.currentTarget.style.color = '#9C7B5E'}>
+            <LogOut size={16} strokeWidth={2} style={{ flexShrink: 0 }} />
+            {expanded && <span style={{ fontSize: '13px', whiteSpace: 'nowrap', fontWeight: 500 }}>Sign Out</span>}
+          </div>
+          
+          {/* Collapse */}
+          <div onClick={() => setExpanded(!expanded)} style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '11px',
+            padding: '9px 14px',
+            borderRadius: '4px',
+            cursor: 'pointer',
+            color: '#9C7B5E'
+          }}
+          onMouseOver={(e) => {
+            e.currentTarget.style.color = '#1A0F0A';
+            e.currentTarget.style.backgroundColor = 'rgba(0,0,0,0.04)';
+          }}
+          onMouseOut={(e) => {
+            e.currentTarget.style.color = '#9C7B5E';
+            e.currentTarget.style.backgroundColor = 'transparent';
+          }}>
+            <ChevronLeft size={16} strokeWidth={2} style={{ flexShrink: 0, transform: expanded ? 'rotate(0deg)' : 'rotate(180deg)', transition: 'transform 0.2s' }} />
+            {expanded && <span style={{ fontSize: '13px', whiteSpace: 'nowrap', fontWeight: 500 }}>Collapse</span>}
+          </div>
+        </div>
       </div>
 
-      {/* RIGHT — Main content area */}
+      {/* ── MAIN CONTENT ── */}
       <div style={{
-        marginLeft: '240px',
+        flex: 1,
+        marginLeft: sideW,
+        padding: '32px 36px',
         minHeight: '100vh',
-        backgroundColor: '#F7F6F3',
-        padding: 0,
-        width: 'calc(100% - 240px)',
+        transition: 'margin-left 0.2s ease',
         boxSizing: 'border-box'
       }}>
-        <div style={{
-          height: '56px',
-          backgroundColor: '#fff',
-          borderBottom: '0.5px solid #E8E4DF',
-          padding: '0 32px',
-          display: 'flex',
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          position: 'sticky',
-          top: 0,
-          zIndex: 10
-        }}>
-          <div style={{
-            fontFamily: '"Josefin Sans", sans-serif',
-            fontWeight: 400,
-            fontSize: '11px',
-            textTransform: 'uppercase',
-            letterSpacing: '0.12em',
-            color: '#1C1410'
-          }}>
-            {getPageTitle()}
-          </div>
-          <div style={{
-            fontFamily: '"Josefin Sans", sans-serif',
-            fontWeight: 300,
-            fontSize: '9px',
-            color: '#B5A89E'
-          }}>
-            soul sisters admin
-          </div>
-        </div>
-
-        <div style={{ padding: '32px' }}>
-          {children}
-        </div>
+        {children}
       </div>
+
     </div>
   );
 }

@@ -1,18 +1,27 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { ImagePlus, X, Trash2, Plus } from 'lucide-react';
 import Image from 'next/image';
 import { CldUploadWidget } from 'next-cloudinary';
 
-const CATEGORIES = ['Tops', 'Bottoms', 'Dresses', 'Co-ords', 'Outerwear', 'Accessories'];
+const DEFAULT_CATEGORIES = ['Tops', 'Bottoms', 'Dresses', 'Co-ords', 'Outerwear', 'Accessories'];
 const SIZES = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
 
 export default function ProductForm({ initialData = null }) {
   const router = useRouter();
   const isEdit = !!initialData;
+
+  // Categories are admin-managed; fall back to defaults while loading
+  const [CATEGORIES, setCategories] = useState(DEFAULT_CATEGORIES);
+  useEffect(() => {
+    fetch('/api/admin/categories')
+      .then(r => r.ok ? r.json() : null)
+      .then(d => { if (d?.categories?.length) setCategories(d.categories.map(c => c.name)); })
+      .catch(() => {});
+  }, []);
 
   const [formData, setFormData] = useState({
     name: initialData?.name || '',

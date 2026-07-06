@@ -1,20 +1,15 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import '../../globals.css';
 
 export default function AdminLogin() {
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
-
-  // On mount, check if admin_token exists by checking if we can access the API
-  // or simply rely on the middleware redirecting if we are already logged in.
-  // Actually, we can check document.cookie on client but HttpOnly cookies can't be read.
-  // Let's just trust middleware to bounce us out if we aren't logged in, 
-  // but if we *are* logged in, middleware doesn't bounce us FROM login to /admin automatically unless we tell it to.
-  // Let's add a quick check or just leave it. If they load /admin/login while logged in, it's fine.
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -25,7 +20,7 @@ export default function AdminLogin() {
       const res = await fetch('/api/admin/auth', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ password }),
+        body: JSON.stringify({ email, password }),
       });
 
       if (res.ok) {
@@ -44,65 +39,89 @@ export default function AdminLogin() {
   return (
     <div style={{
       minHeight: '100vh',
-      backgroundColor: '#1C1410',
+      backgroundColor: '#F0EBE1',
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'center',
-      alignItems: 'center'
+      alignItems: 'center',
+      fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif'
     }}>
       <div style={{
-        backgroundColor: '#FAFAF8',
-        borderRadius: '4px',
+        backgroundColor: 'white',
+        borderRadius: '6px',
         padding: '40px 36px',
         width: '380px',
-        boxSizing: 'border-box'
+        border: '1px solid #E0D0B8',
+        boxSizing: 'border-box',
+        boxShadow: '0 4px 12px rgba(0,0,0,0.05)'
       }}>
+        <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '16px' }}>
+          <div style={{ width: '48px', height: '48px', background: '#6E1A2C', borderRadius: '6px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <span style={{ fontFamily: '"Cormorant Garamond", serif', color: '#E0D0B8', fontSize: '32px', fontWeight: 600, fontStyle: 'italic', lineHeight: 1 }}>S</span>
+          </div>
+        </div>
+        
         <h1 style={{
-          fontFamily: '"DM Serif Display", serif',
-          fontSize: '22px',
-          color: '#1C1410',
+          fontFamily: '"Cormorant Garamond", serif',
+          fontSize: '26px',
+          color: '#1A0F0A',
           textAlign: 'center',
-          letterSpacing: '0.08em',
-          margin: '0 0 4px 0',
-          fontWeight: 'normal'
+          fontWeight: 600,
+          margin: '0 0 4px 0'
         }}>
-          Soul Sisters
+          Admin Panel
         </h1>
         <p style={{
-          fontFamily: '"Josefin Sans", sans-serif',
-          fontWeight: 400,
-          fontSize: '9px',
-          textTransform: 'uppercase',
-          letterSpacing: '0.14em',
-          color: '#6B5E54',
+          fontSize: '13px',
+          color: '#5C3D2E',
           textAlign: 'center',
           margin: '0 0 32px 0'
         }}>
-          Admin Panel
+          Sign in to manage Soul Sisters
         </p>
 
-        <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column' }}>
+        <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Email address"
+            disabled={isLoading}
+            autoComplete="username"
+            style={{
+              width: '100%',
+              padding: '12px 14px',
+              border: '1px solid #E0D0B8',
+              borderRadius: '4px',
+              fontSize: '14px',
+              color: '#1A0F0A',
+              boxSizing: 'border-box',
+              outline: 'none',
+              transition: 'border-color 0.2s'
+            }}
+            onFocus={(e) => e.target.style.borderColor = '#C49B38'}
+            onBlur={(e) => e.target.style.borderColor = '#E0D0B8'}
+          />
           <input
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            placeholder="Admin password"
+            placeholder="Password"
             disabled={isLoading}
+            autoComplete="current-password"
             style={{
               width: '100%',
-              height: '46px',
-              border: '0.5px solid #E8E4DF',
-              borderRadius: '2px',
-              fontFamily: '"Josefin Sans", sans-serif',
-              fontWeight: 300,
-              fontSize: '13px',
-              color: '#1C1410',
-              padding: '0 16px',
+              padding: '12px 14px',
+              border: '1px solid #E0D0B8',
+              borderRadius: '4px',
+              fontSize: '14px',
+              color: '#1A0F0A',
               boxSizing: 'border-box',
               outline: 'none',
+              transition: 'border-color 0.2s'
             }}
-            onFocus={(e) => e.target.style.borderColor = '#1C1410'}
-            onBlur={(e) => e.target.style.borderColor = '#E8E4DF'}
+            onFocus={(e) => e.target.style.borderColor = '#C49B38'}
+            onBlur={(e) => e.target.style.borderColor = '#E0D0B8'}
           />
           
           <button
@@ -110,35 +129,32 @@ export default function AdminLogin() {
             disabled={isLoading}
             style={{
               width: '100%',
-              height: '46px',
-              marginTop: '12px',
-              backgroundColor: '#1C1410',
-              color: '#fff',
+              padding: '12px',
+              backgroundColor: '#C49B38',
+              color: '#1A0F0A',
               border: 'none',
-              borderRadius: '2px',
-              fontFamily: '"Josefin Sans", sans-serif',
-              fontWeight: 400,
-              fontSize: '10px',
-              textTransform: 'uppercase',
-              letterSpacing: '0.12em',
+              borderRadius: '4px',
+              fontWeight: 600,
+              fontSize: '14px',
               cursor: isLoading ? 'not-allowed' : 'pointer',
               display: 'flex',
               justifyContent: 'center',
-              alignItems: 'center'
+              alignItems: 'center',
+              transition: 'background-color 0.2s'
             }}
+            onMouseOver={(e) => e.target.style.backgroundColor = '#E8C96A'}
+            onMouseOut={(e) => e.target.style.backgroundColor = '#C49B38'}
           >
-            {isLoading ? 'Verifying...' : 'Enter'}
+            {isLoading ? 'Verifying...' : 'Sign In'}
           </button>
 
           {error && (
             <p style={{
-              fontFamily: '"Josefin Sans", sans-serif',
-              fontWeight: 300,
-              fontSize: '11px',
-              color: '#C8726A',
+              fontSize: '13px',
+              color: '#8B1A2C',
               textAlign: 'center',
-              marginTop: '10px',
-              marginBottom: 0
+              margin: '0',
+              fontWeight: 500
             }}>
               {error}
             </p>

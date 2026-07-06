@@ -6,6 +6,8 @@ import { useToast } from '@/components/ui/ToastContext'
 import useCartStore from '@/lib/cartStore'
 import { useAuth } from '@/lib/authContext'
 import { supabase } from '@/lib/supabase'
+import { useSiteData } from '@/components/SiteDataContext'
+import { DUBAI_AREAS } from '@/lib/constants'
 
 export default function CheckoutForm({ clientSecret, totalAmount, onSuccess }) {
   const stripe = useStripe()
@@ -13,7 +15,11 @@ export default function CheckoutForm({ clientSecret, totalAmount, onSuccess }) {
   const { showToast } = useToast()
   const clearCart = useCartStore(state => state.clearCart)
   const { user, isLoggedIn } = useAuth()
-  
+  const { zones } = useSiteData()
+
+  // Delivery areas are admin-managed (Delivery screen); fall back to the legacy list
+  const dubaiAreas = zones && zones.length ? zones : DUBAI_AREAS
+
   const [useSavedAddress, setUseSavedAddress] = useState(false)
 
   const [formData, setFormData] = useState({
@@ -22,16 +28,17 @@ export default function CheckoutForm({ clientSecret, totalAmount, onSuccess }) {
     email: '',
     phone: '',
     address: '',
-    area: 'Downtown Dubai',
+    area: '',
     city: 'Dubai',
   })
-  
+
   const [isProcessing, setIsProcessing] = useState(false)
-  
-  const dubaiAreas = [
-    'Downtown Dubai', 'Dubai Marina', 'Jumeirah', 'Business Bay', 
-    'Palm Jumeirah', 'Al Barsha', 'Deira', 'Bur Dubai'
-  ]
+
+  // Default the area to the first available zone
+  useEffect(() => {
+    setFormData(prev => prev.area ? prev : { ...prev, area: dubaiAreas[0] || '' })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dubaiAreas.length])
 
   useEffect(() => {
     if (isLoggedIn && user) {
@@ -55,7 +62,7 @@ export default function CheckoutForm({ clientSecret, totalAmount, onSuccess }) {
             lastName,
             phone: data.phone || '',
             address: data.street || '',
-            area: data.area || 'Downtown Dubai'
+            area: data.area || ''
           }))
           setUseSavedAddress(true)
         }
@@ -150,7 +157,7 @@ export default function CheckoutForm({ clientSecret, totalAmount, onSuccess }) {
                 setUseSavedAddress(false)
                 setFormData(prev => ({
                   ...prev,
-                  firstName: '', lastName: '', phone: '', address: '', area: 'Downtown Dubai'
+                  firstName: '', lastName: '', phone: '', address: '', area: dubaiAreas[0] || ''
                 }))
               }}
               className="text-[10px] uppercase tracking-[0.1em] text-[#C8726A] hover:text-[#1C1410] transition-colors mb-1"

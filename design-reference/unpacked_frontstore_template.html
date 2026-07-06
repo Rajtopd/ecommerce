@@ -1,0 +1,1322 @@
+<!DOCTYPE html>
+<html><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="eb9f92bf-5218-47be-adcb-37cd03a602bf"></script>
+
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics="">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <style>/* cyrillic-ext */
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("9bb56162-3e64-43cb-9e4f-ada0cd86ac90") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("d359cd76-894d-41bf-ba55-6c606bbae9f0") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("7f9a5d5c-bbbb-48d3-a8a4-34b4b7393abe") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("2f447720-17cf-4485-8f38-b14ab188ff2b") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("8df54ca7-432e-4cf5-8d7c-0668f8e43362") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: italic;
+  font-weight: 600;
+  font-display: swap;
+  src: url("9bb56162-3e64-43cb-9e4f-ada0cd86ac90") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: italic;
+  font-weight: 600;
+  font-display: swap;
+  src: url("d359cd76-894d-41bf-ba55-6c606bbae9f0") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: italic;
+  font-weight: 600;
+  font-display: swap;
+  src: url("7f9a5d5c-bbbb-48d3-a8a4-34b4b7393abe") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: italic;
+  font-weight: 600;
+  font-display: swap;
+  src: url("2f447720-17cf-4485-8f38-b14ab188ff2b") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: italic;
+  font-weight: 600;
+  font-display: swap;
+  src: url("8df54ca7-432e-4cf5-8d7c-0668f8e43362") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("6e9d8576-8dd9-4a3c-992e-0caed62e3d26") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("35608f98-9530-4a55-8afc-71266917fc33") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("e59d960b-a537-4e8a-b1f2-3731dda6a1b6") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("7fef2d12-ae8c-459d-8024-041b12125f86") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("8c537317-47f6-428b-b240-ec5d8ce23814") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("6e9d8576-8dd9-4a3c-992e-0caed62e3d26") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("35608f98-9530-4a55-8afc-71266917fc33") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("e59d960b-a537-4e8a-b1f2-3731dda6a1b6") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("7fef2d12-ae8c-459d-8024-041b12125f86") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("8c537317-47f6-428b-b240-ec5d8ce23814") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("6e9d8576-8dd9-4a3c-992e-0caed62e3d26") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("35608f98-9530-4a55-8afc-71266917fc33") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("e59d960b-a537-4e8a-b1f2-3731dda6a1b6") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("7fef2d12-ae8c-459d-8024-041b12125f86") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("8c537317-47f6-428b-b240-ec5d8ce23814") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("6e9d8576-8dd9-4a3c-992e-0caed62e3d26") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("35608f98-9530-4a55-8afc-71266917fc33") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("e59d960b-a537-4e8a-b1f2-3731dda6a1b6") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("7fef2d12-ae8c-459d-8024-041b12125f86") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("8c537317-47f6-428b-b240-ec5d8ce23814") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("93a91529-986b-495e-8e7f-b3d8a4e41e6c") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("784279f7-862e-4626-a94d-83c424986a33") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("93a91529-986b-495e-8e7f-b3d8a4e41e6c") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("784279f7-862e-4626-a94d-83c424986a33") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("93a91529-986b-495e-8e7f-b3d8a4e41e6c") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("784279f7-862e-4626-a94d-83c424986a33") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("93a91529-986b-495e-8e7f-b3d8a4e41e6c") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("784279f7-862e-4626-a94d-83c424986a33") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+</style>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #C4BAB0; font-family: 'DM Sans', sans-serif; }
+    @keyframes slideCart { from { transform: translateX(100%); } to { transform: translateX(0); } }
+    @keyframes fadeOverlay { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+    button { font-family: 'DM Sans', sans-serif; cursor: pointer; }
+    input, select { font-family: 'DM Sans', sans-serif; }
+    ::-webkit-scrollbar { width: 4px; height: 4px; }
+    ::-webkit-scrollbar-thumb { background: #C49B38; border-radius: 2px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+  </style>
+</helmet>
+
+<div style="background:#FAF7F0;min-height:100vh;box-shadow:0 0 80px rgba(0,0,0,0.3);position:relative;overflow-x:hidden;">
+
+  <!-- ── STORE NAV ── -->
+  <sc-if value="{{ showStore }}" hint-placeholder-val="{{ true }}">
+    <div style="background:#6E1A2C;color:#E8C96A;text-align:center;padding:9px 16px;font-size:{{ bnFs }};letter-spacing:0.04em;font-weight:400;">
+      ✦ &nbsp; Free delivery across Dubai on orders over <strong>د.إ 200</strong> &nbsp;·&nbsp; Eid 2026 Collection is Live &nbsp; ✦
+    </div>
+    <nav style="background:#FAF7F0;border-bottom:1px solid #E0D0B8;position:sticky;top:0;z-index:200;">
+      <div style="background:#1A0F0A;display:flex;justify-content:center;gap:0;">
+        <button onclick="{{ goHome }}" style="background:{{ hBg }};color:{{ hC }};border:none;padding:7px 22px;font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;transition:all 0.2s;border-right:1px solid rgba(255,255,255,0.08);">Home</button>
+        <button onclick="{{ goShop }}" style="background:{{ sBg }};color:{{ sC }};border:none;padding:7px 22px;font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;transition:all 0.2s;border-right:1px solid rgba(255,255,255,0.08);">Shop</button>
+        <button onclick="{{ goPdp }}" style="background:{{ pBg }};color:{{ pC }};border:none;padding:7px 22px;font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;transition:all 0.2s;border-right:1px solid rgba(255,255,255,0.08);">Product</button>
+        <button onclick="{{ goAdmin }}" style="background:{{ aBg }};color:{{ aC }};border:none;padding:7px 22px;font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer;transition:all 0.2s;">Admin</button>
+      </div>
+      <div style="max-width:1280px;margin:0 auto;display:flex;align-items:center;padding:{{ navP }} {{ pg }};gap:{{ navG }};">
+        <div onclick="{{ goHome }}" style="cursor:pointer;flex-shrink:0;">
+          <div style="font-family:'Cormorant Garamond',serif;font-size:{{ logoFs }};font-weight:700;color:#6E1A2C;letter-spacing:0.06em;line-height:1;white-space:nowrap;">Soul Sisters</div>
+          <div style="font-size:8px;letter-spacing:0.22em;color:#C49B38;text-transform:uppercase;margin-top:2px;">Ethnic Couture · Dubai</div>
+        </div>
+        <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
+          <div style="display:flex;gap:22px;flex:1;justify-content:center;">
+            <span onclick="{{ goShop }}" style="font-size:13px;cursor:pointer;color:#1A0F0A;white-space:nowrap;" style-hover="color:#6E1A2C;">Sarees</span>
+            <span onclick="{{ goShop }}" style="font-size:13px;cursor:pointer;color:#1A0F0A;" style-hover="color:#6E1A2C;">Lehengas</span>
+            <span onclick="{{ goShop }}" style="font-size:13px;cursor:pointer;color:#1A0F0A;" style-hover="color:#6E1A2C;">Salwar Suits</span>
+            <span onclick="{{ goShop }}" style="font-size:13px;cursor:pointer;color:#1A0F0A;" style-hover="color:#6E1A2C;">Kurtis</span>
+            <span onclick="{{ goShop }}" style="font-size:13px;cursor:pointer;color:#1A0F0A;" style-hover="color:#6E1A2C;">Indo-Western</span>
+            <span style="font-size:13px;cursor:pointer;color:#1A0F0A;display:flex;align-items:center;gap:3px;" style-hover="color:#6E1A2C;">Occasions <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg></span>
+            <span onclick="{{ goShop }}" style="font-size:13px;cursor:pointer;color:#1A0F0A;" style-hover="color:#6E1A2C;">Accessories</span>
+          </div>
+        </sc-if>
+        <div style="display:flex;gap:18px;align-items:center;margin-left:auto;flex-shrink:0;">
+          <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
+            <svg style="cursor:pointer;" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#1A0F0A" stroke-width="1.5"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"></path></svg>
+          </sc-if>
+          <svg style="cursor:pointer;" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#1A0F0A" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+          <div onclick="{{ toggleCart }}" style="position:relative;cursor:pointer;">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#1A0F0A" stroke-width="1.5"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+            <span style="position:absolute;top:-8px;right:-8px;background:#6E1A2C;color:white;border-radius:50%;width:16px;height:16px;font-size:9px;display:flex;align-items:center;justify-content:center;font-weight:700;">{{ cartCount }}</span>
+          </div>
+          <sc-if value="{{ isMobile }}" hint-placeholder-val="{{ false }}">
+            <svg style="cursor:pointer;" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1A0F0A" stroke-width="1.5"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+          </sc-if>
+        </div>
+      </div>
+    </nav>
+  </sc-if>
+
+  <!-- ══════════ HOME ══════════ -->
+  <sc-if value="{{ showHome }}" hint-placeholder-val="{{ true }}">
+
+    <!-- HERO: full-bleed -->
+    <div style="background:linear-gradient(140deg,#2C0A14 0%,#6E1A2C 50%,#8B2A3C 100%);position:relative;overflow:hidden;min-height:{{ heroH }};">
+      <div style="position:absolute;right:-100px;top:-100px;width:520px;height:520px;border-radius:50%;border:1px solid rgba(196,155,56,0.1);pointer-events:none;"></div>
+      <div style="position:absolute;right:-40px;top:-40px;width:360px;height:360px;border-radius:50%;border:1px solid rgba(196,155,56,0.07);pointer-events:none;"></div>
+      <div style="max-width:1280px;margin:0 auto;padding:{{ heroVPad }} {{ pg }};display:flex;align-items:center;justify-content:space-between;min-height:{{ heroH }};gap:32px;position:relative;z-index:1;">
+        <div style="flex:{{ heroTF }};animation:fadeUp 0.7s ease;">
+          <div style="display:flex;align-items:center;gap:14px;margin-bottom:22px;">
+            <svg width="100" height="12" viewBox="0 0 100 12"><line x1="0" y1="6" x2="38" y2="6" stroke="#C49B38" stroke-width="0.8"></line><rect x="42" y="2" width="8" height="8" fill="#C49B38" transform="rotate(45 46 6)"></rect><circle cx="3" cy="6" r="1.5" fill="#C49B38"></circle><circle cx="85" cy="6" r="1.5" fill="#C49B38"></circle><line x1="50" y1="6" x2="88" y2="6" stroke="#C49B38" stroke-width="0.8"></line></svg>
+            <span style="font-size:10px;letter-spacing:0.28em;color:#C49B38;text-transform:uppercase;white-space:nowrap;">New Arrivals · Eid 2026</span>
+          </div>
+          <h1 style="font-family:'Cormorant Garamond',serif;font-size:{{ h1 }};font-weight:700;color:#FAF7F0;line-height:1.06;margin-bottom:20px;text-wrap:pretty;">
+            Dressed in<br><span style="color:#C49B38;font-style:italic;">Heritage,</span><br>Living Modern
+          </h1>
+          <p style="font-size:{{ heroBd }};color:rgba(250,247,240,0.72);max-width:400px;line-height:1.65;margin-bottom:32px;text-wrap:pretty;">Curated Indian ethnic wear for the modern woman in Dubai. From bridal lehengas to everyday kurtis — your culture, beautifully worn.</p>
+          <div style="display:flex;gap:14px;flex-wrap:wrap;">
+            <button onclick="{{ goShop }}" style="background:#C49B38;color:#1A0F0A;padding:{{ ctaP }};font-size:{{ ctaFs }};font-weight:600;letter-spacing:0.1em;text-transform:uppercase;border:none;border-radius:2px;" style-hover="background:#E8C96A;">Explore Collection</button>
+            <button onclick="{{ goShop }}" style="background:transparent;color:#FAF7F0;padding:{{ ctaP }};font-size:{{ ctaFs }};font-weight:500;letter-spacing:0.1em;text-transform:uppercase;border:1px solid rgba(250,247,240,0.35);border-radius:2px;" style-hover="border-color:rgba(250,247,240,0.85);">New Arrivals →</button>
+          </div>
+        </div>
+        <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
+          <div style="flex:0 0 auto;position:relative;">
+            <div style="width:320px;height:420px;border-radius:160px 160px 8px 8px;background:linear-gradient(160deg,#3D1035 0%,#5C1A40 45%,#8B3060 100%);position:relative;overflow:hidden;border:1px solid rgba(196,155,56,0.3);">
+              <div style="position:absolute;inset:12px;border-radius:148px 148px 0 0;border:1px solid rgba(196,155,56,0.18);pointer-events:none;"></div>
+              <div style="position:absolute;bottom:0;left:0;right:0;height:45%;background:linear-gradient(to top,rgba(44,10,20,0.65) 0%,transparent 100%);"></div>
+              <div style="position:absolute;bottom:20px;left:0;right:0;text-align:center;font-size:9px;letter-spacing:0.18em;color:rgba(196,155,56,0.55);text-transform:uppercase;">bridal editorial · 2026</div>
+            </div>
+            <div style="position:absolute;bottom:-22px;left:-32px;background:white;border-radius:4px;padding:14px 18px;box-shadow:0 8px 32px rgba(0,0,0,0.18);min-width:160px;">
+              <div style="font-size:9px;color:#C49B38;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:4px;">New In</div>
+              <div style="font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:600;color:#1A0F0A;line-height:1.2;">Eid Collection '26</div>
+              <div style="font-size:11px;color:#5C3D2E;margin-top:4px;">48 new styles added</div>
+            </div>
+          </div>
+        </sc-if>
+      </div>
+    </div>
+
+    <!-- CATEGORIES -->
+    <div style="background:#FAF7F0;padding:{{ vPad }} 0;">
+      <div style="max-width:1280px;margin:0 auto;padding:0 {{ pg }};">
+        <div style="display:flex;gap:{{ catGap }};overflow-x:auto;padding-bottom:4px;-webkit-overflow-scrolling:touch;scrollbar-width:none;">
+          <div onclick="{{ goShop }}" style="flex:0 0 {{ catW }};cursor:pointer;display:flex;flex-direction:column;gap:8px;align-items:center;">
+            <div style="width:{{ catW }};height:{{ catH }};border-radius:100px 100px 4px 4px;background:linear-gradient(160deg,#3D1542,#7A3082);border:1px solid rgba(196,155,56,0.15);position:relative;overflow:hidden;"><div style="position:absolute;inset:6px;border-radius:94px 94px 0 0;border:1px solid rgba(255,255,255,0.12);"></div></div>
+            <span style="font-size:{{ catFs }};font-weight:500;color:#1A0F0A;">Sarees</span>
+          </div>
+          <div onclick="{{ goShop }}" style="flex:0 0 {{ catW }};cursor:pointer;display:flex;flex-direction:column;gap:8px;align-items:center;">
+            <div style="width:{{ catW }};height:{{ catH }};border-radius:100px 100px 4px 4px;background:linear-gradient(160deg,#6E1A2C,#B04060);border:1px solid rgba(196,155,56,0.15);position:relative;overflow:hidden;"><div style="position:absolute;inset:6px;border-radius:94px 94px 0 0;border:1px solid rgba(255,255,255,0.12);"></div></div>
+            <span style="font-size:{{ catFs }};font-weight:500;color:#1A0F0A;">Lehengas</span>
+          </div>
+          <div onclick="{{ goShop }}" style="flex:0 0 {{ catW }};cursor:pointer;display:flex;flex-direction:column;gap:8px;align-items:center;">
+            <div style="width:{{ catW }};height:{{ catH }};border-radius:100px 100px 4px 4px;background:linear-gradient(160deg,#1A4A3A,#3A8A6A);border:1px solid rgba(196,155,56,0.15);position:relative;overflow:hidden;"><div style="position:absolute;inset:6px;border-radius:94px 94px 0 0;border:1px solid rgba(255,255,255,0.12);"></div></div>
+            <span style="font-size:{{ catFs }};font-weight:500;color:#1A0F0A;">Salwar Suits</span>
+          </div>
+          <div onclick="{{ goShop }}" style="flex:0 0 {{ catW }};cursor:pointer;display:flex;flex-direction:column;gap:8px;align-items:center;">
+            <div style="width:{{ catW }};height:{{ catH }};border-radius:100px 100px 4px 4px;background:linear-gradient(160deg,#7A3B1A,#C47840);border:1px solid rgba(196,155,56,0.15);position:relative;overflow:hidden;"><div style="position:absolute;inset:6px;border-radius:94px 94px 0 0;border:1px solid rgba(255,255,255,0.12);"></div></div>
+            <span style="font-size:{{ catFs }};font-weight:500;color:#1A0F0A;">Kurtis</span>
+          </div>
+          <div onclick="{{ goShop }}" style="flex:0 0 {{ catW }};cursor:pointer;display:flex;flex-direction:column;gap:8px;align-items:center;">
+            <div style="width:{{ catW }};height:{{ catH }};border-radius:100px 100px 4px 4px;background:linear-gradient(160deg,#1A1A6E,#3A4AAE);border:1px solid rgba(196,155,56,0.15);position:relative;overflow:hidden;"><div style="position:absolute;inset:6px;border-radius:94px 94px 0 0;border:1px solid rgba(255,255,255,0.12);"></div></div>
+            <span style="font-size:{{ catFs }};font-weight:500;color:#1A0F0A;">Indo-Western</span>
+          </div>
+          <div onclick="{{ goShop }}" style="flex:0 0 {{ catW }};cursor:pointer;display:flex;flex-direction:column;gap:8px;align-items:center;">
+            <div style="width:{{ catW }};height:{{ catH }};border-radius:100px 100px 4px 4px;background:linear-gradient(160deg,#3D1C72,#7A4CA2);border:1px solid rgba(196,155,56,0.15);position:relative;overflow:hidden;"><div style="position:absolute;inset:6px;border-radius:94px 94px 0 0;border:1px solid rgba(255,255,255,0.12);"></div></div>
+            <span style="font-size:{{ catFs }};font-weight:500;color:#1A0F0A;">Accessories</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DIVIDER -->
+    <div style="display:flex;justify-content:center;padding:4px 0 8px;background:#FAF7F0;">
+      <svg width="280" height="20" viewBox="0 0 280 20"><line x1="0" y1="10" x2="118" y2="10" stroke="#C49B38" stroke-width="0.75"></line><rect x="126" y="5" width="10" height="10" fill="#C49B38" transform="rotate(45 131 10)"></rect><circle cx="122" cy="10" r="2" fill="#C49B38"></circle><circle cx="140" cy="10" r="2" fill="#C49B38"></circle><rect x="133" y="7" width="6" height="6" fill="none" stroke="#C49B38" stroke-width="0.75" transform="rotate(45 136 10)"></rect><line x1="142" y1="10" x2="260" y2="10" stroke="#C49B38" stroke-width="0.75"></line><circle cx="4" cy="10" r="2" fill="#C49B38"></circle><circle cx="256" cy="10" r="2" fill="#C49B38"></circle></svg>
+    </div>
+
+    <!-- FEATURED COLLECTION -->
+    <div style="background:#FAF7F0;padding:{{ vPad }} 0;">
+      <div style="max-width:1280px;margin:0 auto;padding:0 {{ pg }};">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;">
+          <h2 style="font-family:'Cormorant Garamond',serif;font-size:{{ secH2 }};font-weight:600;color:#1A0F0A;">Featured Collection</h2>
+          <span onclick="{{ goShop }}" style="font-size:13px;color:#C49B38;cursor:pointer;font-weight:500;" style-hover="color:#8B6914;">View All →</span>
+        </div>
+        <div style="height:1px;background:linear-gradient(to right,#C49B38,transparent);margin-bottom:28px;"></div>
+        <div style="display:grid;grid-template-columns:{{ featCols }};gap:{{ gridGap }};">
+          <sc-for list="{{ featProds }}" as="p" hint-placeholder-count="4">
+            <div onclick="{{ p.go }}" style="cursor:pointer;display:flex;flex-direction:column;">
+              <div style="{{ p.bg }};aspect-ratio:3/4;border-radius:4px;position:relative;overflow:hidden;">
+                <div style="position:absolute;top:10px;right:10px;background:rgba(250,247,240,0.92);border-radius:50%;width:32px;height:32px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6E1A2C" stroke-width="2.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                </div>
+                <div style="position:absolute;top:10px;left:10px;background:rgba(110,26,44,0.88);color:#E8C96A;font-size:9px;letter-spacing:0.08em;padding:3px 9px;border-radius:100px;text-transform:uppercase;">{{ p.occasion }}</div>
+              </div>
+              <div style="padding:13px 3px 10px;">
+                <div style="font-size:10px;color:#C49B38;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:4px;">{{ p.fabric }}</div>
+                <div style="font-family:'Cormorant Garamond',serif;font-size:{{ cardH }};font-weight:600;color:#1A0F0A;line-height:1.25;margin-bottom:8px;text-wrap:pretty;">{{ p.name }}</div>
+                <div style="display:flex;justify-content:space-between;align-items:center;">
+                  <span style="font-size:{{ cardPr }};font-weight:600;color:#1A0F0A;">{{ p.price }}</span>
+                  <button style="font-size:10px;color:#6E1A2C;background:transparent;border:1px solid #E0D0B8;padding:4px 12px;border-radius:100px;font-weight:500;" style-hover="background:#6E1A2C;color:white;border-color:#6E1A2C;">Add to Cart</button>
+                </div>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+
+    <!-- FESTIVE BANNER: full-bleed dark -->
+    <div style="background:linear-gradient(135deg,#1A0A14 0%,#3D1025 55%,#2E0B1F 100%);padding:{{ vPad }} 0;position:relative;overflow:hidden;">
+      <div style="position:absolute;right:-60px;top:-60px;width:280px;height:280px;border-radius:50%;border:1px solid rgba(196,155,56,0.12);pointer-events:none;"></div>
+      <div style="max-width:1280px;margin:0 auto;padding:0 {{ pg }};position:relative;z-index:1;">
+        <div style="display:{{ festFlex }};align-items:center;gap:48px;">
+          <div style="{{ festTW }}">
+            <div style="font-size:10px;letter-spacing:0.3em;color:#C49B38;text-transform:uppercase;margin-bottom:14px;">Special Edition · 2026</div>
+            <h2 style="font-family:'Cormorant Garamond',serif;font-size:{{ festH2 }};font-weight:700;color:#FAF7F0;line-height:1.1;margin-bottom:16px;">The Wedding<br><em style="color:#C49B38;">Season Edit</em></h2>
+            <p style="font-size:14px;color:rgba(250,247,240,0.65);max-width:380px;line-height:1.65;margin-bottom:28px;">From intimate mehndis to grand baraat nights — discover our curated bridal and wedding guest collection for every ceremony.</p>
+            <button onclick="{{ goShop }}" style="background:#C49B38;color:#1A0F0A;padding:12px 28px;font-size:13px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;border:none;border-radius:2px;" style-hover="background:#E8C96A;">Shop the Edit</button>
+          </div>
+          <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:end;flex-shrink:0;">
+              <div style="width:130px;height:190px;border-radius:65px 65px 4px 4px;background:linear-gradient(160deg,#6E1A2C,#A84060);border:1px solid rgba(196,155,56,0.2);"></div>
+              <div style="width:130px;height:155px;border-radius:65px 65px 4px 4px;background:linear-gradient(160deg,#3D1C72,#7A4CA2);border:1px solid rgba(196,155,56,0.2);"></div>
+            </div>
+          </sc-if>
+        </div>
+      </div>
+    </div>
+
+    <!-- POPULAR THIS SEASON -->
+    <div style="background:#F2EAD8;padding:{{ vPad }} 0;">
+      <div style="max-width:1280px;margin:0 auto;padding:0 {{ pg }};">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px;">
+          <h2 style="font-family:'Cormorant Garamond',serif;font-size:{{ secH2 }};font-weight:600;color:#1A0F0A;">Popular This Season</h2>
+          <span onclick="{{ goShop }}" style="font-size:13px;color:#C49B38;cursor:pointer;font-weight:500;" style-hover="color:#8B6914;">View All →</span>
+        </div>
+        <div style="height:1px;background:linear-gradient(to right,#C49B38,transparent);margin-bottom:28px;"></div>
+        <div style="display:grid;grid-template-columns:{{ featCols }};gap:{{ gridGap }};">
+          <sc-for list="{{ popProds }}" as="p" hint-placeholder-count="4">
+            <div onclick="{{ p.go }}" style="cursor:pointer;display:flex;flex-direction:column;">
+              <div style="{{ p.bg }};aspect-ratio:3/4;border-radius:4px;position:relative;overflow:hidden;">
+                <div style="position:absolute;top:10px;right:10px;background:rgba(250,247,240,0.92);border-radius:50%;width:32px;height:32px;display:flex;align-items:center;justify-content:center;">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6E1A2C" stroke-width="2.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                </div>
+              </div>
+              <div style="padding:13px 3px 10px;">
+                <div style="font-size:10px;color:#C49B38;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:4px;">{{ p.fabric }}</div>
+                <div style="font-family:'Cormorant Garamond',serif;font-size:{{ cardH }};font-weight:600;color:#1A0F0A;line-height:1.25;margin-bottom:8px;text-wrap:pretty;">{{ p.name }}</div>
+                <div style="display:flex;justify-content:space-between;align-items:center;">
+                  <span style="font-size:{{ cardPr }};font-weight:600;color:#1A0F0A;">{{ p.price }}</span>
+                  <button style="font-size:10px;color:#6E1A2C;background:transparent;border:1px solid #E0D0B8;padding:4px 12px;border-radius:100px;font-weight:500;" style-hover="background:#6E1A2C;color:white;border-color:#6E1A2C;">Add to Cart</button>
+                </div>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+
+    <!-- BRAND STORY -->
+    <div style="background:#FAF7F0;padding:{{ vPad }} 0;">
+      <div style="max-width:1280px;margin:0 auto;padding:0 {{ pg }};">
+        <div style="display:{{ storyFlex }};gap:{{ storyGap }};align-items:center;">
+          <div style="{{ storyTW }}">
+            <svg width="140" height="14" viewBox="0 0 140 14" style="margin-bottom:18px;"><line x1="0" y1="7" x2="54" y2="7" stroke="#C49B38" stroke-width="0.75"></line><rect x="58" y="3" width="8" height="8" fill="#C49B38" transform="rotate(45 62 7)"></rect><line x1="66" y1="7" x2="120" y2="7" stroke="#C49B38" stroke-width="0.75"></line><circle cx="3" cy="7" r="1.5" fill="#C49B38"></circle><circle cx="117" cy="7" r="1.5" fill="#C49B38"></circle></svg>
+            <div style="font-size:10px;letter-spacing:0.25em;color:#C49B38;text-transform:uppercase;margin-bottom:12px;">Our Story</div>
+            <h2 style="font-family:'Cormorant Garamond',serif;font-size:{{ storyH2 }};font-weight:600;color:#1A0F0A;line-height:1.2;margin-bottom:18px;">Where Culture<br>Meets Couture</h2>
+            <p style="font-size:15px;color:#5C3D2E;line-height:1.75;margin-bottom:14px;text-wrap:pretty;">Soul Sisters was born from a deep love of Indian craft and the desire to carry it gracefully into modern life. Based in Dubai, we curate ethnic wear that honours centuries-old weaving traditions while fitting seamlessly into a contemporary wardrobe.</p>
+            <p style="font-size:15px;color:#5C3D2E;line-height:1.75;margin-bottom:28px;text-wrap:pretty;">Each piece is thoughtfully sourced from artisan clusters across India — from the silk weavers of Kanchipuram to the block printers of Jaipur.</p>
+            <button style="background:transparent;color:#6E1A2C;border:1px solid #6E1A2C;padding:12px 28px;font-size:13px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;border-radius:2px;" style-hover="background:#6E1A2C;color:white;">Our Story →</button>
+          </div>
+          <div style="{{ storyIW }}">
+            <div style="aspect-ratio:4/5;border-radius:4px;background:linear-gradient(160deg,#3D1535 0%,#6E2040 40%,#8B3050 100%);position:relative;overflow:hidden;border:1px solid rgba(196,155,56,0.2);">
+              <div style="position:absolute;inset:16px;border:1px solid rgba(196,155,56,0.18);border-radius:2px;pointer-events:none;"></div>
+              <div style="position:absolute;bottom:20px;left:0;right:0;text-align:center;font-size:9px;letter-spacing:0.15em;color:rgba(196,155,56,0.55);text-transform:uppercase;">lifestyle photography</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </sc-if>
+
+  <!-- ══════════ SHOP ══════════ -->
+  <sc-if value="{{ showShop }}" hint-placeholder-val="{{ false }}">
+    <div style="border-bottom:1px solid #E0D0B8;padding:18px 0 10px;">
+      <div style="max-width:1280px;margin:0 auto;padding:0 {{ pg }};">
+        <div style="font-size:12px;color:#5C3D2E;margin-bottom:6px;">
+          <span onclick="{{ goHome }}" style="cursor:pointer;" style-hover="color:#6E1A2C;">Home</span> / <span style="color:#1A0F0A;font-weight:500;">All Collections</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;">
+          <div>
+            <h1 style="font-family:'Cormorant Garamond',serif;font-size:{{ shopH1 }};font-weight:600;color:#1A0F0A;">All Collections</h1>
+            <div style="font-size:12px;color:#5C3D2E;margin-top:3px;">120 products</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;">
+            <span style="font-size:13px;color:#5C3D2E;">Sort by:</span>
+            <select style="font-size:13px;color:#1A0F0A;border:1px solid #E0D0B8;padding:7px 12px;border-radius:2px;background:white;outline:none;cursor:pointer;">
+              <option>Most Popular</option><option>Price: Low to High</option><option>Price: High to Low</option><option>New Arrivals</option>
+            </select>
+          </div>
+        </div>
+        <div style="display:flex;gap:8px;margin-top:14px;flex-wrap:wrap;">
+          <div style="background:#F0DDD0;color:#6E1A2C;font-size:11px;font-weight:600;padding:4px 12px;border-radius:100px;cursor:pointer;">Wedding ×</div>
+          <div style="background:#F0DDD0;color:#6E1A2C;font-size:11px;font-weight:600;padding:4px 12px;border-radius:100px;cursor:pointer;">Lehengas ×</div>
+          <span style="font-size:12px;color:#C49B38;cursor:pointer;align-self:center;" style-hover="color:#8B6914;">Clear all</span>
+        </div>
+      </div>
+    </div>
+    <div style="max-width:1280px;margin:0 auto;padding:0 {{ pg }};display:flex;gap:0;">
+      <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
+        <div style="width:256px;flex-shrink:0;padding:24px 24px 24px 0;border-right:1px solid #E0D0B8;min-height:calc(100vh - 120px);">
+          <div style="font-size:10px;letter-spacing:0.18em;text-transform:uppercase;color:#C49B38;margin-bottom:20px;font-weight:600;">Filters</div>
+          <div style="margin-bottom:22px;">
+            <div style="font-size:13px;font-weight:600;color:#1A0F0A;margin-bottom:11px;">Category</div>
+            <div style="display:flex;flex-direction:column;gap:8px;">
+              <label style="display:flex;align-items:center;gap:10px;font-size:13px;color:#5C3D2E;cursor:pointer;"><input type="checkbox" style="accent-color:#6E1A2C;width:14px;height:14px;"> Sarees</label>
+              <label style="display:flex;align-items:center;gap:10px;font-size:13px;color:#5C3D2E;cursor:pointer;"><input type="checkbox" checked="" style="accent-color:#6E1A2C;width:14px;height:14px;"> Lehengas</label>
+              <label style="display:flex;align-items:center;gap:10px;font-size:13px;color:#5C3D2E;cursor:pointer;"><input type="checkbox" style="accent-color:#6E1A2C;width:14px;height:14px;"> Salwar Suits</label>
+              <label style="display:flex;align-items:center;gap:10px;font-size:13px;color:#5C3D2E;cursor:pointer;"><input type="checkbox" style="accent-color:#6E1A2C;width:14px;height:14px;"> Kurtis</label>
+              <label style="display:flex;align-items:center;gap:10px;font-size:13px;color:#5C3D2E;cursor:pointer;"><input type="checkbox" style="accent-color:#6E1A2C;width:14px;height:14px;"> Indo-Western</label>
+            </div>
+          </div>
+          <div style="height:1px;background:#E0D0B8;margin-bottom:22px;"></div>
+          <div style="margin-bottom:22px;">
+            <div style="font-size:13px;font-weight:600;color:#1A0F0A;margin-bottom:11px;">Occasion</div>
+            <div style="display:flex;flex-direction:column;gap:8px;">
+              <label style="display:flex;align-items:center;gap:10px;font-size:13px;color:#5C3D2E;cursor:pointer;"><input type="checkbox" checked="" style="accent-color:#6E1A2C;width:14px;height:14px;"> Wedding</label>
+              <label style="display:flex;align-items:center;gap:10px;font-size:13px;color:#5C3D2E;cursor:pointer;"><input type="checkbox" style="accent-color:#6E1A2C;width:14px;height:14px;"> Festive</label>
+              <label style="display:flex;align-items:center;gap:10px;font-size:13px;color:#5C3D2E;cursor:pointer;"><input type="checkbox" style="accent-color:#6E1A2C;width:14px;height:14px;"> Eid Special</label>
+              <label style="display:flex;align-items:center;gap:10px;font-size:13px;color:#5C3D2E;cursor:pointer;"><input type="checkbox" style="accent-color:#6E1A2C;width:14px;height:14px;"> Party</label>
+              <label style="display:flex;align-items:center;gap:10px;font-size:13px;color:#5C3D2E;cursor:pointer;"><input type="checkbox" style="accent-color:#6E1A2C;width:14px;height:14px;"> Casual</label>
+              <label style="display:flex;align-items:center;gap:10px;font-size:13px;color:#5C3D2E;cursor:pointer;"><input type="checkbox" style="accent-color:#6E1A2C;width:14px;height:14px;"> Office</label>
+            </div>
+          </div>
+          <div style="height:1px;background:#E0D0B8;margin-bottom:22px;"></div>
+          <div style="margin-bottom:22px;">
+            <div style="font-size:13px;font-weight:600;color:#1A0F0A;margin-bottom:11px;">Size</div>
+            <div style="display:flex;flex-wrap:wrap;gap:8px;">
+              <div style="width:38px;height:38px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;border:1px solid #6E1A2C;color:white;background:#6E1A2C;cursor:pointer;">XS</div>
+              <div style="width:38px;height:38px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:500;border:1px solid #E0D0B8;color:#5C3D2E;cursor:pointer;" style-hover="border-color:#6E1A2C;color:#6E1A2C;">S</div>
+              <div style="width:38px;height:38px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:500;border:1px solid #E0D0B8;color:#5C3D2E;cursor:pointer;" style-hover="border-color:#6E1A2C;color:#6E1A2C;">M</div>
+              <div style="width:38px;height:38px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:500;border:1px solid #E0D0B8;color:#5C3D2E;cursor:pointer;" style-hover="border-color:#6E1A2C;color:#6E1A2C;">L</div>
+              <div style="width:38px;height:38px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:500;border:1px solid #E0D0B8;color:#5C3D2E;cursor:pointer;" style-hover="border-color:#6E1A2C;color:#6E1A2C;">XL</div>
+              <div style="width:38px;height:38px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:500;border:1px solid #E0D0B8;color:#5C3D2E;cursor:pointer;" style-hover="border-color:#6E1A2C;color:#6E1A2C;">XXL</div>
+            </div>
+          </div>
+          <div style="height:1px;background:#E0D0B8;margin-bottom:22px;"></div>
+          <div style="margin-bottom:22px;">
+            <div style="display:flex;justify-content:space-between;margin-bottom:11px;">
+              <div style="font-size:13px;font-weight:600;color:#1A0F0A;">Price Range</div>
+              <div style="font-size:12px;color:#C49B38;font-weight:500;">د.إ 200–10,000</div>
+            </div>
+            <input type="range" min="200" max="10000" value="10000" style="width:100%;accent-color:#6E1A2C;">
+          </div>
+          <div style="height:1px;background:#E0D0B8;margin-bottom:22px;"></div>
+          <div style="margin-bottom:28px;">
+            <div style="font-size:13px;font-weight:600;color:#1A0F0A;margin-bottom:11px;">Colour</div>
+            <div style="display:flex;flex-wrap:wrap;gap:8px;">
+              <div style="width:26px;height:26px;border-radius:50%;background:#6E1A2C;cursor:pointer;box-shadow:0 0 0 2px white,0 0 0 3.5px #6E1A2C;"></div>
+              <div style="width:26px;height:26px;border-radius:50%;background:#1A1A6E;cursor:pointer;" style-hover="box-shadow:0 0 0 2px white,0 0 0 3.5px #1A1A6E;"></div>
+              <div style="width:26px;height:26px;border-radius:50%;background:#1A4A3A;cursor:pointer;" style-hover="box-shadow:0 0 0 2px white,0 0 0 3.5px #1A4A3A;"></div>
+              <div style="width:26px;height:26px;border-radius:50%;background:#C49B38;cursor:pointer;" style-hover="box-shadow:0 0 0 2px white,0 0 0 3.5px #C49B38;"></div>
+              <div style="width:26px;height:26px;border-radius:50%;background:#3D1C72;cursor:pointer;" style-hover="box-shadow:0 0 0 2px white,0 0 0 3.5px #3D1C72;"></div>
+              <div style="width:26px;height:26px;border-radius:50%;background:#7A3B1A;cursor:pointer;" style-hover="box-shadow:0 0 0 2px white,0 0 0 3.5px #7A3B1A;"></div>
+            </div>
+          </div>
+          <button style="width:100%;background:#6E1A2C;color:white;padding:13px;font-size:13px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;border:none;border-radius:2px;" style-hover="background:#8B2A3E;">Apply Filters</button>
+        </div>
+      </sc-if>
+      <div style="flex:1;padding:24px 0 40px {{ shopInnerPad }};">
+        <div style="display:grid;grid-template-columns:{{ shopCols }};gap:{{ gridGap }};">
+          <sc-for list="{{ allProds }}" as="p" hint-placeholder-count="6">
+            <div onclick="{{ p.go }}" style="cursor:pointer;display:flex;flex-direction:column;">
+              <div style="{{ p.bg }};aspect-ratio:3/4;border-radius:4px;position:relative;overflow:hidden;">
+                <div style="position:absolute;top:10px;right:10px;background:rgba(250,247,240,0.92);border-radius:50%;width:32px;height:32px;display:flex;align-items:center;justify-content:center;">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6E1A2C" stroke-width="2.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                </div>
+                <div style="position:absolute;top:10px;left:10px;background:rgba(110,26,44,0.88);color:#E8C96A;font-size:9px;letter-spacing:0.08em;padding:3px 9px;border-radius:100px;text-transform:uppercase;">{{ p.occasion }}</div>
+              </div>
+              <div style="padding:12px 2px 10px;">
+                <div style="font-size:10px;color:#C49B38;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:3px;">{{ p.fabric }}</div>
+                <div style="font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:600;color:#1A0F0A;line-height:1.25;margin-bottom:7px;text-wrap:pretty;">{{ p.name }}</div>
+                <div style="display:flex;justify-content:space-between;align-items:center;">
+                  <span style="font-size:15px;font-weight:600;color:#1A0F0A;">{{ p.price }}</span>
+                  <button style="font-size:10px;color:#6E1A2C;background:transparent;border:1px solid #E0D0B8;padding:4px 10px;border-radius:100px;font-weight:500;" style-hover="background:#6E1A2C;color:white;border-color:#6E1A2C;">+ Cart</button>
+                </div>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+        <div style="display:flex;justify-content:center;gap:4px;margin-top:40px;padding-bottom:40px;">
+          <div style="width:36px;height:36px;display:flex;align-items:center;justify-content:center;border:1px solid #E0D0B8;font-size:13px;cursor:pointer;color:#5C3D2E;" style-hover="border-color:#6E1A2C;color:#6E1A2C;">‹</div>
+          <div style="width:36px;height:36px;display:flex;align-items:center;justify-content:center;background:#6E1A2C;font-size:13px;color:white;font-weight:600;">1</div>
+          <div style="width:36px;height:36px;display:flex;align-items:center;justify-content:center;border:1px solid #E0D0B8;font-size:13px;cursor:pointer;color:#5C3D2E;" style-hover="border-color:#6E1A2C;color:#6E1A2C;">2</div>
+          <div style="width:36px;height:36px;display:flex;align-items:center;justify-content:center;border:1px solid #E0D0B8;font-size:13px;cursor:pointer;color:#5C3D2E;" style-hover="border-color:#6E1A2C;color:#6E1A2C;">3</div>
+          <div style="width:36px;height:36px;display:flex;align-items:center;justify-content:center;border:1px solid #E0D0B8;font-size:13px;color:#5C3D2E;">…</div>
+          <div style="width:36px;height:36px;display:flex;align-items:center;justify-content:center;border:1px solid #E0D0B8;font-size:13px;cursor:pointer;color:#5C3D2E;" style-hover="border-color:#6E1A2C;color:#6E1A2C;">›</div>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+  <!-- ══════════ PRODUCT DETAIL ══════════ -->
+  <sc-if value="{{ showPdp }}" hint-placeholder-val="{{ false }}">
+    <div style="border-bottom:1px solid #E0D0B8;padding:14px 0;">
+      <div style="max-width:1280px;margin:0 auto;padding:0 {{ pg }};font-size:12px;color:#5C3D2E;">
+        <span onclick="{{ goHome }}" style="cursor:pointer;" style-hover="color:#6E1A2C;">Home</span> <span style="margin:0 6px;opacity:.5;">·</span>
+        <span onclick="{{ goShop }}" style="cursor:pointer;" style-hover="color:#6E1A2C;">Lehengas</span> <span style="margin:0 6px;opacity:.5;">·</span>
+        <span style="color:#1A0F0A;font-weight:500;">Bridal Lehenga Choli Set</span>
+      </div>
+    </div>
+    <div style="padding:{{ vPad }} 0;">
+      <div style="max-width:1280px;margin:0 auto;padding:0 {{ pg }};display:flex;flex-direction:{{ pdpDir }};gap:{{ pdpGap }};align-items:flex-start;">
+        <div style="{{ pdpGW }};display:flex;flex-direction:{{ gallDir }};gap:{{ gallGap }};">
+          <div style="display:flex;flex-direction:{{ thumbDir }};gap:10px;flex-shrink:0;">
+            <div style="width:{{ thumbW }};height:{{ thumbH }};border-radius:3px;background:linear-gradient(160deg,#6E1A2C,#A84060);border:2px solid #C49B38;cursor:pointer;"></div>
+            <div style="width:{{ thumbW }};height:{{ thumbH }};border-radius:3px;background:linear-gradient(160deg,#3D1C72,#7A4CA2);border:1px solid #E0D0B8;cursor:pointer;" style-hover="border-color:#C49B38;"></div>
+            <div style="width:{{ thumbW }};height:{{ thumbH }};border-radius:3px;background:linear-gradient(160deg,#1A1A6E,#4A6AAE);border:1px solid #E0D0B8;cursor:pointer;" style-hover="border-color:#C49B38;"></div>
+            <div style="width:{{ thumbW }};height:{{ thumbH }};border-radius:3px;background:linear-gradient(160deg,#1A4A3A,#4A8A6A);border:1px solid #E0D0B8;cursor:pointer;" style-hover="border-color:#C49B38;"></div>
+          </div>
+          <div style="flex:1;aspect-ratio:3/4;background:linear-gradient(160deg,#6E1A2C 0%,#A84060 55%,#C46080 100%);border-radius:4px;position:relative;overflow:hidden;border:1px solid #E0D0B8;min-height:200px;">
+            <div style="position:absolute;inset:16px;border:1px solid rgba(196,155,56,0.2);border-radius:2px;pointer-events:none;"></div>
+            <div style="position:absolute;top:14px;left:14px;background:#6E1A2C;color:#E8C96A;font-size:9px;letter-spacing:0.1em;padding:4px 10px;border-radius:100px;text-transform:uppercase;">New Arrival</div>
+            <div style="position:absolute;bottom:14px;left:0;right:0;text-align:center;font-size:9px;letter-spacing:0.12em;color:rgba(196,155,56,0.55);text-transform:uppercase;">product photography</div>
+          </div>
+        </div>
+        <div style="{{ pdpIW }};display:flex;flex-direction:column;gap:20px;">
+          <div style="font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#C49B38;font-weight:600;">Lehengas · Bridal</div>
+          <h1 style="font-family:'Cormorant Garamond',serif;font-size:{{ pdpTitleFs }};font-weight:700;color:#1A0F0A;line-height:1.1;">Bridal Lehenga<br>Choli Set</h1>
+          <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
+            <span style="font-family:'Cormorant Garamond',serif;font-size:{{ pdpPriceFs }};font-weight:600;color:#1A0F0A;">د.إ 5,800</span>
+            <span style="font-size:13px;color:#5C3D2E;text-decoration:line-through;">د.إ 7,200</span>
+            <span style="background:#F0DDD0;color:#6E1A2C;font-size:11px;padding:3px 10px;border-radius:100px;font-weight:600;">Save 19%</span>
+          </div>
+          <div style="padding:12px 16px;background:#F2EAD8;border-radius:3px;border-left:3px solid #C49B38;">
+            <div style="font-size:10px;color:#5C3D2E;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:2px;">Fabric</div>
+            <div style="font-size:14px;font-weight:600;color:#1A0F0A;">Pure Georgette with Zari Work</div>
+          </div>
+          <div style="height:1px;background:#E0D0B8;"></div>
+          <div>
+            <div style="font-size:13px;font-weight:600;color:#1A0F0A;margin-bottom:12px;">Colour: <span style="font-weight:400;color:#5C3D2E;">{{ selColorName }}</span></div>
+            <div style="display:flex;gap:10px;flex-wrap:wrap;">
+              <sc-for list="{{ pdpColors }}" as="col" hint-placeholder-count="4">
+                <div onclick="{{ col.pick }}" style="width:30px;height:30px;border-radius:50%;background:{{ col.hex }};cursor:pointer;box-shadow:{{ col.ring }};transition:box-shadow 0.2s;"></div>
+              </sc-for>
+            </div>
+          </div>
+          <div>
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+              <div style="font-size:13px;font-weight:600;color:#1A0F0A;">Size</div>
+              <span style="font-size:12px;color:#C49B38;cursor:pointer;text-decoration:underline;">Size Guide</span>
+            </div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;">
+              <sc-for list="{{ pdpSizes }}" as="sz" hint-placeholder-count="6">
+                <div onclick="{{ sz.pick }}" style="min-width:44px;height:44px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;cursor:pointer;border-radius:2px;padding:0 10px;background:{{ sz.bg }};color:{{ sz.col }};border:{{ sz.bd }};transition:all 0.15s;">{{ sz.label }}</div>
+              </sc-for>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:16px;">
+            <span style="font-size:13px;font-weight:600;color:#1A0F0A;">Quantity</span>
+            <div style="display:flex;align-items:center;border:1px solid #E0D0B8;border-radius:2px;overflow:hidden;">
+              <button onclick="{{ decQty }}" style="width:40px;height:40px;background:white;border:none;font-size:18px;color:#1A0F0A;display:flex;align-items:center;justify-content:center;" style-hover="background:#F2EAD8;">−</button>
+              <span style="width:44px;text-align:center;font-size:15px;font-weight:600;color:#1A0F0A;border-left:1px solid #E0D0B8;border-right:1px solid #E0D0B8;line-height:40px;">{{ pdpQty }}</span>
+              <button onclick="{{ incQty }}" style="width:40px;height:40px;background:white;border:none;font-size:18px;color:#1A0F0A;display:flex;align-items:center;justify-content:center;" style-hover="background:#F2EAD8;">+</button>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:10px;">
+            <button onclick="{{ addToCart }}" style="width:100%;background:#6E1A2C;color:white;padding:16px;font-size:14px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;border:none;border-radius:2px;" style-hover="background:#8B2A3E;">Add to Cart</button>
+            <button style="width:100%;background:transparent;color:#6E1A2C;padding:14px;font-size:14px;font-weight:500;letter-spacing:0.05em;border:1px solid #6E1A2C;border-radius:2px;" style-hover="background:#F0DDD0;">♡  Add to Wishlist</button>
+          </div>
+          <div style="background:#F2EAD8;border-radius:3px;padding:16px;display:flex;flex-direction:column;gap:9px;">
+            <div style="display:flex;align-items:center;gap:10px;">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#1A4A3A" stroke-width="2"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+              <span style="font-size:13px;color:#1A0F0A;font-weight:500;">Free delivery across Dubai</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#1A4A3A" stroke-width="2"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
+              <span style="font-size:13px;color:#1A0F0A;font-weight:500;">Easy 7-day returns in Dubai</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#1A4A3A" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+              <span style="font-size:13px;color:#1A0F0A;font-weight:500;">Authenticity guaranteed</span>
+            </div>
+          </div>
+          <div style="border-top:1px solid #E0D0B8;padding-top:16px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;cursor:pointer;margin-bottom:12px;">
+              <div style="font-size:13px;font-weight:600;color:#1A0F0A;">Product Description</div>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1A0F0A" stroke-width="2"><polyline points="18 15 12 9 6 15"></polyline></svg>
+            </div>
+            <p style="font-size:13px;color:#5C3D2E;line-height:1.72;border-bottom:1px solid #E0D0B8;padding-bottom:16px;">This exquisite bridal lehenga choli set is crafted from pure georgette with intricate zari embroidery. Includes a heavily embroidered lehenga, matching choli with cold-shoulder sleeves, and a soft net dupatta with zari border. Perfect for the modern bride who loves her traditions.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="background:#F2EAD8;padding:{{ vPad }} 0;">
+      <div style="max-width:1280px;margin:0 auto;padding:0 {{ pg }};">
+        <h2 style="font-family:'Cormorant Garamond',serif;font-size:{{ secH2 }};font-weight:600;color:#1A0F0A;margin-bottom:8px;">You May Also Love</h2>
+        <div style="height:1px;background:linear-gradient(to right,#C49B38,transparent);margin-bottom:28px;"></div>
+        <div style="display:grid;grid-template-columns:{{ relCols }};gap:{{ gridGap }};">
+          <sc-for list="{{ relProds }}" as="p" hint-placeholder-count="3">
+            <div onclick="{{ p.go }}" style="cursor:pointer;display:flex;flex-direction:column;">
+              <div style="{{ p.bg }};aspect-ratio:3/4;border-radius:4px;position:relative;overflow:hidden;">
+                <div style="position:absolute;top:10px;right:10px;background:rgba(250,247,240,0.92);border-radius:50%;width:32px;height:32px;display:flex;align-items:center;justify-content:center;">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6E1A2C" stroke-width="2.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                </div>
+              </div>
+              <div style="padding:12px 2px;">
+                <div style="font-size:10px;color:#C49B38;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:3px;">{{ p.fabric }}</div>
+                <div style="font-family:'Cormorant Garamond',serif;font-size:17px;font-weight:600;color:#1A0F0A;line-height:1.25;margin-bottom:6px;">{{ p.name }}</div>
+                <span style="font-size:15px;font-weight:600;color:#1A0F0A;">{{ p.price }}</span>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+  <!-- ══════════ ADMIN ══════════ -->
+  <sc-if value="{{ showAdmin }}" hint-placeholder-val="{{ false }}">
+    <div style="display:flex;min-height:100vh;background:{{ admBg }};">
+      <div style="width:{{ admSW }};background:{{ admSBg }};flex-shrink:0;display:flex;flex-direction:column;">
+        <div style="padding:22px 18px;border-bottom:1px solid rgba(255,255,255,0.06);">
+          <div style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;color:#FAF7F0;letter-spacing:0.06em;">Soul Sisters</div>
+          <div style="font-size:8px;letter-spacing:0.2em;color:#C49B38;text-transform:uppercase;margin-top:2px;">Admin Panel</div>
+        </div>
+        <nav style="flex:1;padding:14px 10px;display:flex;flex-direction:column;gap:2px;">
+          <div style="display:flex;align-items:center;gap:11px;padding:10px 14px;border-radius:4px;cursor:pointer;background:rgba(196,155,56,0.12);color:#C49B38;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+            <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}"><span style="font-size:13px;font-weight:500;">Dashboard</span></sc-if>
+          </div>
+          <div style="display:flex;align-items:center;gap:11px;padding:10px 14px;border-radius:4px;cursor:pointer;color:rgba(250,247,240,0.55);" style-hover="background:rgba(255,255,255,0.05);color:#FAF7F0;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+            <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}"><span style="font-size:13px;">Orders</span></sc-if>
+          </div>
+          <div style="display:flex;align-items:center;gap:11px;padding:10px 14px;border-radius:4px;cursor:pointer;color:rgba(250,247,240,0.55);" style-hover="background:rgba(255,255,255,0.05);color:#FAF7F0;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 7H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"></path><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"></path></svg>
+            <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}"><span style="font-size:13px;">Products</span></sc-if>
+          </div>
+          <div style="display:flex;align-items:center;gap:11px;padding:10px 14px;border-radius:4px;cursor:pointer;color:rgba(250,247,240,0.55);" style-hover="background:rgba(255,255,255,0.05);color:#FAF7F0;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+            <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}"><span style="font-size:13px;">Customers</span></sc-if>
+          </div>
+          <div style="display:flex;align-items:center;gap:11px;padding:10px 14px;border-radius:4px;cursor:pointer;color:rgba(250,247,240,0.55);" style-hover="background:rgba(255,255,255,0.05);color:#FAF7F0;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+            <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}"><span style="font-size:13px;">Analytics</span></sc-if>
+          </div>
+        </nav>
+        <div style="padding:12px 10px;border-top:1px solid rgba(255,255,255,0.06);display:flex;flex-direction:column;gap:2px;">
+          <div onclick="{{ toggleAdmDark }}" style="display:flex;align-items:center;gap:11px;padding:9px 14px;border-radius:4px;cursor:pointer;color:rgba(250,247,240,0.45);" style-hover="color:#FAF7F0;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path></svg>
+            <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}"><span style="font-size:12px;">{{ admModeLabel }}</span></sc-if>
+          </div>
+          <div onclick="{{ goHome }}" style="display:flex;align-items:center;gap:11px;padding:9px 14px;border-radius:4px;cursor:pointer;color:rgba(196,155,56,0.65);" style-hover="color:#C49B38;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+            <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}"><span style="font-size:12px;">View Store</span></sc-if>
+          </div>
+        </div>
+      </div>
+      <div style="flex:1;overflow-y:auto;padding:{{ admP }};">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:28px;flex-wrap:wrap;gap:12px;">
+          <div>
+            <h1 style="font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:600;color:{{ admHd }};">Dashboard</h1>
+            <div style="font-size:13px;color:{{ admSub }};margin-top:3px;">Wednesday, 2 July 2026 · Dubai, UAE</div>
+          </div>
+          <div style="display:flex;gap:10px;">
+            <button style="background:{{ admBtnBg }};color:{{ admBtnC }};border:1px solid {{ admBtnBd }};padding:9px 18px;font-size:13px;font-weight:500;border-radius:3px;cursor:pointer;" style-hover="opacity:0.8;">+ Add Product</button>
+            <button style="background:#C49B38;color:#1A0F0A;border:none;padding:9px 18px;font-size:13px;font-weight:600;border-radius:3px;cursor:pointer;" style-hover="background:#E8C96A;">New Order</button>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:{{ admStatsGrid }};gap:14px;margin-bottom:24px;">
+          <div style="background:{{ admCard }};border-radius:6px;padding:20px;border:1px solid {{ admCardBd }};">
+            <div style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:{{ admSub }};margin-bottom:10px;font-weight:600;">Orders Today</div>
+            <div style="font-family:'Cormorant Garamond',serif;font-size:38px;font-weight:700;color:{{ admHd }};line-height:1;">24</div>
+            <div style="font-size:12px;color:#1A7A4A;margin-top:7px;font-weight:500;">▲ 12% vs yesterday</div>
+          </div>
+          <div style="background:{{ admCard }};border-radius:6px;padding:20px;border:1px solid {{ admCardBd }};">
+            <div style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:{{ admSub }};margin-bottom:10px;font-weight:600;">Revenue (July)</div>
+            <div style="font-family:'Cormorant Garamond',serif;font-size:38px;font-weight:700;color:#C49B38;line-height:1;">د.إ 94k</div>
+            <div style="font-size:12px;color:#1A7A4A;margin-top:7px;font-weight:500;">▲ 28% vs last month</div>
+          </div>
+          <div style="background:{{ admCard }};border-radius:6px;padding:20px;border:1px solid {{ admCardBd }};">
+            <div style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:{{ admSub }};margin-bottom:10px;font-weight:600;">Active Products</div>
+            <div style="font-family:'Cormorant Garamond',serif;font-size:38px;font-weight:700;color:{{ admHd }};line-height:1;">342</div>
+            <div style="font-size:12px;color:{{ admSub }};margin-top:7px;">Across 6 categories</div>
+          </div>
+          <div style="background:{{ admCard }};border-radius:6px;padding:20px;border:1px solid rgba(139,26,44,0.3);">
+            <div style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:{{ admSub }};margin-bottom:10px;font-weight:600;">Low Stock Alerts</div>
+            <div style="font-family:'Cormorant Garamond',serif;font-size:38px;font-weight:700;color:#8B1A2C;line-height:1;">7</div>
+            <div style="font-size:12px;color:#8B1A2C;margin-top:7px;font-weight:500;">⚠ Needs restocking</div>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:{{ admBodyGrid }};gap:{{ admBodyGap }};">
+          <div style="background:{{ admCard }};border-radius:6px;border:1px solid {{ admCardBd }};overflow:hidden;">
+            <div style="padding:14px 20px;border-bottom:1px solid {{ admCardBd }};display:flex;justify-content:space-between;align-items:center;">
+              <div style="font-size:14px;font-weight:600;color:{{ admHd }};">Recent Orders</div>
+              <span style="font-size:12px;color:#C49B38;cursor:pointer;font-weight:500;">View All →</span>
+            </div>
+            <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
+                    </sc-if><sc-for list="{{ admOrders }}" as="o" hint-placeholder-count="5">
+                  </sc-for><sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
+                      </sc-if><table style="width:100%;border-collapse:collapse;">
+              <thead>
+                <tr style="border-bottom:1px solid {{ admCardBd }};">
+                  <th style="text-align:left;padding:11px 20px;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:{{ admSub }};font-weight:600;">Order</th>
+                  <th style="text-align:left;padding:11px 20px;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:{{ admSub }};font-weight:600;">Customer</th>
+                  <th style="text-align:left;padding:11px 20px;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:{{ admSub }};font-weight:600;">Date</th>
+                  
+                  <th style="text-align:left;padding:11px 20px;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:{{ admSub }};font-weight:600;">Status</th>
+                  <th style="text-align:right;padding:11px 20px;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:{{ admSub }};font-weight:600;">Amount</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="border-bottom:1px solid {{ admCardBd }};" style-hover="background:{{ admRowHover }};">
+                    <td style="padding:13px 20px;font-size:13px;color:#C49B38;font-weight:600;">{{ o.id }}</td>
+                    <td style="padding:13px 20px;font-size:13px;color:{{ admHd }};font-weight:500;">{{ o.customer }}</td>
+                    <td style="padding:13px 20px;font-size:12px;color:{{ admSub }};">{{ o.date }}</td>
+                    
+                    <td style="padding:13px 20px;">
+                      <span style="font-size:10px;padding:3px 9px;border-radius:100px;font-weight:600;background:{{ o.sBg }};color:{{ o.sColor }};">{{ o.status }}</span>
+                    </td>
+                    <td style="padding:13px 20px;font-size:13px;font-weight:600;color:{{ admHd }};text-align:right;">{{ o.amount }}</td>
+                  </tr>
+                
+              </tbody>
+            </table>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:14px;">
+            <div style="background:{{ admCard }};border-radius:6px;border:1px solid {{ admCardBd }};padding:20px;">
+              <div style="font-size:14px;font-weight:600;color:{{ admHd }};margin-bottom:14px;">Quick Actions</div>
+              <div style="display:flex;flex-direction:column;gap:8px;">
+                <button style="width:100%;background:#C49B38;color:#1A0F0A;border:none;padding:11px 16px;font-size:13px;font-weight:600;border-radius:3px;text-align:left;display:flex;align-items:center;gap:10px;" style-hover="background:#E8C96A;">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg> Add New Product
+                </button>
+                <button style="width:100%;background:{{ admBtnBg }};color:{{ admBtnC }};border:1px solid {{ admBtnBd }};padding:11px 16px;font-size:13px;font-weight:500;border-radius:3px;text-align:left;display:flex;align-items:center;gap:10px;" style-hover="opacity:0.8;">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path></svg> View All Orders
+                </button>
+                <button style="width:100%;background:{{ admBtnBg }};color:{{ admBtnC }};border:1px solid {{ admBtnBd }};padding:11px 16px;font-size:13px;font-weight:500;border-radius:3px;text-align:left;display:flex;align-items:center;gap:10px;" style-hover="opacity:0.8;">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg> Export Report
+                </button>
+              </div>
+            </div>
+            <div style="background:{{ admCard }};border-radius:6px;border:1px solid {{ admCardBd }};padding:20px;">
+              <div style="font-size:14px;font-weight:600;color:{{ admHd }};margin-bottom:14px;">Top Selling</div>
+              <div style="display:flex;flex-direction:column;gap:11px;">
+                <div style="display:flex;align-items:center;gap:12px;">
+                  <div style="width:38px;height:48px;border-radius:3px;background:linear-gradient(160deg,#6E1A2C,#A84060);flex-shrink:0;"></div>
+                  <div><div style="font-size:13px;font-weight:600;color:{{ admHd }};">Bridal Lehenga Set</div><div style="font-size:11px;color:{{ admSub }};margin-top:2px;">42 sold · د.إ 5,800</div></div>
+                </div>
+                <div style="display:flex;align-items:center;gap:12px;">
+                  <div style="width:38px;height:48px;border-radius:3px;background:linear-gradient(160deg,#3D1542,#7A3082);flex-shrink:0;"></div>
+                  <div><div style="font-size:13px;font-weight:600;color:{{ admHd }};">Kanjivaram Silk Saree</div><div style="font-size:11px;color:{{ admSub }};margin-top:2px;">38 sold · د.إ 2,450</div></div>
+                </div>
+                <div style="display:flex;align-items:center;gap:12px;">
+                  <div style="width:38px;height:48px;border-radius:3px;background:linear-gradient(160deg,#1A4A3A,#4A8A6A);flex-shrink:0;"></div>
+                  <div><div style="font-size:13px;font-weight:600;color:{{ admHd }};">Chanderi Anarkali Suit</div><div style="font-size:11px;color:{{ admSub }};margin-top:2px;">31 sold · د.إ 1,850</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+  <!-- ══════════ FOOTER ══════════ -->
+  <sc-if value="{{ showStore }}" hint-placeholder-val="{{ true }}">
+    <footer style="background:#1A0F0A;color:rgba(250,247,240,0.7);padding:{{ vPad }} 0;">
+      <div style="max-width:1280px;margin:0 auto;padding:0 {{ pg }};">
+        <div style="display:grid;grid-template-columns:{{ ftCols }};gap:36px;margin-bottom:44px;">
+          <div>
+            <div style="font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:700;color:#FAF7F0;letter-spacing:0.06em;margin-bottom:3px;">Soul Sisters</div>
+            <div style="font-size:8px;letter-spacing:0.22em;color:#C49B38;text-transform:uppercase;margin-bottom:14px;">Ethnic Couture · Dubai</div>
+            <p style="font-size:13px;line-height:1.7;max-width:220px;margin-bottom:20px;">Premium Indian ethnic wear crafted for the modern woman in Dubai.</p>
+            <div style="display:flex;gap:12px;">
+              <div style="width:34px;height:34px;border-radius:50%;border:1px solid rgba(250,247,240,0.12);display:flex;align-items:center;justify-content:center;cursor:pointer;" style-hover="border-color:rgba(196,155,56,0.5);">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(250,247,240,0.65)" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+              </div>
+              <div style="width:34px;height:34px;border-radius:50%;border:1px solid rgba(250,247,240,0.12);display:flex;align-items:center;justify-content:center;cursor:pointer;" style-hover="border-color:rgba(196,155,56,0.5);">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(250,247,240,0.65)" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+              </div>
+              <div style="width:34px;height:34px;border-radius:50%;border:1px solid rgba(250,247,240,0.12);display:flex;align-items:center;justify-content:center;cursor:pointer;" style-hover="border-color:rgba(196,155,56,0.5);">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(250,247,240,0.65)" stroke-width="2"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+              </div>
+            </div>
+          </div>
+          <sc-if value="{{ isDesktop }}" hint-placeholder-val="{{ true }}">
+            <div>
+              <div style="font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:#C49B38;margin-bottom:14px;font-weight:600;">Shop</div>
+              <div style="display:flex;flex-direction:column;gap:9px;">
+                <span onclick="{{ goShop }}" style="font-size:13px;cursor:pointer;" style-hover="color:#C49B38;">Sarees</span>
+                <span onclick="{{ goShop }}" style="font-size:13px;cursor:pointer;" style-hover="color:#C49B38;">Lehengas</span>
+                <span onclick="{{ goShop }}" style="font-size:13px;cursor:pointer;" style-hover="color:#C49B38;">Salwar Suits</span>
+                <span onclick="{{ goShop }}" style="font-size:13px;cursor:pointer;" style-hover="color:#C49B38;">Kurtis</span>
+                <span onclick="{{ goShop }}" style="font-size:13px;cursor:pointer;" style-hover="color:#C49B38;">Accessories</span>
+              </div>
+            </div>
+            <div>
+              <div style="font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:#C49B38;margin-bottom:14px;font-weight:600;">Information</div>
+              <div style="display:flex;flex-direction:column;gap:9px;">
+                <span style="font-size:13px;cursor:pointer;" style-hover="color:#C49B38;">About Us</span>
+                <span style="font-size:13px;cursor:pointer;" style-hover="color:#C49B38;">Shipping Policy</span>
+                <span style="font-size:13px;cursor:pointer;" style-hover="color:#C49B38;">Returns &amp; Exchanges</span>
+                <span style="font-size:13px;cursor:pointer;" style-hover="color:#C49B38;">Size Guide</span>
+                <span style="font-size:13px;cursor:pointer;" style-hover="color:#C49B38;">Contact Us</span>
+              </div>
+            </div>
+          </sc-if>
+          <div>
+            <div style="font-size:9px;letter-spacing:0.2em;text-transform:uppercase;color:#C49B38;margin-bottom:14px;font-weight:600;">Newsletter</div>
+            <div style="font-size:13px;margin-bottom:10px;color:rgba(250,247,240,0.7);">Stay updated on new arrivals &amp; events</div>
+            <div style="display:flex;">
+              <input type="email" placeholder="your@email.com" style="flex:1;padding:10px 14px;font-size:12px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-right:none;color:white;outline:none;min-width:0;">
+              <button style="background:#C49B38;color:#1A0F0A;padding:10px 16px;font-size:12px;font-weight:600;border:none;flex-shrink:0;" style-hover="background:#E8C96A;">→</button>
+            </div>
+            <div style="font-size:12px;color:rgba(250,247,240,0.4);margin-top:14px;">Dubai, UAE · hello@soulsisters.ae</div>
+          </div>
+        </div>
+        <div style="border-top:1px solid rgba(255,255,255,0.07);padding-top:22px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;">
+          <div style="font-size:11px;color:rgba(250,247,240,0.35);">© 2026 Soul Sisters · Dubai, UAE</div>
+          <div style="font-size:11px;color:rgba(250,247,240,0.35);">Powered by craft, delivered with care · UAE only</div>
+        </div>
+      </div>
+    </footer>
+  </sc-if>
+
+</div>
+
+<!-- CART DRAWER -->
+<sc-if value="{{ cartOpen }}" hint-placeholder-val="{{ false }}">
+  <div onclick="{{ toggleCart }}" style="position:fixed;inset:0;background:rgba(26,15,10,0.55);z-index:800;animation:fadeOverlay 0.25s ease;"></div>
+  <div style="position:fixed;right:0;top:0;bottom:0;width:{{ cartW }};background:#FAF7F0;z-index:801;animation:slideCart 0.3s cubic-bezier(.25,.46,.45,.94);display:flex;flex-direction:column;box-shadow:-8px 0 48px rgba(0,0,0,0.2);">
+    <div style="padding:20px 24px;border-bottom:1px solid #E0D0B8;display:flex;justify-content:space-between;align-items:center;">
+      <div>
+        <h2 style="font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:600;color:#1A0F0A;">My Cart</h2>
+        <div style="font-size:12px;color:#5C3D2E;margin-top:2px;">{{ cartCount }} items</div>
+      </div>
+      <button onclick="{{ toggleCart }}" style="width:36px;height:36px;border-radius:50%;border:1px solid #E0D0B8;background:transparent;display:flex;align-items:center;justify-content:center;cursor:pointer;" style-hover="background:#F2EAD8;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1A0F0A" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+    </div>
+    <div style="flex:1;overflow-y:auto;padding:20px 24px;display:flex;flex-direction:column;gap:16px;">
+      <sc-for list="{{ cartItems }}" as="ci" hint-placeholder-count="2">
+        <div style="display:flex;gap:14px;padding-bottom:16px;border-bottom:1px solid #E0D0B8;">
+          <div style="{{ ci.bg }};width:72px;height:96px;border-radius:3px;flex-shrink:0;"></div>
+          <div style="flex:1;display:flex;flex-direction:column;justify-content:space-between;">
+            <div>
+              <div style="font-size:9px;color:#C49B38;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:3px;">{{ ci.fabric }}</div>
+              <div style="font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:600;color:#1A0F0A;line-height:1.25;margin-bottom:3px;">{{ ci.name }}</div>
+              <div style="font-size:11px;color:#5C3D2E;">{{ ci.color }} · {{ ci.size }}</div>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <div style="display:flex;align-items:center;border:1px solid #E0D0B8;border-radius:2px;overflow:hidden;">
+                <button onclick="{{ ci.dec }}" style="width:28px;height:28px;background:white;border:none;font-size:15px;color:#1A0F0A;display:flex;align-items:center;justify-content:center;cursor:pointer;" style-hover="background:#F2EAD8;">−</button>
+                <span style="width:28px;text-align:center;font-size:12px;font-weight:600;color:#1A0F0A;border-left:1px solid #E0D0B8;border-right:1px solid #E0D0B8;line-height:28px;">{{ ci.qty }}</span>
+                <button onclick="{{ ci.inc }}" style="width:28px;height:28px;background:white;border:none;font-size:15px;color:#1A0F0A;display:flex;align-items:center;justify-content:center;cursor:pointer;" style-hover="background:#F2EAD8;">+</button>
+              </div>
+              <div style="display:flex;flex-direction:column;align-items:flex-end;gap:2px;">
+                <span style="font-size:14px;font-weight:600;color:#1A0F0A;">{{ ci.total }}</span>
+                <button onclick="{{ ci.remove }}" style="font-size:10px;color:#8B6942;background:transparent;border:none;cursor:pointer;text-decoration:underline;" style-hover="color:#6E1A2C;">Remove</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+    <div style="padding:20px 24px;border-top:1px solid #E0D0B8;">
+      <div style="display:flex;flex-direction:column;gap:7px;margin-bottom:16px;">
+        <div style="display:flex;justify-content:space-between;font-size:13px;color:#5C3D2E;"><span>Subtotal</span><span>{{ cartSubtotal }}</span></div>
+        <div style="display:flex;justify-content:space-between;font-size:13px;color:#5C3D2E;"><span>VAT (5%)</span><span>{{ cartVat }}</span></div>
+        <div style="display:flex;justify-content:space-between;font-size:13px;color:#1A4A3A;font-weight:500;"><span>Delivery</span><span>Free 🎉</span></div>
+        <div style="height:1px;background:#E0D0B8;margin:3px 0;"></div>
+        <div style="display:flex;justify-content:space-between;font-size:16px;font-weight:700;color:#1A0F0A;"><span>Total</span><span>{{ cartTotal }}</span></div>
+        <div style="font-size:11px;color:#5C3D2E;text-align:right;">Inclusive of 5% UAE VAT</div>
+      </div>
+      <button style="width:100%;background:#6E1A2C;color:white;padding:15px;font-size:13px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;border:none;border-radius:2px;margin-bottom:9px;" style-hover="background:#8B2A3E;">Proceed to Checkout →</button>
+      <button onclick="{{ toggleCart }}" style="width:100%;background:transparent;color:#6E1A2C;padding:12px;font-size:13px;font-weight:500;border:1px solid #6E1A2C;border-radius:2px;" style-hover="background:#F0DDD0;">Continue Shopping</button>
+    </div>
+  </div>
+</sc-if>
+</x-dc>
+<script type="text/x-dc" data-dc-script="" data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:900}}">
+class Component extends DCLogic {
+  state = {
+    page: 'home',
+    mobile: false,
+    cartOpen: false,
+    admDark: true,
+    selColor: 0,
+    selSize: 1,
+    qty: 1,
+    cartItems: [
+      { id:1, name:'Banarasi Silk Saree', fabric:'Pure Silk', color:'Royal Amethyst', size:'Free Size', qty:1, price:1850, c1:'#3D1542', c2:'#7A3082' },
+      { id:2, name:'Embroidered Lehenga Set', fabric:'Pure Georgette', color:'Ruby Red', size:'M', qty:1, price:3200, c1:'#6E1A2C', c2:'#B04060' },
+    ],
+  };
+
+  renderVals() {
+    const s = this.state;
+    const m = s.mobile;
+    const go = page => () => this.setState({ page, cartOpen: false });
+    const ruby = '#6E1A2C', gold = '#C49B38';
+
+    const tab = p => ({ bg: s.page === p ? gold : 'transparent', c: s.page === p ? '#1A0F0A' : 'rgba(250,247,240,0.55)' });
+
+    const raw = [
+      { name:'Kanjivaram Silk Saree', fabric:'Pure Silk', price:2450, occasion:'Wedding', c1:'#3D1542', c2:'#7A3082' },
+      { name:'Bridal Lehenga Choli', fabric:'Pure Georgette', price:5800, occasion:'Bridal', c1:'#6E1A2C', c2:'#A84060' },
+      { name:'Chanderi Anarkali Suit', fabric:'Chanderi Silk', price:1850, occasion:'Festive', c1:'#1A4A3A', c2:'#3A8A6A' },
+      { name:'Block Print Kurti', fabric:'Mulmul Cotton', price:680, occasion:'Casual', c1:'#7A3B1A', c2:'#C47840' },
+      { name:'Fusion Crop Top Lehenga', fabric:'Net & Velvet', price:3200, occasion:'Party', c1:'#1A1A6E', c2:'#3A4AAE' },
+      { name:'Zardozi Silk Dupatta', fabric:'Silk Chiffon', price:580, occasion:'Festive', c1:'#3D1C72', c2:'#7A4CA2' },
+      { name:'Pashmina Salwar Suit', fabric:'Pashmina Wool', price:2200, occasion:'Office', c1:'#2E4A6B', c2:'#4E7A9B' },
+      { name:'Ikat Cotton Silk Saree', fabric:'Cotton Silk', price:1200, occasion:'Casual', c1:'#1A5A2A', c2:'#3A8A4A' },
+    ];
+    const prods = raw.map(p => ({
+      ...p,
+      bg: `background:linear-gradient(160deg,${p.c1} 0%,${p.c2} 100%)`,
+      price: `د.إ ${p.price.toLocaleString()}`,
+      go: go('pdp'),
+    }));
+
+    const cartItems = s.cartItems.map(ci => ({
+      ...ci,
+      bg: `background:linear-gradient(160deg,${ci.c1} 0%,${ci.c2} 100%)`,
+      total: `د.إ ${(ci.price * ci.qty).toLocaleString()}`,
+      inc: () => this.setState(prev => ({ cartItems: prev.cartItems.map(i => i.id === ci.id ? {...i, qty: Math.min(i.qty+1,10)} : i) })),
+      dec: () => this.setState(prev => ({ cartItems: prev.cartItems.map(i => i.id === ci.id ? {...i, qty: Math.max(i.qty-1,1)} : i) })),
+      remove: () => this.setState(prev => ({ cartItems: prev.cartItems.filter(i => i.id !== ci.id) })),
+    }));
+    const cartSubtotal = s.cartItems.reduce((a, i) => a + i.price * i.qty, 0);
+
+    const colorData = [
+      { name:'Ruby Red', hex:'#6E1A2C' },
+      { name:'Amethyst', hex:'#3D1C72' },
+      { name:'Royal Blue', hex:'#1A1A6E' },
+      { name:'Emerald', hex:'#1A4A3A' },
+    ];
+    const pdpColors = colorData.map((c, i) => ({
+      ...c,
+      ring: s.selColor === i ? `0 0 0 2px white, 0 0 0 3.5px ${gold}` : '0 0 0 1.5px rgba(0,0,0,0.12)',
+      pick: () => this.setState({ selColor: i }),
+    }));
+
+    const sizes = ['XS','S','M','L','XL','XXL'];
+    const pdpSizes = sizes.map((label, i) => ({
+      label,
+      bg: s.selSize === i ? ruby : 'transparent',
+      col: s.selSize === i ? 'white' : '#1A0F0A',
+      bd: s.selSize === i ? `1px solid ${ruby}` : '1px solid #E0D0B8',
+      pick: () => this.setState({ selSize: i }),
+    }));
+
+    const statusColors = { Processing:'#B5451B', Confirmed:'#1A5A3C', Shipped:'#1A1A6E', Delivered:'#3D1C72' };
+    const admOrders = [
+      { id:'#SS-2847', customer:'Priya Sharma', date:'2 Jul 2026', status:'Processing', amount:'د.إ 2,450' },
+      { id:'#SS-2846', customer:'Fatima Al-Rashid', date:'2 Jul 2026', status:'Confirmed', amount:'د.إ 5,800' },
+      { id:'#SS-2845', customer:'Deepa Krishnan', date:'1 Jul 2026', status:'Shipped', amount:'د.إ 1,850' },
+      { id:'#SS-2844', customer:'Meera Nair', date:'1 Jul 2026', status:'Delivered', amount:'د.إ 3,200' },
+      { id:'#SS-2843', customer:'Sunita Gupta', date:'30 Jun 2026', status:'Delivered', amount:'د.إ 680' },
+    ].map(o => ({ ...o, sBg: statusColors[o.status] + '22', sColor: statusColors[o.status] }));
+
+    const ad = s.admDark;
+    const admBg = ad ? '#100C0A' : '#F5F0E8';
+    const admSBg = ad ? '#181412' : '#FAF7F0';
+    const admCard = ad ? '#1F1B18' : '#FFFFFF';
+    const admCardBd = ad ? 'rgba(255,255,255,0.07)' : '#E0D0B8';
+    const admHd = ad ? '#FAF7F0' : '#1A0F0A';
+    const admSub = ad ? 'rgba(250,247,240,0.5)' : '#5C3D2E';
+    const admBtnBg = ad ? 'rgba(255,255,255,0.06)' : 'white';
+    const admBtnC = ad ? '#FAF7F0' : '#1A0F0A';
+    const admBtnBd = ad ? 'rgba(255,255,255,0.12)' : '#E0D0B8';
+    const admRowHover = ad ? 'rgba(255,255,255,0.025)' : '#FAF6EE';
+
+    // Standard container padding
+    const pg = m ? '20px' : '40px';
+    const vPad = m ? '40px' : '64px';
+    const navP = m ? '14px' : '16px';
+    const navG = '16px';
+
+    // Hero
+    const heroH = m ? '520px' : '600px';
+    const heroVPad = m ? '48px' : '72px';
+    const heroTF = m ? '1' : '0 0 56%';
+    const h1 = m ? '42px' : '66px';
+    const heroBd = m ? '14px' : '16px';
+    const ctaP = m ? '13px 24px' : '14px 32px';
+    const ctaFs = m ? '12px' : '13px';
+
+    // Categories
+    const catGap = m ? '14px' : '20px';
+    const catW = m ? '80px' : '100px';
+    const catH = m ? '110px' : '130px';
+    const catFs = m ? '12px' : '13px';
+
+    // Sections
+    const secH2 = m ? '28px' : '36px';
+    const featCols = m ? 'repeat(2,1fr)' : 'repeat(4,1fr)';
+    const gridGap = m ? '14px' : '24px';
+    const cardH = m ? '16px' : '18px';
+    const cardPr = m ? '14px' : '16px';
+
+    // Festive / story
+    const festFlex = m ? 'block' : 'flex';
+    const festTW = m ? 'width:100%' : 'flex:1';
+    const festH2 = m ? '34px' : '44px';
+    const storyFlex = m ? 'block' : 'flex';
+    const storyGap = m ? '0' : '60px';
+    const storyTW = m ? 'width:100%;margin-bottom:32px' : 'flex:1';
+    const storyIW = m ? 'width:100%' : 'flex:0 0 400px';
+    const storyH2 = m ? '30px' : '38px';
+
+    // Shop
+    const shopH1 = m ? '28px' : '34px';
+    const shopCols = m ? 'repeat(2,1fr)' : 'repeat(3,1fr)';
+    const shopInnerPad = m ? '0' : '24px';
+
+    // PDP
+    const pdpDir = m ? 'column' : 'row';
+    const pdpGap = m ? '24px' : '60px';
+    const pdpGW = m ? 'width:100%' : 'flex:0 0 520px';
+    const gallDir = m ? 'column-reverse' : 'row';
+    const gallGap = m ? '12px' : '14px';
+    const thumbDir = m ? 'row' : 'column';
+    const thumbW = m ? '60px' : '72px';
+    const thumbH = m ? '80px' : '96px';
+    const pdpIW = m ? 'width:100%' : 'flex:1';
+    const pdpTitleFs = m ? '34px' : '44px';
+    const pdpPriceFs = m ? '26px' : '32px';
+    const relCols = m ? 'repeat(2,1fr)' : 'repeat(3,1fr)';
+
+    // Admin
+    const admSW = m ? '52px' : '220px';
+    const admP = m ? '20px 14px' : '32px 36px';
+    const admStatsGrid = m ? 'repeat(2,1fr)' : 'repeat(4,1fr)';
+    const admBodyGrid = m ? '1fr' : '1fr 320px';
+    const admBodyGap = '16px';
+
+    // Footer
+    const ftCols = m ? '1fr' : '1.5fr 1fr 1fr 1.2fr';
+    const logoFs = m ? '22px' : '28px';
+    const bnFs = m ? '11px' : '12px';
+    const cartW = m ? '100%' : '420px';
+
+    return {
+      showHome: s.page === 'home',
+      showShop: s.page === 'shop',
+      showPdp: s.page === 'pdp',
+      showAdmin: s.page === 'admin',
+      showStore: s.page !== 'admin',
+      goHome: go('home'),
+      goShop: go('shop'),
+      goPdp: go('pdp'),
+      goAdmin: go('admin'),
+      toggleCart: () => this.setState(s => ({ cartOpen: !s.cartOpen })),
+      cartOpen: s.cartOpen,
+
+      hBg: tab('home').bg, hC: tab('home').c,
+      sBg: tab('shop').bg, sC: tab('shop').c,
+      pBg: tab('pdp').bg, pC: tab('pdp').c,
+      aBg: tab('admin').bg, aC: tab('admin').c,
+
+      isDesktop: !m, isMobile: m,
+
+      pg, vPad, navP, navG, logoFs, bnFs,
+      heroH, heroVPad, heroTF, h1, heroBd, ctaP, ctaFs,
+      catGap, catW, catH, catFs,
+      secH2, featCols, gridGap, cardH, cardPr,
+      festFlex, festTW, festH2,
+      storyFlex, storyGap, storyTW, storyIW, storyH2,
+      shopH1, shopCols, shopInnerPad,
+      pdpDir, pdpGap, pdpGW, gallDir, gallGap, thumbDir, thumbW, thumbH, pdpIW, pdpTitleFs, pdpPriceFs,
+      relCols,
+      admBg, admSBg, admCard, admCardBd, admHd, admSub,
+      admBtnBg, admBtnC, admBtnBd, admRowHover,
+      admStatsGrid, admBodyGrid, admBodyGap, admP, admSW,
+      admOrders,
+      admModeLabel: ad ? 'Light Mode' : 'Dark Mode',
+      toggleAdmDark: () => this.setState(s => ({ admDark: !s.admDark })),
+      ftCols, cartW,
+
+      featProds: prods.slice(0, 4),
+      popProds: prods.slice(4, 8),
+      allProds: prods,
+      relProds: prods.slice(1, 4),
+
+      selColorName: colorData[s.selColor].name,
+      pdpColors,
+      pdpSizes,
+      pdpQty: s.qty,
+      incQty: () => this.setState(s => ({ qty: Math.min(s.qty+1, 10) })),
+      decQty: () => this.setState(s => ({ qty: Math.max(s.qty-1, 1) })),
+      addToCart: () => this.setState({ cartOpen: true }),
+
+      cartItems,
+      cartCount: s.cartItems.reduce((a, i) => a + i.qty, 0),
+      cartSubtotal: `د.إ ${cartSubtotal.toLocaleString()}`,
+      cartVat: `د.إ ${Math.round(cartSubtotal * 0.05).toLocaleString()}`,
+      cartTotal: `د.إ ${Math.round(cartSubtotal * 1.05).toLocaleString()}`,
+    };
+  }
+}
+</script>
+
+
+</body></html>
