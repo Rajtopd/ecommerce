@@ -1,8 +1,13 @@
+const fs = require('fs');
 const { createClient } = require('@supabase/supabase-js');
-const supabase = createClient(
-  'https://hhdfmjamwsvisjyobatk.supabase.co',
-  process.env.SUPABASE_SERVICE_ROLE_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhoZGZtamFtd3N2aXNqeW9iYXRrIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc4MjU1OTA4NCwiZXhwIjoyMDk4MTM1MDg0fQ.VEpQ47MfxWGcCk-w6Lg4RNTHBHyAaoNbx6cTNivuWTY'
-);
+
+const env = fs.readFileSync('.env.local', 'utf8').split('\n').reduce((acc, line) => {
+  const m = line.match(/^([^=#\s][^=]*)=(.*)$/);
+  if (m) acc[m[1].trim()] = m[2].trim().replace(/^['"]|['"]$/g, '');
+  return acc;
+}, {});
+
+const supabase = createClient(env.NEXT_PUBLIC_SUPABASE_URL, env.SUPABASE_SERVICE_ROLE_KEY);
 async function run() {
   const { data } = await supabase.from('product_variants').select('id, stock_quantity, products(name)').limit(1);
   if (!data || data.length === 0) {

@@ -21,6 +21,19 @@ export async function POST(req) {
       return NextResponse.json({ error: 'Cart is empty' }, { status: 400 })
     }
 
+    // Reject malformed/malicious quantities and ids before any pricing math —
+    // a negative or non-integer quantity can otherwise drive the total to
+    // zero/negative and corrupt stock on confirmation.
+    const MAX_QUANTITY_PER_ITEM = 100
+    for (const item of items) {
+      if (typeof item.variantId !== 'string' || !item.variantId) {
+        return NextResponse.json({ error: 'Invalid item in cart' }, { status: 400 })
+      }
+      if (!Number.isInteger(item.quantity) || item.quantity <= 0 || item.quantity > MAX_QUANTITY_PER_ITEM) {
+        return NextResponse.json({ error: 'Invalid quantity in cart' }, { status: 400 })
+      }
+    }
+
     let subtotal = 0
 
     // Fetch real prices from database to prevent client-side spoofing
