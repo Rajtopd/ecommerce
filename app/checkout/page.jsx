@@ -1,16 +1,21 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { useRouter } from 'next/navigation'
 import { loadStripe } from '@stripe/stripe-js'
 import { Elements } from '@stripe/react-stripe-js'
 import useCartStore from '@/lib/cartStore'
 import CheckoutForm from '@/components/checkout/CheckoutForm'
 import { ShoppingBag } from 'lucide-react'
 import { useSiteData } from '@/components/SiteDataContext'
+import { useAuth } from '@/lib/authContext'
+import { supabase } from '@/lib/supabase'
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY)
 
 export default function CheckoutPage() {
+  const router = useRouter()
+  const { isLoggedIn, isLoading: authLoading } = useAuth()
   const items = useCartStore(state => state.items)
   const clearCart = useCartStore(state => state.clearCart)
   const subtotal = useCartStore(state => state.getTotal())
@@ -36,10 +41,16 @@ export default function CheckoutPage() {
   const vatAmount = serverTotals?.vatAmount ?? Math.round(discountedSubtotal * (vatRate / 100))
   const totalAmount = serverTotals?.totalAmount ?? (discountedSubtotal + shippingCharge + vatAmount)
 
-  const createIntent = (discountCode) => {
+  const createIntent = async (discountCode) => {
+    const { data: { session } } = await supabase.auth.getSession()
+    const token = session?.access_token
+
     return fetch('/api/payments', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        ...(token ? { 'Authorization': `Bearer ${token}` } : {}),
+      },
       body: JSON.stringify({ items, ...(discountCode ? { discountCode } : {}) }),
     })
       .then((res) => res.json())
@@ -56,15 +67,23 @@ export default function CheckoutPage() {
       })
   }
 
+  // Guest checkout isn't allowed — bounce unauthenticated visitors to login
+  // and bring them straight back here once they're signed in.
   useEffect(() => {
-    if (items.length > 0) {
+    if (!authLoading && !isLoggedIn) {
+      router.push('/login?redirect=/checkout')
+    }
+  }, [authLoading, isLoggedIn, router])
+
+  useEffect(() => {
+    if (isLoggedIn && items.length > 0) {
       createIntent().catch((err) => {
         console.error(err)
         setErrorMsg('A network error occurred. Please refresh the page.')
       })
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [items])
+  }, [items, isLoggedIn])
 
   const applyDiscount = async () => {
     const code = discountInput.trim().toUpperCase()
@@ -93,6 +112,14 @@ export default function CheckoutPage() {
     } finally {
       setApplyingDiscount(false)
     }
+  }
+
+  if (authLoading || !isLoggedIn) {
+    return (
+      <div className="pt-24 pb-20 px-5 md:px-10 max-w-7xl mx-auto min-h-[60vh] flex items-center justify-center">
+        <div className="w-8 h-8 border-2 border-[#E8E4DF] border-t-[#1C1410] rounded-full animate-spin"></div>
+      </div>
+    )
   }
 
   if (isSuccess) {

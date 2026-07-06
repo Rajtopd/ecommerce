@@ -10,13 +10,16 @@ export async function POST(req) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 })
     }
 
-    let userId = null
+    // No guest checkout — a valid signed-in customer is required.
     const authHeader = req.headers.get('Authorization')
-    if (authHeader) {
-      const token = authHeader.replace('Bearer ', '')
-      const { data: { user } } = await supabaseAdmin.auth.getUser(token)
-      if (user) userId = user.id
+    const token = authHeader?.replace('Bearer ', '')
+    const { data: { user } } = token ? await supabaseAdmin.auth.getUser(token) : { data: { user: null } }
+
+    if (!user) {
+      return NextResponse.json({ error: 'Please sign in to checkout.' }, { status: 401 })
     }
+
+    const userId = user.id
 
     // Retrieve payment intent to verify status and get cart items
     const paymentIntent = await stripe.paymentIntents.retrieve(paymentIntentId)
@@ -95,7 +98,7 @@ export async function POST(req) {
         guest_phone: shippingAddress.phone,
         shipping_address: shippingAddress,
         confirmed_at: new Date().toISOString(),
-        ...(userId ? { user_id: userId } : {})
+        user_id: userId,
       })
       .eq('id', order.id)
 
