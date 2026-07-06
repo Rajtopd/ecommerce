@@ -1,4 +1,4 @@
-import { DM_Serif_Display, Josefin_Sans } from 'next/font/google'
+import { Cormorant_Garamond, DM_Sans } from 'next/font/google'
 import './globals.css'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
@@ -6,18 +6,22 @@ import CartProvider from '@/components/cart/CartProvider'
 import CartDrawer from '@/components/cart/CartDrawer'
 import { ToastProvider } from '@/components/ui/ToastContext'
 import { AuthProvider } from '@/lib/authContext'
+import { SiteDataProvider } from '@/components/SiteDataContext'
+import { getSiteData } from '@/lib/content'
 
-const dmSerifDisplay = DM_Serif_Display({
+export const revalidate = 60
+
+const cormorantGaramond = Cormorant_Garamond({
   subsets: ['latin'],
-  weight: ['400'],
+  weight: ['400', '500', '600', '700'],
   style: ['normal', 'italic'],
   variable: '--font-display',
   display: 'swap',
 })
 
-const josefinSans = Josefin_Sans({
+const dmSans = DM_Sans({
   subsets: ['latin'],
-  weight: ['300', '400'],
+  weight: ['300', '400', '500', '600'],
   variable: '--font-body',
   display: 'swap',
 })
@@ -27,22 +31,26 @@ export const metadata = {
   description: "Contemporary women's fashion — Dubai",
 }
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
+  const siteData = await getSiteData()
+
   return (
-    <html lang="en" className={`${dmSerifDisplay.variable} ${josefinSans.variable}`}>
+    <html lang="en" className={`${cormorantGaramond.variable} ${dmSans.variable}`}>
       <body className="antialiased">
-        <ToastProvider>
-          <AuthProvider>
-            <CartProvider>
-              <Navbar />
-              <CartDrawer />
-              <main className="min-h-screen">
-                {children}
-              </main>
-              <Footer />
-            </CartProvider>
-          </AuthProvider>
-        </ToastProvider>
+        <SiteDataProvider value={siteData}>
+          <ToastProvider>
+            <AuthProvider>
+              <CartProvider>
+                <Navbar />
+                <CartDrawer />
+                <main className="min-h-screen">
+                  {children}
+                </main>
+                <Footer />
+              </CartProvider>
+            </AuthProvider>
+          </ToastProvider>
+        </SiteDataProvider>
       </body>
     </html>
   )

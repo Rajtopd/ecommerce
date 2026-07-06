@@ -4,6 +4,7 @@ import { useState } from 'react'
 import Image from 'next/image'
 import { Heart } from 'lucide-react'
 import useCartStore from '@/lib/cartStore'
+import { formatPrice } from '@/lib/constants'
 
 export default function ProductCard({ product }) {
   const [isWishlisted, setIsWishlisted] = useState(false)
@@ -18,9 +19,11 @@ export default function ProductCard({ product }) {
 
   const isSale = product.sale_price != null
   const isNew = product.is_featured && !isSale
+  const salePct = isSale ? Math.round(((product.base_price - product.sale_price) / product.base_price) * 100) : 0
 
   // Extract unique sizes from variants
   const variants = product.product_variants || []
+  const isSoldOut = variants.length > 0 && !variants.some(v => v.stock_quantity > 0)
   const uniqueSizes = Array.from(new Set(variants.map(v => v.size)))
   const sizesData = uniqueSizes.map(size => {
     const sizeVariants = variants.filter(v => v.size === size)
@@ -58,49 +61,60 @@ export default function ProductCard({ product }) {
   }
 
   return (
-    <a href={`/product/${product.slug}`} className="group block relative cursor-pointer">
+    <a href={`/product/${product.slug}`} className="group block relative cursor-pointer flex flex-col">
       
       {/* IMAGE AREA */}
-      <div className="relative aspect-[3/4] rounded-[4px] overflow-hidden bg-[#F2EDE8]">
+      <div className="relative aspect-[3/4] rounded-[4px] overflow-hidden bg-black/5">
         {hasImages ? (
           <>
-            <Image 
-              src={image1} 
-              alt={product.name} 
-              fill 
-              className="object-cover transition-opacity duration-300 ease-in-out z-10"
+            <Image
+              src={image1}
+              alt={product.name}
+              fill
+              sizes="(max-width: 768px) 50vw, 25vw"
+              className="object-cover transition-transform duration-700 ease-out z-10 group-hover:scale-[1.05]"
             />
             {image2 && (
-              <Image 
-                src={image2} 
-                alt={`${product.name} alternate`} 
-                fill 
-                className="object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out z-20"
+              <Image
+                src={image2}
+                alt={`${product.name} alternate`}
+                fill
+                sizes="(max-width: 768px) 50vw, 25vw"
+                className="object-cover opacity-0 group-hover:opacity-100 transition-all duration-700 ease-out z-20 group-hover:scale-[1.05]"
               />
             )}
           </>
         ) : (
           <div className="absolute inset-0 flex items-center justify-center">
-            <span className="font-display-italic text-[32px] text-[#C8726A] opacity-25">SS</span>
+            <span className="font-display italic text-[32px] text-brand-accent/25">SS</span>
+          </div>
+        )}
+
+        {/* SOLD OUT overlay */}
+        {isSoldOut && (
+          <div className="absolute inset-0 z-30 bg-brand-bg/55 flex items-center justify-center">
+            <span className="bg-brand-dark/85 text-brand-bg text-[10px] tracking-[0.16em] uppercase px-4 py-2">Sold Out</span>
           </div>
         )}
 
         {/* TOP LEFT badge */}
-        {(isSale || isNew) && (
-          <div className={`absolute top-2 left-2 z-30 px-2 py-[3px] rounded-[2px] text-[8px] uppercase tracking-[0.1em] ${isSale ? 'bg-[#1C1410] text-white' : 'bg-[#C8726A] text-white'}`}>
-            {isSale ? 'Sale' : 'New'}
+        {!isSoldOut && (isSale || isNew) && (
+          <div className={`absolute top-2.5 left-2.5 z-30 text-[9px] tracking-[0.08em] px-[9px] py-[3px] rounded-full uppercase font-medium ${
+            isSale ? 'bg-brand-accent text-white' : 'bg-brand-accent/90 text-brand-gold'
+          }`}>
+            {isSale ? `-${salePct}%` : 'New In'}
           </div>
         )}
 
         {/* TOP RIGHT heart */}
         <button 
           onClick={toggleWishlist}
-          className="absolute top-2 right-2 z-30 p-1"
+          className="absolute top-2.5 right-2.5 z-30 bg-brand-bg/95 w-8 h-8 rounded-full flex items-center justify-center shadow-sm"
         >
           <Heart 
-            size={20} 
-            strokeWidth={1.5}
-            className={`${isWishlisted ? 'fill-[#C8726A] text-[#C8726A]' : 'text-[#6B5E54] hover:text-[#1C1410] transition-colors'}`}
+            size={13} 
+            strokeWidth={2.5}
+            className={`${isWishlisted ? 'fill-brand-accent text-brand-accent' : 'text-brand-accent hover:scale-110 transition-transform'}`}
           />
         </button>
 
@@ -109,18 +123,11 @@ export default function ProductCard({ product }) {
           <div 
             className={`w-full transform transition-transform duration-300 ease-in-out ${isQuickAddOpen ? 'translate-y-0' : 'translate-y-full group-hover:translate-y-0'}`}
           >
-            {!isQuickAddOpen ? (
-              <button 
-                onClick={handleQuickAddClick}
-                className="w-full bg-[#1C1410]/85 text-white py-2.5 text-[9px] uppercase tracking-[0.12em] text-center hover:bg-[#1C1410] transition-colors"
-              >
-                Quick Add
-              </button>
-            ) : (
-              <div className="w-full bg-[#FAFAF8] p-3 border-t-[0.5px] border-[#E8E4DF]">
+            {isQuickAddOpen && (
+              <div className="w-full bg-brand-bg p-3 border-t border-brand-border">
                 <div className="flex justify-between items-center mb-2">
-                  <span className="text-[9px] uppercase tracking-[0.1em] text-[#6B5E54]">Select Size</span>
-                  <button onClick={(e) => { e.preventDefault(); setIsQuickAddOpen(false) }} className="text-[#6B5E54]">
+                  <span className="text-[9px] uppercase tracking-[0.1em] text-brand-muted">Select Size</span>
+                  <button onClick={(e) => { e.preventDefault(); setIsQuickAddOpen(false) }} className="text-brand-muted hover:text-brand-dark">
                     <span className="sr-only">Close</span>&times;
                   </button>
                 </div>
@@ -130,10 +137,10 @@ export default function ProductCard({ product }) {
                       key={sd.size}
                       onClick={(e) => handleSizeSelect(e, sd)}
                       disabled={!sd.inStock}
-                      className={`w-[26px] h-[26px] rounded-[2px] text-[8px] uppercase tracking-[0.08em] flex items-center justify-center border-[0.5px] ${
+                      className={`w-[26px] h-[26px] rounded-[2px] text-[8px] uppercase tracking-[0.08em] flex items-center justify-center border ${
                         sd.inStock 
-                          ? 'bg-[#FAFAF8] text-[#1C1410] border-[#E8E4DF] hover:border-[#1C1410]' 
-                          : 'bg-[#F2EDE8] text-[#B5A89E] border-transparent opacity-40 line-through cursor-not-allowed'
+                          ? 'bg-brand-bg text-brand-dark border-brand-border hover:border-brand-dark' 
+                          : 'bg-black/5 text-brand-muted border-transparent opacity-40 line-through cursor-not-allowed'
                       }`}
                     >
                       {sd.size}
@@ -147,36 +154,35 @@ export default function ProductCard({ product }) {
       </div>
 
       {/* INFO AREA */}
-      <div className="pt-3 pb-1 px-1">
-        <div className="text-[8px] uppercase tracking-[0.1em] text-[#C8726A] mb-1">
+      <div className="pt-[13px] px-[3px] pb-[10px] flex flex-col flex-grow">
+        <div className="text-[10px] uppercase tracking-[0.12em] text-brand-gold mb-1">
           {product.category}
         </div>
         
-        <h3 className="font-display text-[15px] text-[#1C1410] leading-[1.3] mb-2 truncate">
+        <h3 className="font-display text-[18px] md:text-[20px] font-semibold text-brand-dark leading-[1.25] mb-2 text-balance">
           {product.name}
         </h3>
         
-        <div className="flex items-baseline mb-2.5">
-          {isSale ? (
-            <>
-              <span className="text-[12px] text-[#C8726A]">د.إ {(product.sale_price / 100).toFixed(2)}</span>
-              <span className="text-[11px] text-[#B5A89E] line-through ml-1.5">د.إ {(product.base_price / 100).toFixed(2)}</span>
-            </>
-          ) : (
-            <span className="text-[12px] text-[#1C1410]">د.إ {(product.base_price / 100).toFixed(2)}</span>
-          )}
-        </div>
-        
-        {/* Size chips static row */}
-        <div className="flex flex-row flex-wrap gap-1">
-          {sizesData.map((sd) => (
-            <div 
-              key={sd.size}
-              className={`w-[20px] h-[20px] rounded-[2px] bg-[#F2EDE8] flex items-center justify-center text-[7px] text-[#6B5E54] ${!sd.inStock ? 'opacity-30' : ''}`}
+        <div className="flex items-center justify-between mt-auto">
+          <div className="flex items-baseline">
+            {isSale ? (
+              <>
+                <span className="text-[14px] md:text-[15px] font-semibold text-brand-accent">{formatPrice(product.sale_price)}</span>
+                <span className="text-[11px] text-brand-muted line-through ml-1.5">{formatPrice(product.base_price)}</span>
+              </>
+            ) : (
+              <span className="text-[14px] md:text-[15px] font-semibold text-brand-dark">{formatPrice(product.base_price)}</span>
+            )}
+          </div>
+
+          {!isQuickAddOpen && !isSoldOut && (
+            <button 
+              onClick={handleQuickAddClick}
+              className="text-[10px] text-brand-accent bg-transparent border border-brand-border px-[12px] py-[4px] rounded-full font-medium hover:bg-brand-accent hover:text-white hover:border-brand-accent transition-colors"
             >
-              {sd.size}
-            </div>
-          ))}
+              Add to Cart
+            </button>
+          )}
         </div>
       </div>
 

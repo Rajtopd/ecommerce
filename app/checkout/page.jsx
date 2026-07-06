@@ -6,6 +6,7 @@ import { Elements } from '@stripe/react-stripe-js'
 import useCartStore from '@/lib/cartStore'
 import CheckoutForm from '@/components/checkout/CheckoutForm'
 import { ShoppingBag } from 'lucide-react'
+import { useSiteData } from '@/components/SiteDataContext'
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY)
 
@@ -13,38 +14,86 @@ export default function CheckoutPage() {
   const items = useCartStore(state => state.items)
   const clearCart = useCartStore(state => state.clearCart)
   const subtotal = useCartStore(state => state.getTotal())
+  const { settings } = useSiteData()
   const [clientSecret, setClientSecret] = useState(null)
   const [errorMsg, setErrorMsg] = useState(null)
   const [isSuccess, setIsSuccess] = useState(false)
   const [orderId, setOrderId] = useState('')
+  const [serverTotals, setServerTotals] = useState(null)
+  const [discountInput, setDiscountInput] = useState('')
+  const [discountMsg, setDiscountMsg] = useState(null)
+  const [applyingDiscount, setApplyingDiscount] = useState(false)
 
-  const isFreeShipping = (subtotal / 100) >= 200
-  const shippingCharge = isFreeShipping ? 0 : 1500
-  const vatAmount = Math.round(subtotal * 0.05)
-  const totalAmount = subtotal + shippingCharge + vatAmount
+  // Display estimates from admin-managed settings; the server response is authoritative.
+  const vatRate = settings?.vatRatePercent ?? 5
+  const threshold = settings?.freeDeliveryThresholdFils ?? 20000
+  const fee = settings?.deliveryFeeFils ?? 1500
+
+  const discountAmount = serverTotals?.discountAmount || 0
+  const discountedSubtotal = subtotal - discountAmount
+  const isFreeShipping = discountedSubtotal >= threshold
+  const shippingCharge = serverTotals?.shippingCharge ?? (isFreeShipping ? 0 : fee)
+  const vatAmount = serverTotals?.vatAmount ?? Math.round(discountedSubtotal * (vatRate / 100))
+  const totalAmount = serverTotals?.totalAmount ?? (discountedSubtotal + shippingCharge + vatAmount)
+
+  const createIntent = (discountCode) => {
+    return fetch('/api/payments', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ items, ...(discountCode ? { discountCode } : {}) }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.clientSecret) {
+          setClientSecret(data.clientSecret)
+          if (data.totals) setServerTotals(data.totals)
+          return data
+        } else {
+          console.error('API Error:', data)
+          setErrorMsg(data.error || 'Failed to initialize checkout. Please try again.')
+          return data
+        }
+      })
+  }
 
   useEffect(() => {
     if (items.length > 0) {
-      fetch('/api/payments', {
+      createIntent().catch((err) => {
+        console.error(err)
+        setErrorMsg('A network error occurred. Please refresh the page.')
+      })
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [items])
+
+  const applyDiscount = async () => {
+    const code = discountInput.trim().toUpperCase()
+    if (!code) return
+    setApplyingDiscount(true)
+    setDiscountMsg(null)
+    try {
+      // Validate first for a fast, friendly error…
+      const check = await fetch('/api/discounts/validate', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ items }),
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          if (data.clientSecret) {
-            setClientSecret(data.clientSecret)
-          } else {
-            console.error('API Error:', data)
-            setErrorMsg(data.error || 'Failed to initialize checkout. Please try again.')
-          }
-        })
-        .catch((err) => {
-          console.error(err)
-          setErrorMsg('A network error occurred. Please refresh the page.')
-        })
+        body: JSON.stringify({ code, subtotal }),
+      }).then(r => r.json())
+
+      if (!check.valid) {
+        setDiscountMsg({ ok: false, text: check.error || 'Invalid code' })
+        return
+      }
+      // …then recreate the payment intent with the discounted total
+      const data = await createIntent(code)
+      if (data?.clientSecret) {
+        setDiscountMsg({ ok: true, text: `Code ${code} applied — you save د.إ ${(check.discount.amount / 100).toFixed(2)}` })
+      }
+    } catch {
+      setDiscountMsg({ ok: false, text: 'Could not apply the code. Please try again.' })
+    } finally {
+      setApplyingDiscount(false)
     }
-  }, [items])
+  }
 
   if (isSuccess) {
     return (
@@ -82,7 +131,7 @@ export default function CheckoutPage() {
         {/* Left Column - Form */}
         <div className="flex-1 order-2 lg:order-1">
           {clientSecret ? (
-            <Elements stripe={stripePromise} options={{ clientSecret, appearance: { theme: 'stripe' } }}>
+            <Elements key={clientSecret} stripe={stripePromise} options={{ clientSecret, appearance: { theme: 'stripe' } }}>
               <CheckoutForm 
                 clientSecret={clientSecret} 
                 totalAmount={totalAmount} 
@@ -141,17 +190,48 @@ export default function CheckoutPage() {
               ))}
             </div>
 
+            {/* Discount code */}
+            <div className="border-t border-[#E8E4DF] pt-5 pb-1 mb-4">
+              <div className="flex gap-2">
+                <input
+                  type="text"
+                  value={discountInput}
+                  onChange={(e) => { setDiscountInput(e.target.value.toUpperCase()); setDiscountMsg(null) }}
+                  placeholder="Discount code"
+                  disabled={applyingDiscount || !!discountAmount}
+                  className="flex-1 border border-[#E8E4DF] rounded-[2px] p-3 text-[13px] font-light bg-white outline-none focus:border-[#1C1410] transition-colors uppercase tracking-[0.06em]"
+                />
+                <button
+                  type="button"
+                  onClick={applyDiscount}
+                  disabled={applyingDiscount || !discountInput.trim() || !!discountAmount}
+                  className="bg-[#1C1410] text-white px-5 rounded-[2px] text-[10px] uppercase tracking-[0.12em] disabled:opacity-40 hover:opacity-90 transition-opacity"
+                >
+                  {applyingDiscount ? '…' : 'Apply'}
+                </button>
+              </div>
+              {discountMsg && (
+                <p className={`text-[12px] mt-2 ${discountMsg.ok ? 'text-[#2E7D5E]' : 'text-[#C0392B]'}`}>{discountMsg.text}</p>
+              )}
+            </div>
+
             <div className="border-t border-[#E8E4DF] pt-6 flex flex-col gap-4">
               <div className="flex justify-between text-[14px] text-[#6B5E54] font-light">
                 <span>Subtotal</span>
                 <span>د.إ {(subtotal / 100).toFixed(2)}</span>
               </div>
+              {discountAmount > 0 && (
+                <div className="flex justify-between text-[14px] text-[#2E7D5E] font-light">
+                  <span>Discount ({serverTotals?.discountCode})</span>
+                  <span>−د.إ {(discountAmount / 100).toFixed(2)}</span>
+                </div>
+              )}
               <div className="flex justify-between text-[14px] text-[#6B5E54] font-light">
                 <span>Shipping</span>
                 <span>{shippingCharge === 0 ? 'Free' : `د.إ ${(shippingCharge / 100).toFixed(2)}`}</span>
               </div>
               <div className="flex justify-between text-[14px] text-[#6B5E54] font-light">
-                <span>VAT (5%)</span>
+                <span>VAT ({serverTotals?.vatRatePercent ?? vatRate}%)</span>
                 <span>د.إ {(vatAmount / 100).toFixed(2)}</span>
               </div>
               

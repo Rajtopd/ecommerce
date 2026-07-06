@@ -28,7 +28,7 @@ export async function POST(req) {
     // Get the order from database
     const { data: order, error: orderError } = await supabaseAdmin
       .from('orders')
-      .select('id, status')
+      .select('id, status, discount_code')
       .eq('payment_intent_id', paymentIntentId)
       .single()
 
@@ -102,6 +102,15 @@ export async function POST(req) {
     if (updateError) {
       console.error('Failed to update order status:', updateError)
       return NextResponse.json({ error: 'Failed to update order status' }, { status: 500 })
+    }
+
+    // Count discount usage once the order is actually paid
+    if (order.discount_code) {
+      const { data: d } = await supabaseAdmin
+        .from('discounts').select('id, used_count').eq('code', order.discount_code).maybeSingle()
+      if (d) {
+        await supabaseAdmin.from('discounts').update({ used_count: d.used_count + 1 }).eq('id', d.id)
+      }
     }
 
     return NextResponse.json({ success: true, orderId: order.id })

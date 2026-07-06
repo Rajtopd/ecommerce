@@ -209,7 +209,7 @@ function LoginContent() {
           </button>
 
           <p className="font-body font-light text-[10px] text-[#B5A89E] text-center mt-6">
-            New customer? You'll be registered automatically.
+            New customer? You&apos;ll be registered automatically.
           </p>
         </div>
       ) : (
@@ -261,7 +261,7 @@ function LoginContent() {
                   onClick={handleResendCode}
                   className="font-body font-light text-[10px] text-[#6B5E54] hover:text-[#1C1410] transition-colors"
                 >
-                  Didn't receive it? Resend code
+                  Didn&apos;t receive it? Resend code
                 </button>
               )}
               

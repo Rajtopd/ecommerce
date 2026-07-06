@@ -1,18 +1,19 @@
 import { NextResponse } from 'next/server'
+import { verifySessionToken } from '@/lib/adminSession'
 
-export function middleware(request) {
+export async function middleware(request) {
   const { pathname } = request.nextUrl
 
   if (pathname.startsWith('/admin')) {
-    const adminToken = request.cookies.get('admin_token')?.value
-    const validToken = process.env.ADMIN_SECRET_TOKEN
-
     // Skip middleware for login route itself
     if (pathname === '/admin/login') {
       return NextResponse.next()
     }
 
-    if (!adminToken || adminToken !== validToken) {
+    const token = request.cookies.get('admin_session')?.value
+    const session = await verifySessionToken(token)
+
+    if (!session) {
       return NextResponse.redirect(new URL('/admin/login', request.url))
     }
   }

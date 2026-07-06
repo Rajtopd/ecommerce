@@ -1,0 +1,1274 @@
+<!DOCTYPE html>
+<html><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="a002f433-26e9-44db-b3d5-9cd602b06e42"></script>
+
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <style>/* cyrillic-ext */
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("58be7c22-3ed2-42e8-91e8-489ad1a86527") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("2ec77afe-53a3-4ebb-bfe0-0eeac4699130") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("06766fe7-e589-49eb-a7e0-a38fee44232c") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("05190fcd-2906-486b-b3e7-74b7214d89e9") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("f32f7659-bc13-44cb-9590-5ed6955e20a6") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: italic;
+  font-weight: 600;
+  font-display: swap;
+  src: url("58be7c22-3ed2-42e8-91e8-489ad1a86527") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: italic;
+  font-weight: 600;
+  font-display: swap;
+  src: url("2ec77afe-53a3-4ebb-bfe0-0eeac4699130") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: italic;
+  font-weight: 600;
+  font-display: swap;
+  src: url("06766fe7-e589-49eb-a7e0-a38fee44232c") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: italic;
+  font-weight: 600;
+  font-display: swap;
+  src: url("05190fcd-2906-486b-b3e7-74b7214d89e9") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: italic;
+  font-weight: 600;
+  font-display: swap;
+  src: url("f32f7659-bc13-44cb-9590-5ed6955e20a6") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("ab9728d7-09b3-4585-9441-403a2b5bfa45") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("825c56cf-ca8f-4e32-8dd4-eb0adb04825e") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("4d8569da-2cba-44fc-aac4-b9f54b3b64b4") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("5e03d823-234b-4ec7-b086-c7e43990bb10") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("30ec6d86-8702-40b8-8b6b-b4d7b08e5986") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("ab9728d7-09b3-4585-9441-403a2b5bfa45") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("825c56cf-ca8f-4e32-8dd4-eb0adb04825e") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("4d8569da-2cba-44fc-aac4-b9f54b3b64b4") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("5e03d823-234b-4ec7-b086-c7e43990bb10") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("30ec6d86-8702-40b8-8b6b-b4d7b08e5986") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("ab9728d7-09b3-4585-9441-403a2b5bfa45") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("825c56cf-ca8f-4e32-8dd4-eb0adb04825e") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("4d8569da-2cba-44fc-aac4-b9f54b3b64b4") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("5e03d823-234b-4ec7-b086-c7e43990bb10") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("30ec6d86-8702-40b8-8b6b-b4d7b08e5986") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("ab9728d7-09b3-4585-9441-403a2b5bfa45") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("825c56cf-ca8f-4e32-8dd4-eb0adb04825e") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("4d8569da-2cba-44fc-aac4-b9f54b3b64b4") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("5e03d823-234b-4ec7-b086-c7e43990bb10") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Cormorant Garamond';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("30ec6d86-8702-40b8-8b6b-b4d7b08e5986") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("f17ffb48-0682-4492-b6f8-2916fc6e3ba7") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("436e2a6a-c445-4aa2-90c6-6c7a002acdf6") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("f17ffb48-0682-4492-b6f8-2916fc6e3ba7") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("436e2a6a-c445-4aa2-90c6-6c7a002acdf6") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("f17ffb48-0682-4492-b6f8-2916fc6e3ba7") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("436e2a6a-c445-4aa2-90c6-6c7a002acdf6") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("f17ffb48-0682-4492-b6f8-2916fc6e3ba7") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'DM Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("436e2a6a-c445-4aa2-90c6-6c7a002acdf6") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+</style>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'DM Sans', sans-serif; background: #F0EBE1; }
+    button { font-family: 'DM Sans', sans-serif; cursor: pointer; }
+    input, select, textarea { font-family: 'DM Sans', sans-serif; }
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-thumb { background: #C49B38; border-radius: 2px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    @keyframes slideIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
+  </style>
+</helmet>
+
+<div style="display:flex;min-height:100vh;background:#F0EBE1;">
+
+  <!-- ── SIDEBAR ── -->
+  <div style="width:{{ sideW }};background:#FAF7F0;flex-shrink:0;display:flex;flex-direction:column;position:fixed;top:0;left:0;bottom:0;z-index:100;border-right:1px solid #E0D0B8;transition:width 0.2s;">
+    <div style="padding:22px 18px;border-bottom:1px solid #E0D0B8;overflow:hidden;">
+      <div style="font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;color:#6E1A2C;letter-spacing:0.06em;white-space:nowrap;">Soul Sisters</div>
+      <sc-if value="{{ expanded }}" hint-placeholder-val="{{ true }}">
+        <div style="font-size:8px;letter-spacing:0.2em;color:#C49B38;text-transform:uppercase;margin-top:2px;">Admin Panel</div>
+      </sc-if>
+    </div>
+    <nav style="flex:1;padding:14px 10px;display:flex;flex-direction:column;gap:2px;overflow-y:auto;">
+      <div onclick="{{ goDashboard }}" style="display:flex;align-items:center;gap:11px;padding:10px 14px;border-radius:4px;cursor:pointer;background:{{ nb('dashboard') }};color:{{ nc('dashboard') }};" style-hover="background:rgba(0,0,0,0.04);">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0;"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+        <sc-if value="{{ expanded }}" hint-placeholder-val="{{ true }}"><span style="font-size:13px;font-weight:500;white-space:nowrap;">Dashboard</span></sc-if>
+      </div>
+      <div onclick="{{ goOrders }}" style="display:flex;align-items:center;gap:11px;padding:10px 14px;border-radius:4px;cursor:pointer;background:{{ nb('orders') }};color:{{ nc('orders') }};" style-hover="background:rgba(0,0,0,0.04);">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0;"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+        <sc-if value="{{ expanded }}" hint-placeholder-val="{{ true }}"><span style="font-size:13px;white-space:nowrap;">Orders</span></sc-if>
+      </div>
+      <div onclick="{{ goProducts }}" style="display:flex;align-items:center;gap:11px;padding:10px 14px;border-radius:4px;cursor:pointer;background:{{ nb('products') }};color:{{ nc('products') }};" style-hover="background:rgba(0,0,0,0.04);">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0;"><path d="M20 7H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"></path><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"></path></svg>
+        <sc-if value="{{ expanded }}" hint-placeholder-val="{{ true }}"><span style="font-size:13px;white-space:nowrap;">Products</span></sc-if>
+      </div>
+      <div onclick="{{ goCustomers }}" style="display:flex;align-items:center;gap:11px;padding:10px 14px;border-radius:4px;cursor:pointer;background:{{ nb('customers') }};color:{{ nc('customers') }};" style-hover="background:rgba(0,0,0,0.04);">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0;"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+        <sc-if value="{{ expanded }}" hint-placeholder-val="{{ true }}"><span style="font-size:13px;white-space:nowrap;">Customers</span></sc-if>
+      </div>
+      <div onclick="{{ goAnalytics }}" style="display:flex;align-items:center;gap:11px;padding:10px 14px;border-radius:4px;cursor:pointer;background:{{ nb('analytics') }};color:{{ nc('analytics') }};" style-hover="background:rgba(0,0,0,0.04);">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0;"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+        <sc-if value="{{ expanded }}" hint-placeholder-val="{{ true }}"><span style="font-size:13px;white-space:nowrap;">Analytics</span></sc-if>
+      </div>
+      <div onclick="{{ goInventory }}" style="display:flex;align-items:center;gap:11px;padding:10px 14px;border-radius:4px;cursor:pointer;background:{{ nb('inventory') }};color:{{ nc('inventory') }};" style-hover="background:rgba(0,0,0,0.04);">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0;"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
+        <sc-if value="{{ expanded }}" hint-placeholder-val="{{ true }}"><span style="font-size:13px;white-space:nowrap;">Inventory</span></sc-if>
+      </div>
+      <div onclick="{{ goSettings }}" style="display:flex;align-items:center;gap:11px;padding:10px 14px;border-radius:4px;cursor:pointer;background:{{ nb('settings') }};color:{{ nc('settings') }};" style-hover="background:rgba(0,0,0,0.04);">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0;"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+        <sc-if value="{{ expanded }}" hint-placeholder-val="{{ true }}"><span style="font-size:13px;white-space:nowrap;">Settings</span></sc-if>
+      </div>
+    </nav>
+    <div style="padding:12px 10px;border-top:1px solid #E0D0B8;">
+      <div onclick="{{ toggleExpand }}" style="display:flex;align-items:center;gap:11px;padding:9px 14px;border-radius:4px;cursor:pointer;color:#9C7B5E;" style-hover="color:#1A0F0A;background:rgba(0,0,0,0.04);">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="flex-shrink:0;transform:{{ chevronRot }};transition:transform 0.2s;"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        <sc-if value="{{ expanded }}" hint-placeholder-val="{{ true }}"><span style="font-size:12px;white-space:nowrap;">Collapse</span></sc-if>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── MAIN ── -->
+  <div style="flex:1;margin-left:{{ sideW }};overflow-y:auto;padding:32px 36px;min-height:100vh;animation:slideIn 0.25s ease;transition:margin-left 0.2s;">
+
+    <!-- ══ DASHBOARD ══ -->
+    <sc-if value="{{ isDashboard }}" hint-placeholder-val="{{ true }}">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:28px;flex-wrap:wrap;gap:12px;">
+        <div>
+          <h1 style="font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:600;color:#1A0F0A;">Dashboard</h1>
+          <div style="font-size:13px;color:#5C3D2E;margin-top:3px;">Friday, 4 July 2026 · Dubai, UAE</div>
+        </div>
+        <div style="display:flex;gap:10px;">
+          <button style="background:white;color:#1A0F0A;border:1px solid #E0D0B8;padding:9px 18px;font-size:13px;font-weight:500;border-radius:3px;" style-hover="background:#F2EAD8;">+ Add Product</button>
+          <button style="background:#C49B38;color:#1A0F0A;border:none;padding:9px 18px;font-size:13px;font-weight:600;border-radius:3px;" style-hover="background:#E8C96A;">New Order</button>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:24px;">
+        <div style="background:white;border-radius:6px;padding:22px;border:1px solid #E0D0B8;">
+          <div style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:#5C3D2E;margin-bottom:10px;font-weight:600;">Orders Today</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:40px;font-weight:700;color:#1A0F0A;line-height:1;">24</div>
+          <div style="font-size:12px;color:#1A7A4A;margin-top:8px;font-weight:500;">▲ 12% vs yesterday</div>
+        </div>
+        <div style="background:white;border-radius:6px;padding:22px;border:1px solid #E0D0B8;">
+          <div style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:#5C3D2E;margin-bottom:10px;font-weight:600;">Revenue (July)</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:40px;font-weight:700;color:#C49B38;line-height:1;">د.إ 94k</div>
+          <div style="font-size:12px;color:#1A7A4A;margin-top:8px;font-weight:500;">▲ 28% vs last month</div>
+        </div>
+        <div style="background:white;border-radius:6px;padding:22px;border:1px solid #E0D0B8;">
+          <div style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:#5C3D2E;margin-bottom:10px;font-weight:600;">Active Products</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:40px;font-weight:700;color:#1A0F0A;line-height:1;">342</div>
+          <div style="font-size:12px;color:#5C3D2E;margin-top:8px;">Across 6 categories</div>
+        </div>
+        <div style="background:white;border-radius:6px;padding:22px;border:1px solid rgba(139,26,44,0.25);">
+          <div style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:#5C3D2E;margin-bottom:10px;font-weight:600;">Low Stock Alerts</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:40px;font-weight:700;color:#8B1A2C;line-height:1;">7</div>
+          <div style="font-size:12px;color:#8B1A2C;margin-top:8px;font-weight:500;">⚠ Needs restocking</div>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 320px;gap:16px;">
+        <div style="background:white;border-radius:6px;border:1px solid #E0D0B8;overflow:hidden;">
+          <div style="padding:16px 22px;border-bottom:1px solid #E0D0B8;display:flex;justify-content:space-between;align-items:center;">
+            <div style="font-size:15px;font-weight:600;color:#1A0F0A;">Recent Orders</div>
+            <span onclick="{{ goOrders }}" style="font-size:12px;color:#C49B38;cursor:pointer;font-weight:500;" style-hover="color:#8B6914;">View All →</span>
+          </div>
+          <sc-for list="{{ orders }}" as="o" hint-placeholder-count="5">
+                </sc-for><table style="width:100%;border-collapse:collapse;">
+            <thead><tr style="border-bottom:1px solid #E0D0B8;">
+              <th style="text-align:left;padding:10px 22px;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#5C3D2E;font-weight:600;">Order</th>
+              <th style="text-align:left;padding:10px 22px;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#5C3D2E;font-weight:600;">Customer</th>
+              <th style="text-align:left;padding:10px 22px;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#5C3D2E;font-weight:600;">Date</th>
+              <th style="text-align:left;padding:10px 22px;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#5C3D2E;font-weight:600;">Status</th>
+              <th style="text-align:right;padding:10px 22px;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#5C3D2E;font-weight:600;">Amount</th>
+            </tr></thead>
+            <tbody>
+              <tr style="border-bottom:1px solid #E0D0B8;" style-hover="background:#FAF6EE;">
+                  <td style="padding:12px 22px;font-size:13px;color:#C49B38;font-weight:600;">{{ o.id }}</td>
+                  <td style="padding:12px 22px;font-size:13px;color:#1A0F0A;font-weight:500;">{{ o.customer }}</td>
+                  <td style="padding:12px 22px;font-size:12px;color:#5C3D2E;">{{ o.date }}</td>
+                  <td style="padding:12px 22px;"><span style="font-size:10px;padding:3px 10px;border-radius:100px;font-weight:600;background:{{ o.sBg }};color:{{ o.sC }};">{{ o.status }}</span></td>
+                  <td style="padding:12px 22px;font-size:13px;font-weight:600;color:#1A0F0A;text-align:right;">{{ o.amount }}</td>
+                </tr>
+              
+            </tbody>
+          </table>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:16px;">
+          <div style="background:white;border-radius:6px;border:1px solid #E0D0B8;padding:20px;">
+            <div style="font-size:15px;font-weight:600;color:#1A0F0A;margin-bottom:14px;">Quick Actions</div>
+            <div style="display:flex;flex-direction:column;gap:8px;">
+              <button style="width:100%;background:#C49B38;color:#1A0F0A;border:none;padding:11px 16px;font-size:13px;font-weight:600;border-radius:3px;text-align:left;display:flex;align-items:center;gap:10px;" style-hover="background:#E8C96A;">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg> Add New Product
+              </button>
+              <button onclick="{{ goOrders }}" style="width:100%;background:white;color:#1A0F0A;border:1px solid #E0D0B8;padding:11px 16px;font-size:13px;font-weight:500;border-radius:3px;text-align:left;display:flex;align-items:center;gap:10px;" style-hover="background:#F2EAD8;">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path></svg> View All Orders
+              </button>
+              <button onclick="{{ goAnalytics }}" style="width:100%;background:white;color:#1A0F0A;border:1px solid #E0D0B8;padding:11px 16px;font-size:13px;font-weight:500;border-radius:3px;text-align:left;display:flex;align-items:center;gap:10px;" style-hover="background:#F2EAD8;">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg> View Analytics
+              </button>
+            </div>
+          </div>
+          <div style="background:white;border-radius:6px;border:1px solid #E0D0B8;padding:20px;">
+            <div style="font-size:15px;font-weight:600;color:#1A0F0A;margin-bottom:14px;">Top Selling</div>
+            <div style="display:flex;flex-direction:column;gap:13px;">
+              <sc-for list="{{ topSelling }}" as="ts" hint-placeholder-count="3">
+                <div style="display:flex;align-items:center;gap:12px;">
+                  <div style="{{ ts.bg }};width:38px;height:50px;border-radius:3px;flex-shrink:0;"></div>
+                  <div style="flex:1;min-width:0;">
+                    <div style="font-size:13px;font-weight:600;color:#1A0F0A;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{ ts.name }}</div>
+                    <div style="font-size:11px;color:#5C3D2E;margin-top:2px;">{{ ts.sold }} sold · {{ ts.price }}</div>
+                  </div>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+      </div>
+    </sc-if>
+
+    <!-- ══ ORDERS ══ -->
+    <sc-if value="{{ isOrders }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:28px;flex-wrap:wrap;gap:12px;">
+        <div>
+          <h1 style="font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:600;color:#1A0F0A;">Orders</h1>
+          <div style="font-size:13px;color:#5C3D2E;margin-top:3px;">242 total orders · {{ ordersMonth }}</div>
+        </div>
+        <button style="background:#C49B38;color:#1A0F0A;border:none;padding:9px 18px;font-size:13px;font-weight:600;border-radius:3px;display:flex;align-items:center;gap:8px;" style-hover="background:#E8C96A;">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg> Export CSV
+        </button>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:20px;">
+        <div style="background:white;border-radius:6px;padding:16px 18px;border:1px solid #E0D0B8;display:flex;align-items:center;gap:14px;">
+          <div style="width:40px;height:40px;border-radius:6px;background:#FEF3E2;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C49B38" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path><line x1="3" y1="6" x2="21" y2="6"></line></svg>
+          </div>
+          <div><div style="font-size:11px;color:#5C3D2E;margin-bottom:2px;">All Orders</div><div style="font-size:20px;font-weight:700;color:#1A0F0A;font-family:'Cormorant Garamond',serif;">242</div></div>
+        </div>
+        <div style="background:white;border-radius:6px;padding:16px 18px;border:1px solid #E0D0B8;display:flex;align-items:center;gap:14px;">
+          <div style="width:40px;height:40px;border-radius:6px;background:#FEF0ED;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#B5451B" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+          </div>
+          <div><div style="font-size:11px;color:#5C3D2E;margin-bottom:2px;">Processing</div><div style="font-size:20px;font-weight:700;color:#1A0F0A;font-family:'Cormorant Garamond',serif;">18</div></div>
+        </div>
+        <div style="background:white;border-radius:6px;padding:16px 18px;border:1px solid #E0D0B8;display:flex;align-items:center;gap:14px;">
+          <div style="width:40px;height:40px;border-radius:6px;background:#E8F4EE;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1A5A3C" stroke-width="2"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+          </div>
+          <div><div style="font-size:11px;color:#5C3D2E;margin-bottom:2px;">In Transit</div><div style="font-size:20px;font-weight:700;color:#1A0F0A;font-family:'Cormorant Garamond',serif;">32</div></div>
+        </div>
+        <div style="background:white;border-radius:6px;padding:16px 18px;border:1px solid #E0D0B8;display:flex;align-items:center;gap:14px;">
+          <div style="width:40px;height:40px;border-radius:6px;background:#EEF0FC;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#3D1C72" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg>
+          </div>
+          <div><div style="font-size:11px;color:#5C3D2E;margin-bottom:2px;">Delivered</div><div style="font-size:20px;font-weight:700;color:#1A0F0A;font-family:'Cormorant Garamond',serif;">186</div></div>
+        </div>
+      </div>
+      <div style="background:white;border-radius:6px;border:1px solid #E0D0B8;overflow:hidden;">
+        <div style="padding:14px 22px;border-bottom:1px solid #E0D0B8;display:flex;gap:12px;flex-wrap:wrap;align-items:center;">
+          <div style="position:relative;flex:1;min-width:180px;">
+            <svg style="position:absolute;left:12px;top:50%;transform:translateY(-50%);pointer-events:none;" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#9C7B5E" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"></path></svg>
+            <input type="text" placeholder="Search orders, customers…" style="width:100%;padding:8px 12px 8px 34px;font-size:13px;border:1px solid #E0D0B8;border-radius:3px;outline:none;color:#1A0F0A;" style-focus="border-color:#C49B38;">
+          </div>
+          <select style="padding:8px 12px;font-size:13px;border:1px solid #E0D0B8;border-radius:3px;color:#1A0F0A;outline:none;cursor:pointer;">
+            <option>All Statuses</option><option>Processing</option><option>Confirmed</option><option>Shipped</option><option>Delivered</option><option>Cancelled</option>
+          </select>
+          <select style="padding:8px 12px;font-size:13px;border:1px solid #E0D0B8;border-radius:3px;color:#1A0F0A;outline:none;cursor:pointer;">
+            <option>All Dates</option><option>Today</option><option>This Week</option><option>This Month</option>
+          </select>
+        </div>
+        <sc-for list="{{ allOrders }}" as="o" hint-placeholder-count="10">
+              </sc-for><table style="width:100%;border-collapse:collapse;">
+          <thead><tr style="border-bottom:1px solid #E0D0B8;background:#FAF7F0;">
+            <th style="text-align:left;padding:10px 22px;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#5C3D2E;font-weight:600;">Order ID</th>
+            <th style="text-align:left;padding:10px 22px;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#5C3D2E;font-weight:600;">Customer</th>
+            <th style="text-align:left;padding:10px 22px;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#5C3D2E;font-weight:600;">Items</th>
+            <th style="text-align:left;padding:10px 22px;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#5C3D2E;font-weight:600;">Date</th>
+            <th style="text-align:left;padding:10px 22px;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#5C3D2E;font-weight:600;">Status</th>
+            <th style="text-align:right;padding:10px 22px;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#5C3D2E;font-weight:600;">Amount</th>
+            <th style="padding:10px 22px;"></th>
+          </tr></thead>
+          <tbody>
+            <tr style="border-bottom:1px solid #E0D0B8;" style-hover="background:#FAF6EE;">
+                <td style="padding:13px 22px;font-size:13px;color:#C49B38;font-weight:600;">{{ o.id }}</td>
+                <td style="padding:13px 22px;">
+                  <div style="font-size:13px;color:#1A0F0A;font-weight:500;">{{ o.customer }}</div>
+                  <div style="font-size:11px;color:#5C3D2E;margin-top:1px;">{{ o.email }}</div>
+                </td>
+                <td style="padding:13px 22px;font-size:12px;color:#5C3D2E;">{{ o.items }}</td>
+                <td style="padding:13px 22px;font-size:12px;color:#5C3D2E;">{{ o.date }}</td>
+                <td style="padding:13px 22px;"><span style="font-size:10px;padding:3px 10px;border-radius:100px;font-weight:600;background:{{ o.sBg }};color:{{ o.sC }};">{{ o.status }}</span></td>
+                <td style="padding:13px 22px;font-size:13px;font-weight:600;color:#1A0F0A;text-align:right;">{{ o.amount }}</td>
+                <td style="padding:13px 16px;text-align:right;">
+                  <button style="font-size:11px;color:#5C3D2E;background:white;border:1px solid #E0D0B8;padding:4px 12px;border-radius:2px;cursor:pointer;" style-hover="border-color:#C49B38;color:#8B6914;">View</button>
+                </td>
+              </tr>
+            
+          </tbody>
+        </table>
+        <div style="padding:14px 22px;border-top:1px solid #E0D0B8;display:flex;justify-content:space-between;align-items:center;">
+          <div style="font-size:12px;color:#5C3D2E;">Showing 1–10 of 242 orders</div>
+          <div style="display:flex;gap:4px;">
+            <button style="width:32px;height:32px;border:1px solid #E0D0B8;background:white;border-radius:2px;font-size:13px;color:#5C3D2E;" style-hover="border-color:#C49B38;">‹</button>
+            <button style="width:32px;height:32px;border:none;background:#6E1A2C;border-radius:2px;font-size:13px;color:white;font-weight:600;">1</button>
+            <button style="width:32px;height:32px;border:1px solid #E0D0B8;background:white;border-radius:2px;font-size:13px;color:#5C3D2E;" style-hover="border-color:#C49B38;">2</button>
+            <button style="width:32px;height:32px;border:1px solid #E0D0B8;background:white;border-radius:2px;font-size:13px;color:#5C3D2E;" style-hover="border-color:#C49B38;">3</button>
+            <button style="width:32px;height:32px;border:1px solid #E0D0B8;background:white;border-radius:2px;font-size:13px;color:#5C3D2E;" style-hover="border-color:#C49B38;">›</button>
+          </div>
+        </div>
+      </div>
+    </sc-if>
+
+    <!-- ══ PRODUCTS ══ -->
+    <sc-if value="{{ isProducts }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:28px;flex-wrap:wrap;gap:12px;">
+        <div>
+          <h1 style="font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:600;color:#1A0F0A;">Products</h1>
+          <div style="font-size:13px;color:#5C3D2E;margin-top:3px;">342 active products across 6 categories</div>
+        </div>
+        <div style="display:flex;gap:10px;">
+          <button style="background:white;color:#1A0F0A;border:1px solid #E0D0B8;padding:9px 18px;font-size:13px;font-weight:500;border-radius:3px;" style-hover="background:#F2EAD8;">Import</button>
+          <button style="background:#C49B38;color:#1A0F0A;border:none;padding:9px 18px;font-size:13px;font-weight:600;border-radius:3px;display:flex;align-items:center;gap:8px;" style-hover="background:#E8C96A;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg> Add Product
+          </button>
+        </div>
+      </div>
+      <div style="background:white;border-radius:6px;border:1px solid #E0D0B8;padding:14px 18px;margin-bottom:16px;display:flex;gap:12px;flex-wrap:wrap;align-items:center;">
+        <div style="position:relative;flex:1;min-width:180px;">
+          <svg style="position:absolute;left:12px;top:50%;transform:translateY(-50%);pointer-events:none;" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#9C7B5E" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"></path></svg>
+          <input type="text" placeholder="Search products…" style="width:100%;padding:8px 12px 8px 34px;font-size:13px;border:1px solid #E0D0B8;border-radius:3px;outline:none;color:#1A0F0A;">
+        </div>
+        <select style="padding:8px 12px;font-size:13px;border:1px solid #E0D0B8;border-radius:3px;color:#1A0F0A;outline:none;">
+          <option>All Categories</option><option>Sarees</option><option>Lehengas</option><option>Salwar Suits</option><option>Kurtis</option><option>Indo-Western</option><option>Accessories</option>
+        </select>
+        <select style="padding:8px 12px;font-size:13px;border:1px solid #E0D0B8;border-radius:3px;color:#1A0F0A;outline:none;">
+          <option>All Stock</option><option>In Stock</option><option>Low Stock</option><option>Out of Stock</option>
+        </select>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
+        <sc-for list="{{ productList }}" as="p" hint-placeholder-count="6">
+          <div style="background:white;border-radius:6px;border:1px solid #E0D0B8;overflow:hidden;">
+            <div style="{{ p.bg }};aspect-ratio:3/4;position:relative;">
+              <div style="position:absolute;top:10px;left:10px;background:rgba(110,26,44,0.88);color:#E8C96A;font-size:9px;letter-spacing:0.08em;padding:3px 9px;border-radius:100px;text-transform:uppercase;">{{ p.category }}</div>
+              <div style="position:absolute;top:10px;right:10px;background:{{ p.stockBg }};color:{{ p.stockC }};font-size:9px;font-weight:600;padding:3px 9px;border-radius:100px;">{{ p.stock }}</div>
+            </div>
+            <div style="padding:14px 16px;">
+              <div style="font-size:10px;color:#C49B38;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:3px;">{{ p.fabric }}</div>
+              <div style="font-family:'Cormorant Garamond',serif;font-size:16px;font-weight:600;color:#1A0F0A;margin-bottom:6px;line-height:1.3;">{{ p.name }}</div>
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+                <span style="font-size:15px;font-weight:600;color:#1A0F0A;">{{ p.price }}</span>
+                <span style="font-size:11px;color:#5C3D2E;">{{ p.sold }} sold</span>
+              </div>
+              <div style="display:flex;gap:8px;">
+                <button style="flex:1;font-size:12px;color:#1A0F0A;background:white;border:1px solid #E0D0B8;padding:6px 0;border-radius:2px;font-weight:500;" style-hover="border-color:#C49B38;color:#8B6914;">Edit</button>
+                <button style="flex:1;font-size:12px;color:#6E1A2C;background:#FDF0F2;border:1px solid #F0C0C8;padding:6px 0;border-radius:2px;font-weight:500;" style-hover="background:#F5D0D5;">Archive</button>
+              </div>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </sc-if>
+
+    <!-- ══ CUSTOMERS ══ -->
+    <sc-if value="{{ isCustomers }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:28px;flex-wrap:wrap;gap:12px;">
+        <div>
+          <h1 style="font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:600;color:#1A0F0A;">Customers</h1>
+          <div style="font-size:13px;color:#5C3D2E;margin-top:3px;">1,284 registered customers</div>
+        </div>
+        <button style="background:#C49B38;color:#1A0F0A;border:none;padding:9px 18px;font-size:13px;font-weight:600;border-radius:3px;" style-hover="background:#E8C96A;">Export</button>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:20px;">
+        <div style="background:white;border-radius:6px;padding:20px;border:1px solid #E0D0B8;">
+          <div style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:#5C3D2E;margin-bottom:8px;font-weight:600;">Total Customers</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:700;color:#1A0F0A;line-height:1;">1,284</div>
+          <div style="font-size:12px;color:#1A7A4A;margin-top:6px;font-weight:500;">▲ 8% this month</div>
+        </div>
+        <div style="background:white;border-radius:6px;padding:20px;border:1px solid #E0D0B8;">
+          <div style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:#5C3D2E;margin-bottom:8px;font-weight:600;">Repeat Buyers</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:700;color:#C49B38;line-height:1;">68%</div>
+          <div style="font-size:12px;color:#5C3D2E;margin-top:6px;">873 returning customers</div>
+        </div>
+        <div style="background:white;border-radius:6px;padding:20px;border:1px solid #E0D0B8;">
+          <div style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:#5C3D2E;margin-bottom:8px;font-weight:600;">Avg. Order Value</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:700;color:#1A0F0A;line-height:1;">د.إ 2.4k</div>
+          <div style="font-size:12px;color:#1A7A4A;margin-top:6px;font-weight:500;">▲ 14% vs last month</div>
+        </div>
+      </div>
+      <div style="background:white;border-radius:6px;border:1px solid #E0D0B8;overflow:hidden;">
+        <div style="padding:14px 22px;border-bottom:1px solid #E0D0B8;display:flex;gap:12px;align-items:center;">
+          <div style="position:relative;flex:1;">
+            <svg style="position:absolute;left:12px;top:50%;transform:translateY(-50%);pointer-events:none;" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#9C7B5E" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"></path></svg>
+            <input type="text" placeholder="Search customers…" style="width:100%;padding:8px 12px 8px 34px;font-size:13px;border:1px solid #E0D0B8;border-radius:3px;outline:none;color:#1A0F0A;">
+          </div>
+          <select style="padding:8px 12px;font-size:13px;border:1px solid #E0D0B8;border-radius:3px;color:#1A0F0A;outline:none;">
+            <option>All Customers</option><option>VIP (د.إ 10k+)</option><option>Repeat Buyers</option><option>New This Month</option>
+          </select>
+        </div>
+        <sc-for list="{{ customers }}" as="c" hint-placeholder-count="8">
+              </sc-for><table style="width:100%;border-collapse:collapse;">
+          <thead><tr style="border-bottom:1px solid #E0D0B8;background:#FAF7F0;">
+            <th style="text-align:left;padding:10px 22px;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#5C3D2E;font-weight:600;">Customer</th>
+            <th style="text-align:left;padding:10px 22px;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#5C3D2E;font-weight:600;">Location</th>
+            <th style="text-align:left;padding:10px 22px;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#5C3D2E;font-weight:600;">Orders</th>
+            <th style="text-align:left;padding:10px 22px;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#5C3D2E;font-weight:600;">Total Spent</th>
+            <th style="text-align:left;padding:10px 22px;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#5C3D2E;font-weight:600;">Last Order</th>
+            <th style="text-align:left;padding:10px 22px;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#5C3D2E;font-weight:600;">Tag</th>
+          </tr></thead>
+          <tbody>
+            <tr style="border-bottom:1px solid #E0D0B8;" style-hover="background:#FAF6EE;">
+                <td style="padding:13px 22px;">
+                  <div style="display:flex;align-items:center;gap:10px;">
+                    <div style="width:34px;height:34px;border-radius:50%;background:{{ c.av }};display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:white;flex-shrink:0;">{{ c.initials }}</div>
+                    <div>
+                      <div style="font-size:13px;font-weight:600;color:#1A0F0A;">{{ c.name }}</div>
+                      <div style="font-size:11px;color:#5C3D2E;">{{ c.email }}</div>
+                    </div>
+                  </div>
+                </td>
+                <td style="padding:13px 22px;font-size:12px;color:#5C3D2E;">{{ c.location }}</td>
+                <td style="padding:13px 22px;font-size:13px;font-weight:600;color:#1A0F0A;">{{ c.orders }}</td>
+                <td style="padding:13px 22px;font-size:13px;font-weight:600;color:#C49B38;">{{ c.spent }}</td>
+                <td style="padding:13px 22px;font-size:12px;color:#5C3D2E;">{{ c.lastOrder }}</td>
+                <td style="padding:13px 22px;"><span style="font-size:10px;padding:3px 10px;border-radius:100px;font-weight:600;background:{{ c.tagBg }};color:{{ c.tagC }};">{{ c.tag }}</span></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      </div>
+    </sc-if>
+
+    <!-- ══ ANALYTICS ══ -->
+    <sc-if value="{{ isAnalytics }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:28px;flex-wrap:wrap;gap:12px;">
+        <div>
+          <h1 style="font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:600;color:#1A0F0A;">Analytics</h1>
+          <div style="font-size:13px;color:#5C3D2E;margin-top:3px;">July 2026 · Dubai, UAE</div>
+        </div>
+        <select style="padding:9px 14px;font-size:13px;border:1px solid #E0D0B8;border-radius:3px;color:#1A0F0A;background:white;outline:none;">
+          <option>Last 30 Days</option><option>Last 7 Days</option><option>This Month</option><option>Last Quarter</option>
+        </select>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:20px;">
+        <div style="background:white;border-radius:6px;padding:20px;border:1px solid #E0D0B8;">
+          <div style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:#5C3D2E;margin-bottom:8px;font-weight:600;">Total Revenue</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:700;color:#C49B38;line-height:1;">د.إ 94k</div>
+          <div style="font-size:12px;color:#1A7A4A;margin-top:6px;font-weight:500;">▲ 28% vs last month</div>
+        </div>
+        <div style="background:white;border-radius:6px;padding:20px;border:1px solid #E0D0B8;">
+          <div style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:#5C3D2E;margin-bottom:8px;font-weight:600;">Conversion Rate</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:700;color:#1A0F0A;line-height:1;">3.8%</div>
+          <div style="font-size:12px;color:#1A7A4A;margin-top:6px;font-weight:500;">▲ 0.4% improvement</div>
+        </div>
+        <div style="background:white;border-radius:6px;padding:20px;border:1px solid #E0D0B8;">
+          <div style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:#5C3D2E;margin-bottom:8px;font-weight:600;">Sessions</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:700;color:#1A0F0A;line-height:1;">18.4k</div>
+          <div style="font-size:12px;color:#1A7A4A;margin-top:6px;font-weight:500;">▲ 11% this month</div>
+        </div>
+        <div style="background:white;border-radius:6px;padding:20px;border:1px solid #E0D0B8;">
+          <div style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:#5C3D2E;margin-bottom:8px;font-weight:600;">Avg. Order Value</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:700;color:#1A0F0A;line-height:1;">د.إ 2.4k</div>
+          <div style="font-size:12px;color:#1A7A4A;margin-top:6px;font-weight:500;">▲ 14% increase</div>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:2fr 1fr;gap:16px;margin-bottom:16px;">
+        <!-- Revenue Chart -->
+        <div style="background:white;border-radius:6px;border:1px solid #E0D0B8;padding:22px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:22px;">
+            <div style="font-size:15px;font-weight:600;color:#1A0F0A;">Monthly Revenue</div>
+            <div style="font-size:12px;color:#5C3D2E;">AED (thousands)</div>
+          </div>
+          <div style="display:flex;align-items:flex-end;gap:10px;height:180px;padding-bottom:24px;position:relative;border-bottom:1px solid #E0D0B8;">
+            <sc-for list="{{ revenueData }}" as="r" hint-placeholder-count="6">
+              <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;height:100%;justify-content:flex-end;">
+                <div style="font-size:10px;color:#C49B38;font-weight:600;">{{ r.val }}</div>
+                <div style="width:100%;background:{{ r.barBg }};border-radius:3px 3px 0 0;height:{{ r.h }};transition:height 0.3s;"></div>
+                <div style="font-size:10px;color:#5C3D2E;white-space:nowrap;">{{ r.month }}</div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+        <!-- Category Split -->
+        <div style="background:white;border-radius:6px;border:1px solid #E0D0B8;padding:22px;">
+          <div style="font-size:15px;font-weight:600;color:#1A0F0A;margin-bottom:18px;">Sales by Category</div>
+          <div style="display:flex;flex-direction:column;gap:12px;">
+            <sc-for list="{{ catSplit }}" as="cs" hint-placeholder-count="5">
+              <div>
+                <div style="display:flex;justify-content:space-between;margin-bottom:5px;">
+                  <span style="font-size:12px;color:#1A0F0A;font-weight:500;">{{ cs.name }}</span>
+                  <span style="font-size:12px;color:#5C3D2E;font-weight:600;">{{ cs.pct }}</span>
+                </div>
+                <div style="height:6px;background:#F0EBE1;border-radius:3px;overflow:hidden;">
+                  <div style="height:100%;background:{{ cs.color }};border-radius:3px;width:{{ cs.pct }};"></div>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+        <!-- Top Products -->
+        <div style="background:white;border-radius:6px;border:1px solid #E0D0B8;padding:22px;">
+          <div style="font-size:15px;font-weight:600;color:#1A0F0A;margin-bottom:16px;">Top Products This Month</div>
+          <div style="display:flex;flex-direction:column;gap:0;">
+            <sc-for list="{{ topProductsAnalytics }}" as="tp" hint-placeholder-count="5">
+              <div style="display:flex;align-items:center;gap:14px;padding:11px 0;border-bottom:1px solid #F0EBE1;">
+                <div style="font-size:12px;font-weight:700;color:#C49B38;width:20px;text-align:center;">{{ tp.rank }}</div>
+                <div style="{{ tp.bg }};width:34px;height:44px;border-radius:2px;flex-shrink:0;"></div>
+                <div style="flex:1;min-width:0;">
+                  <div style="font-size:13px;font-weight:600;color:#1A0F0A;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">{{ tp.name }}</div>
+                  <div style="font-size:11px;color:#5C3D2E;margin-top:1px;">{{ tp.units }} units · {{ tp.rev }}</div>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+        <!-- Traffic Sources -->
+        <div style="background:white;border-radius:6px;border:1px solid #E0D0B8;padding:22px;">
+          <div style="font-size:15px;font-weight:600;color:#1A0F0A;margin-bottom:16px;">Traffic Sources</div>
+          <div style="display:flex;flex-direction:column;gap:12px;">
+            <sc-for list="{{ trafficSources }}" as="ts" hint-placeholder-count="5">
+              <div style="display:flex;align-items:center;gap:14px;">
+                <div style="width:36px;height:36px;border-radius:6px;background:{{ ts.iconBg }};display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                  <span style="font-size:14px;">{{ ts.icon }}</span>
+                </div>
+                <div style="flex:1;">
+                  <div style="display:flex;justify-content:space-between;margin-bottom:4px;">
+                    <span style="font-size:13px;font-weight:500;color:#1A0F0A;">{{ ts.source }}</span>
+                    <span style="font-size:12px;color:#5C3D2E;font-weight:600;">{{ ts.pct }}</span>
+                  </div>
+                  <div style="height:5px;background:#F0EBE1;border-radius:3px;overflow:hidden;">
+                    <div style="height:100%;background:{{ ts.color }};border-radius:3px;width:{{ ts.pct }};"></div>
+                  </div>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+    </sc-if>
+
+    <!-- ══ INVENTORY ══ -->
+    <sc-if value="{{ isInventory }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:28px;flex-wrap:wrap;gap:12px;">
+        <div>
+          <h1 style="font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:600;color:#1A0F0A;">Inventory</h1>
+          <div style="font-size:13px;color:#5C3D2E;margin-top:3px;">342 SKUs · 7 items need restocking</div>
+        </div>
+        <div style="display:flex;gap:10px;">
+          <button style="background:white;color:#1A0F0A;border:1px solid #E0D0B8;padding:9px 18px;font-size:13px;font-weight:500;border-radius:3px;" style-hover="background:#F2EAD8;">Export Stock Report</button>
+          <button style="background:#C49B38;color:#1A0F0A;border:none;padding:9px 18px;font-size:13px;font-weight:600;border-radius:3px;" style-hover="background:#E8C96A;">Restock Order</button>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:20px;">
+        <div style="background:white;border-radius:6px;padding:18px;border:1px solid #E0D0B8;">
+          <div style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:#5C3D2E;margin-bottom:8px;font-weight:600;">Total SKUs</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:700;color:#1A0F0A;line-height:1;">342</div>
+        </div>
+        <div style="background:white;border-radius:6px;padding:18px;border:1px solid #E0D0B8;">
+          <div style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:#5C3D2E;margin-bottom:8px;font-weight:600;">In Stock</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:700;color:#1A5A3C;line-height:1;">318</div>
+        </div>
+        <div style="background:white;border-radius:6px;padding:18px;border:1px solid rgba(181,69,27,0.2);">
+          <div style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:#5C3D2E;margin-bottom:8px;font-weight:600;">Low Stock</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:700;color:#B5451B;line-height:1;">7</div>
+        </div>
+        <div style="background:white;border-radius:6px;padding:18px;border:1px solid rgba(110,26,44,0.2);">
+          <div style="font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:#5C3D2E;margin-bottom:8px;font-weight:600;">Out of Stock</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:32px;font-weight:700;color:#6E1A2C;line-height:1;">17</div>
+        </div>
+      </div>
+      <div style="background:white;border-radius:6px;border:1px solid #E0D0B8;overflow:hidden;">
+        <div style="padding:14px 22px;border-bottom:1px solid #E0D0B8;display:flex;gap:12px;align-items:center;">
+          <div style="position:relative;flex:1;">
+            <svg style="position:absolute;left:12px;top:50%;transform:translateY(-50%);pointer-events:none;" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#9C7B5E" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"></path></svg>
+            <input type="text" placeholder="Search products…" style="width:100%;padding:8px 12px 8px 34px;font-size:13px;border:1px solid #E0D0B8;border-radius:3px;outline:none;color:#1A0F0A;">
+          </div>
+          <select style="padding:8px 12px;font-size:13px;border:1px solid #E0D0B8;border-radius:3px;color:#1A0F0A;outline:none;">
+            <option>All Categories</option><option>Sarees</option><option>Lehengas</option><option>Salwar Suits</option><option>Kurtis</option>
+          </select>
+          <select style="padding:8px 12px;font-size:13px;border:1px solid #E0D0B8;border-radius:3px;color:#1A0F0A;outline:none;">
+            <option>All Status</option><option>In Stock</option><option>Low Stock</option><option>Out of Stock</option>
+          </select>
+        </div>
+        <sc-for list="{{ inventoryItems }}" as="iv" hint-placeholder-count="8">
+              </sc-for><table style="width:100%;border-collapse:collapse;">
+          <thead><tr style="border-bottom:1px solid #E0D0B8;background:#FAF7F0;">
+            <th style="text-align:left;padding:10px 22px;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#5C3D2E;font-weight:600;">Product</th>
+            <th style="text-align:left;padding:10px 22px;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#5C3D2E;font-weight:600;">SKU</th>
+            <th style="text-align:left;padding:10px 22px;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#5C3D2E;font-weight:600;">Category</th>
+            <th style="text-align:center;padding:10px 22px;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#5C3D2E;font-weight:600;">In Stock</th>
+            <th style="text-align:center;padding:10px 22px;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#5C3D2E;font-weight:600;">Reorder At</th>
+            <th style="text-align:left;padding:10px 22px;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#5C3D2E;font-weight:600;">Status</th>
+            <th style="padding:10px 22px;"></th>
+          </tr></thead>
+          <tbody>
+            <tr style="border-bottom:1px solid #E0D0B8;" style-hover="background:#FAF6EE;">
+                <td style="padding:12px 22px;">
+                  <div style="font-size:13px;font-weight:600;color:#1A0F0A;">{{ iv.name }}</div>
+                  <div style="font-size:11px;color:#5C3D2E;margin-top:1px;">{{ iv.fabric }}</div>
+                </td>
+                <td style="padding:12px 22px;font-size:12px;color:#5C3D2E;font-family:monospace;">{{ iv.sku }}</td>
+                <td style="padding:12px 22px;font-size:12px;color:#5C3D2E;">{{ iv.category }}</td>
+                <td style="padding:12px 22px;text-align:center;font-size:14px;font-weight:700;color:{{ iv.qtyC }};">{{ iv.qty }}</td>
+                <td style="padding:12px 22px;text-align:center;font-size:13px;color:#5C3D2E;">{{ iv.reorder }}</td>
+                <td style="padding:12px 22px;"><span style="font-size:10px;padding:3px 10px;border-radius:100px;font-weight:600;background:{{ iv.stBg }};color:{{ iv.stC }};">{{ iv.status }}</span></td>
+                <td style="padding:12px 16px;text-align:right;">
+                  <button style="font-size:11px;color:#1A5A3C;background:#E8F4EE;border:1px solid #B8DCC8;padding:4px 12px;border-radius:2px;cursor:pointer;" style-hover="background:#C8E8D8;">Restock</button>
+                </td>
+              </tr>
+            
+          </tbody>
+        </table>
+      </div>
+    </sc-if>
+
+    <!-- ══ SETTINGS ══ -->
+    <sc-if value="{{ isSettings }}" hint-placeholder-val="{{ false }}">
+      <div style="margin-bottom:28px;">
+        <h1 style="font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:600;color:#1A0F0A;">Settings</h1>
+        <div style="font-size:13px;color:#5C3D2E;margin-top:3px;">Manage your store preferences</div>
+      </div>
+      <div style="display:flex;gap:4px;margin-bottom:24px;border-bottom:1px solid #E0D0B8;padding-bottom:0;">
+        <sc-for list="{{ settingsTabs }}" as="st" hint-placeholder-count="4">
+          <button onclick="{{ st.pick }}" style="padding:10px 20px;font-size:13px;font-weight:500;border:none;background:transparent;cursor:pointer;border-bottom:2px solid {{ st.bd }};color:{{ st.c }};margin-bottom:-1px;" style-hover="color:#1A0F0A;">{{ st.label }}</button>
+        </sc-for>
+      </div>
+
+      <!-- Store Info -->
+      <sc-if value="{{ settingsTab === 'store' }}" hint-placeholder-val="{{ true }}">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
+          <div style="background:white;border-radius:6px;border:1px solid #E0D0B8;padding:24px;display:flex;flex-direction:column;gap:18px;">
+            <div style="font-size:16px;font-weight:600;color:#1A0F0A;padding-bottom:14px;border-bottom:1px solid #E0D0B8;">Store Information</div>
+            <div>
+              <label style="display:block;font-size:12px;font-weight:600;color:#1A0F0A;margin-bottom:6px;letter-spacing:0.03em;">Store Name</label>
+              <input type="text" value="Soul Sisters" style="width:100%;padding:10px 13px;font-size:13px;border:1px solid #E0D0B8;border-radius:3px;outline:none;color:#1A0F0A;">
+            </div>
+            <div>
+              <label style="display:block;font-size:12px;font-weight:600;color:#1A0F0A;margin-bottom:6px;letter-spacing:0.03em;">Tagline</label>
+              <input type="text" value="Ethnic Couture · Dubai" style="width:100%;padding:10px 13px;font-size:13px;border:1px solid #E0D0B8;border-radius:3px;outline:none;color:#1A0F0A;">
+            </div>
+            <div>
+              <label style="display:block;font-size:12px;font-weight:600;color:#1A0F0A;margin-bottom:6px;letter-spacing:0.03em;">Contact Email</label>
+              <input type="email" value="hello@soulsisters.ae" style="width:100%;padding:10px 13px;font-size:13px;border:1px solid #E0D0B8;border-radius:3px;outline:none;color:#1A0F0A;">
+            </div>
+            <div>
+              <label style="display:block;font-size:12px;font-weight:600;color:#1A0F0A;margin-bottom:6px;letter-spacing:0.03em;">Phone</label>
+              <input type="tel" value="+971 4 000 0000" style="width:100%;padding:10px 13px;font-size:13px;border:1px solid #E0D0B8;border-radius:3px;outline:none;color:#1A0F0A;">
+            </div>
+            <div>
+              <label style="display:block;font-size:12px;font-weight:600;color:#1A0F0A;margin-bottom:6px;letter-spacing:0.03em;">Address</label>
+              <textarea style="width:100%;padding:10px 13px;font-size:13px;border:1px solid #E0D0B8;border-radius:3px;outline:none;color:#1A0F0A;resize:none;height:72px;line-height:1.5;">Dubai Mall, Fashion Avenue, Dubai, UAE</textarea>
+            </div>
+            <button style="background:#C49B38;color:#1A0F0A;border:none;padding:11px 22px;font-size:13px;font-weight:600;border-radius:3px;align-self:flex-start;" style-hover="background:#E8C96A;">Save Changes</button>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:20px;">
+            <div style="background:white;border-radius:6px;border:1px solid #E0D0B8;padding:24px;display:flex;flex-direction:column;gap:16px;">
+              <div style="font-size:16px;font-weight:600;color:#1A0F0A;padding-bottom:14px;border-bottom:1px solid #E0D0B8;">Currency &amp; Tax</div>
+              <div>
+                <label style="display:block;font-size:12px;font-weight:600;color:#1A0F0A;margin-bottom:6px;">Currency</label>
+                <select style="width:100%;padding:10px 13px;font-size:13px;border:1px solid #E0D0B8;border-radius:3px;color:#1A0F0A;outline:none;"><option>AED (د.إ) — UAE Dirham</option></select>
+              </div>
+              <div>
+                <label style="display:block;font-size:12px;font-weight:600;color:#1A0F0A;margin-bottom:6px;">VAT Rate</label>
+                <input type="text" value="5% (UAE VAT)" style="width:100%;padding:10px 13px;font-size:13px;border:1px solid #E0D0B8;border-radius:3px;outline:none;color:#1A0F0A;">
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 14px;background:#FAF7F0;border-radius:4px;">
+                <div>
+                  <div style="font-size:13px;font-weight:500;color:#1A0F0A;">Show prices inclusive of VAT</div>
+                  <div style="font-size:11px;color:#5C3D2E;margin-top:2px;">Displayed on product pages</div>
+                </div>
+                <div onclick="{{ toggleVat }}" style="width:42px;height:24px;border-radius:100px;background:{{ vatBg }};cursor:pointer;position:relative;transition:background 0.2s;">
+                  <div style="width:18px;height:18px;background:white;border-radius:50%;position:absolute;top:3px;left:{{ vatKnob }};transition:left 0.2s;box-shadow:0 1px 3px rgba(0,0,0,0.2);"></div>
+                </div>
+              </div>
+            </div>
+            <div style="background:white;border-radius:6px;border:1px solid #E0D0B8;padding:24px;display:flex;flex-direction:column;gap:16px;">
+              <div style="font-size:16px;font-weight:600;color:#1A0F0A;padding-bottom:14px;border-bottom:1px solid #E0D0B8;">Delivery Zones</div>
+              <div style="display:flex;flex-direction:column;gap:10px;">
+                <sc-for list="{{ deliveryZones }}" as="dz" hint-placeholder-count="3">
+                  <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 14px;background:#FAF7F0;border-radius:4px;">
+                    <div>
+                      <div style="font-size:13px;font-weight:500;color:#1A0F0A;">{{ dz.zone }}</div>
+                      <div style="font-size:11px;color:#5C3D2E;margin-top:1px;">{{ dz.threshold }}</div>
+                    </div>
+                    <span style="font-size:12px;font-weight:600;color:#C49B38;">{{ dz.fee }}</span>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+          </div>
+        </div>
+      </sc-if>
+
+      <!-- Notifications tab -->
+      <sc-if value="{{ settingsTab === 'notifications' }}" hint-placeholder-val="{{ false }}">
+        <div style="background:white;border-radius:6px;border:1px solid #E0D0B8;padding:24px;max-width:680px;display:flex;flex-direction:column;gap:0;">
+          <div style="font-size:16px;font-weight:600;color:#1A0F0A;margin-bottom:20px;padding-bottom:14px;border-bottom:1px solid #E0D0B8;">Notification Preferences</div>
+          <sc-for list="{{ notifSettings }}" as="ns" hint-placeholder-count="5">
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:16px 0;border-bottom:1px solid #F0EBE1;">
+              <div>
+                <div style="font-size:13px;font-weight:600;color:#1A0F0A;">{{ ns.title }}</div>
+                <div style="font-size:12px;color:#5C3D2E;margin-top:2px;">{{ ns.desc }}</div>
+              </div>
+              <div onclick="{{ ns.toggle }}" style="width:42px;height:24px;border-radius:100px;background:{{ ns.bg }};cursor:pointer;position:relative;transition:background 0.2s;flex-shrink:0;margin-left:20px;">
+                <div style="width:18px;height:18px;background:white;border-radius:50%;position:absolute;top:3px;left:{{ ns.knob }};transition:left 0.2s;box-shadow:0 1px 3px rgba(0,0,0,0.2);"></div>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </sc-if>
+
+      <!-- Team tab -->
+      <sc-if value="{{ settingsTab === 'team' }}" hint-placeholder-val="{{ false }}">
+        <div style="background:white;border-radius:6px;border:1px solid #E0D0B8;overflow:hidden;max-width:720px;">
+          <div style="padding:16px 22px;border-bottom:1px solid #E0D0B8;display:flex;justify-content:space-between;align-items:center;">
+            <div style="font-size:15px;font-weight:600;color:#1A0F0A;">Team Members</div>
+            <button style="background:#C49B38;color:#1A0F0A;border:none;padding:7px 16px;font-size:12px;font-weight:600;border-radius:3px;" style-hover="background:#E8C96A;">+ Invite Member</button>
+          </div>
+          <sc-for list="{{ teamMembers }}" as="tm" hint-placeholder-count="3">
+                </sc-for><table style="width:100%;border-collapse:collapse;">
+            <thead><tr style="border-bottom:1px solid #E0D0B8;background:#FAF7F0;">
+              <th style="text-align:left;padding:10px 22px;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#5C3D2E;font-weight:600;">Member</th>
+              <th style="text-align:left;padding:10px 22px;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#5C3D2E;font-weight:600;">Role</th>
+              <th style="text-align:left;padding:10px 22px;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:#5C3D2E;font-weight:600;">Last Active</th>
+              <th style="padding:10px 22px;"></th>
+            </tr></thead>
+            <tbody>
+              <tr style="border-bottom:1px solid #E0D0B8;" style-hover="background:#FAF6EE;">
+                  <td style="padding:13px 22px;">
+                    <div style="display:flex;align-items:center;gap:10px;">
+                      <div style="width:34px;height:34px;border-radius:50%;background:{{ tm.av }};display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:white;">{{ tm.initials }}</div>
+                      <div>
+                        <div style="font-size:13px;font-weight:600;color:#1A0F0A;">{{ tm.name }}</div>
+                        <div style="font-size:11px;color:#5C3D2E;">{{ tm.email }}</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td style="padding:13px 22px;"><span style="font-size:11px;padding:3px 10px;border-radius:100px;font-weight:600;background:{{ tm.roleBg }};color:{{ tm.roleC }};">{{ tm.role }}</span></td>
+                  <td style="padding:13px 22px;font-size:12px;color:#5C3D2E;">{{ tm.lastActive }}</td>
+                  <td style="padding:13px 16px;text-align:right;"><button style="font-size:11px;color:#5C3D2E;background:white;border:1px solid #E0D0B8;padding:4px 12px;border-radius:2px;" style-hover="border-color:#C49B38;color:#8B6914;">Edit</button></td>
+                </tr>
+              
+            </tbody>
+          </table>
+        </div>
+      </sc-if>
+
+      <!-- Integrations tab -->
+      <sc-if value="{{ settingsTab === 'integrations' }}" hint-placeholder-val="{{ false }}">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:860px;">
+          <sc-for list="{{ integrations }}" as="ig" hint-placeholder-count="4">
+            <div style="background:white;border-radius:6px;border:1px solid #E0D0B8;padding:22px;display:flex;flex-direction:column;gap:14px;">
+              <div style="display:flex;align-items:center;gap:14px;">
+                <div style="width:44px;height:44px;border-radius:8px;background:{{ ig.iconBg }};display:flex;align-items:center;justify-content:center;font-size:20px;">{{ ig.icon }}</div>
+                <div>
+                  <div style="font-size:14px;font-weight:600;color:#1A0F0A;">{{ ig.name }}</div>
+                  <div style="font-size:11px;color:#5C3D2E;margin-top:1px;">{{ ig.category }}</div>
+                </div>
+                <div style="margin-left:auto;">
+                  <span style="font-size:10px;padding:3px 10px;border-radius:100px;font-weight:600;background:{{ ig.stBg }};color:{{ ig.stC }};">{{ ig.status }}</span>
+                </div>
+              </div>
+              <div style="font-size:12px;color:#5C3D2E;line-height:1.55;">{{ ig.desc }}</div>
+              <button style="font-size:12px;color:{{ ig.btnC }};background:{{ ig.btnBg }};border:1px solid {{ ig.btnBd }};padding:7px 16px;border-radius:3px;font-weight:500;align-self:flex-start;" style-hover="opacity:0.8;">{{ ig.btnLabel }}</button>
+            </div>
+          </sc-for>
+        </div>
+      </sc-if>
+    </sc-if>
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script="" data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:900}}">
+class Component extends DCLogic {
+  state = {
+    page: 'dashboard',
+    expanded: true,
+    settingsTab: 'store',
+    vatOn: true,
+    notifs: [true, true, false, true, false],
+  };
+
+  renderVals() {
+    const s = this.state;
+    const gold = '#C49B38', ruby = '#6E1A2C';
+
+    const nb = page => page === s.page ? 'rgba(196,155,56,0.15)' : 'transparent';
+    const nc = page => page === s.page ? '#8B6914' : '#5C3D2E';
+
+    const mkStatus = status => {
+      const map = { Processing:['#FEF0ED','#B5451B'], Confirmed:['#E8F4EE','#1A5A3C'], Shipped:['#EEF0FC','#1A1A6E'], Delivered:['#EDF5EE','#1A5A3C'], Cancelled:['#FDF0F2','#6E1A2C'] };
+      const [bg, c] = map[status] || ['#F0EBE1','#5C3D2E'];
+      return { sBg: bg, sC: c };
+    };
+
+    const mkOrder = (id, customer, email, items, date, status, amount) => ({
+      id, customer, email, items, date, status, amount, ...mkStatus(status)
+    });
+
+    const orders = [
+      mkOrder('#SS-2847','Priya Sharma','priya.s@gmail.com','2 items','4 Jul 2026','Processing','د.إ 2,450'),
+      mkOrder('#SS-2846','Fatima Al-Rashid','fatima@gmail.com','1 item','4 Jul 2026','Confirmed','د.إ 5,800'),
+      mkOrder('#SS-2845','Deepa Krishnan','deepa.k@gmail.com','3 items','3 Jul 2026','Shipped','د.إ 1,850'),
+      mkOrder('#SS-2844','Meera Nair','meera.n@gmail.com','1 item','3 Jul 2026','Delivered','د.إ 3,200'),
+      mkOrder('#SS-2843','Sunita Gupta','sunita.g@gmail.com','2 items','2 Jul 2026','Delivered','د.إ 680'),
+    ];
+
+    const allOrders = [
+      ...orders,
+      mkOrder('#SS-2842','Anjali Mehta','anjali.m@gmail.com','1 item','2 Jul 2026','Shipped','د.إ 4,100'),
+      mkOrder('#SS-2841','Ritu Verma','ritu.v@gmail.com','2 items','1 Jul 2026','Delivered','د.إ 920'),
+      mkOrder('#SS-2840','Kavya Reddy','kavya.r@gmail.com','1 item','1 Jul 2026','Cancelled','د.إ 1,650'),
+      mkOrder('#SS-2839','Shreya Joshi','shreya.j@gmail.com','3 items','30 Jun 2026','Delivered','د.إ 5,100'),
+      mkOrder('#SS-2838','Pooja Iyer','pooja.i@gmail.com','1 item','30 Jun 2026','Delivered','د.إ 780'),
+    ];
+
+    const productList = [
+      { name:'Bridal Lehenga Choli Set', fabric:'Pure Georgette', price:'د.إ 5,800', category:'Lehengas', stock:'In Stock', sold:'42', stockBg:'rgba(26,90,60,0.12)', stockC:'#1A5A3C', c1:'#6E1A2C', c2:'#A84060' },
+      { name:'Kanjivaram Silk Saree', fabric:'Pure Silk', price:'د.إ 2,450', category:'Sarees', stock:'Low Stock', sold:'38', stockBg:'rgba(181,69,27,0.12)', stockC:'#B5451B', c1:'#3D1542', c2:'#7A3082' },
+      { name:'Chanderi Anarkali Suit', fabric:'Chanderi Silk', price:'د.إ 1,850', category:'Salwar Suits', stock:'In Stock', sold:'31', stockBg:'rgba(26,90,60,0.12)', stockC:'#1A5A3C', c1:'#1A4A3A', c2:'#3A8A6A' },
+      { name:'Block Print Cotton Kurti', fabric:'Mulmul Cotton', price:'د.إ 680', category:'Kurtis', stock:'In Stock', sold:'54', stockBg:'rgba(26,90,60,0.12)', stockC:'#1A5A3C', c1:'#7A3B1A', c2:'#C47840' },
+      { name:'Fusion Crop Lehenga', fabric:'Net & Velvet', price:'د.إ 3,200', category:'Indo-Western', stock:'Out of Stock', sold:'27', stockBg:'rgba(110,26,44,0.12)', stockC:'#6E1A2C', c1:'#1A1A6E', c2:'#3A4AAE' },
+      { name:'Zardozi Silk Dupatta', fabric:'Silk Chiffon', price:'د.إ 580', category:'Accessories', stock:'In Stock', sold:'19', stockBg:'rgba(26,90,60,0.12)', stockC:'#1A5A3C', c1:'#3D1C72', c2:'#7A4CA2' },
+    ].map(p => ({ ...p, bg: `background:linear-gradient(160deg,${p.c1} 0%,${p.c2} 100%)` }));
+
+    const topSelling = [
+      { name:'Bridal Lehenga Choli Set', sold:'42', price:'د.إ 5,800', c1:'#6E1A2C', c2:'#A84060' },
+      { name:'Kanjivaram Silk Saree', sold:'38', price:'د.إ 2,450', c1:'#3D1542', c2:'#7A3082' },
+      { name:'Chanderi Anarkali Suit', sold:'31', price:'د.إ 1,850', c1:'#1A4A3A', c2:'#3A8A6A' },
+    ].map(ts => ({ ...ts, bg: `background:linear-gradient(160deg,${ts.c1},${ts.c2})` }));
+
+    const customers = [
+      { name:'Priya Sharma', email:'priya.s@gmail.com', location:'Dubai Marina', orders:'8', spent:'د.إ 18,400', lastOrder:'4 Jul 2026', tag:'VIP', av:'#6E1A2C', initials:'PS', tagBg:'rgba(196,155,56,0.15)', tagC:'#8B6914' },
+      { name:'Fatima Al-Rashid', email:'fatima@gmail.com', location:'Downtown Dubai', orders:'5', spent:'د.إ 12,600', lastOrder:'4 Jul 2026', tag:'VIP', av:'#1A4A3A', initials:'FA', tagBg:'rgba(196,155,56,0.15)', tagC:'#8B6914' },
+      { name:'Deepa Krishnan', email:'deepa.k@gmail.com', location:'Jumeirah', orders:'4', spent:'د.إ 6,200', lastOrder:'3 Jul 2026', tag:'Regular', av:'#3D1C72', initials:'DK', tagBg:'rgba(61,28,114,0.1)', tagC:'#3D1C72' },
+      { name:'Meera Nair', email:'meera.n@gmail.com', location:'Deira', orders:'6', spent:'د.إ 9,800', lastOrder:'3 Jul 2026', tag:'Regular', av:'#1A1A6E', initials:'MN', tagBg:'rgba(26,26,110,0.1)', tagC:'#1A1A6E' },
+      { name:'Sunita Gupta', email:'sunita.g@gmail.com', location:'Business Bay', orders:'2', spent:'د.إ 1,360', lastOrder:'2 Jul 2026', tag:'New', av:'#7A3B1A', initials:'SG', tagBg:'rgba(26,90,60,0.12)', tagC:'#1A5A3C' },
+      { name:'Anjali Mehta', email:'anjali.m@gmail.com', location:'Bur Dubai', orders:'3', spent:'د.إ 5,820', lastOrder:'2 Jul 2026', tag:'Regular', av:'#3D1542', initials:'AM', tagBg:'rgba(61,28,114,0.1)', tagC:'#3D1C72' },
+      { name:'Kavya Reddy', email:'kavya.r@gmail.com', location:'Mirdif', orders:'1', spent:'د.إ 680', lastOrder:'1 Jul 2026', tag:'New', av:'#1A4A3A', initials:'KR', tagBg:'rgba(26,90,60,0.12)', tagC:'#1A5A3C' },
+      { name:'Shreya Joshi', email:'shreya.j@gmail.com', location:'Al Barsha', orders:'9', spent:'د.إ 22,100', lastOrder:'30 Jun 2026', tag:'VIP', av:'#6E1A2C', initials:'SJ', tagBg:'rgba(196,155,56,0.15)', tagC:'#8B6914' },
+    ];
+
+    const months = ['Feb','Mar','Apr','May','Jun','Jul'];
+    const vals   = [48, 62, 55, 78, 82, 94];
+    const maxV   = Math.max(...vals);
+    const revenueData = months.map((month, i) => ({
+      month, val: vals[i] + 'k',
+      barBg: i === months.length - 1 ? gold : '#E0D0B8',
+      h: Math.round((vals[i] / maxV) * 140) + 'px',
+    }));
+
+    const catSplit = [
+      { name:'Lehengas', pct:'34%', color:'#6E1A2C' },
+      { name:'Sarees', pct:'28%', color:'#3D1542' },
+      { name:'Salwar Suits', pct:'18%', color:'#1A4A3A' },
+      { name:'Kurtis', pct:'12%', color:'#C49B38' },
+      { name:'Accessories', pct:'8%', color:'#3D1C72' },
+    ];
+
+    const topProductsAnalytics = [
+      { rank:'1', name:'Bridal Lehenga Choli Set', units:'42', rev:'د.إ 2.4L', c1:'#6E1A2C', c2:'#A84060' },
+      { rank:'2', name:'Kanjivaram Silk Saree', units:'38', rev:'د.إ 93k', c1:'#3D1542', c2:'#7A3082' },
+      { rank:'3', name:'Chanderi Anarkali Suit', units:'31', rev:'د.إ 57k', c1:'#1A4A3A', c2:'#3A8A6A' },
+      { rank:'4', name:'Block Print Cotton Kurti', units:'54', rev:'د.إ 37k', c1:'#7A3B1A', c2:'#C47840' },
+      { rank:'5', name:'Fusion Crop Lehenga', units:'27', rev:'د.إ 86k', c1:'#1A1A6E', c2:'#3A4AAE' },
+    ].map(tp => ({ ...tp, bg: `background:linear-gradient(160deg,${tp.c1},${tp.c2})` }));
+
+    const trafficSources = [
+      { source:'Instagram', pct:'42%', icon:'📸', iconBg:'#FDE8F0', color:'#E4335F' },
+      { source:'Google Search', pct:'28%', icon:'🔍', iconBg:'#E8F0FE', color:'#4285F4' },
+      { source:'Direct', pct:'16%', icon:'🔗', iconBg:'#F0EBE1', color:'#C49B38' },
+      { source:'WhatsApp', pct:'9%', icon:'💬', iconBg:'#E8F5E9', color:'#25D366' },
+      { source:'Other', pct:'5%', icon:'🌐', iconBg:'#F5F5F5', color:'#9C7B5E' },
+    ];
+
+    const mkInv = (name, fabric, sku, category, qty, reorder) => {
+      const low = qty <= reorder;
+      const out = qty === 0;
+      const status = out ? 'Out of Stock' : low ? 'Low Stock' : 'In Stock';
+      const stBg = out ? 'rgba(110,26,44,0.12)' : low ? 'rgba(181,69,27,0.12)' : 'rgba(26,90,60,0.12)';
+      const stC  = out ? '#6E1A2C' : low ? '#B5451B' : '#1A5A3C';
+      const qtyC = out ? '#6E1A2C' : low ? '#B5451B' : '#1A0F0A';
+      return { name, fabric, sku, category, qty, reorder, status, stBg, stC, qtyC };
+    };
+    const inventoryItems = [
+      mkInv('Kanjivaram Silk Saree', 'Pure Silk', 'SS-SAR-001', 'Sarees', 3, 5),
+      mkInv('Bridal Lehenga Choli', 'Pure Georgette', 'SS-LEH-001', 'Lehengas', 8, 3),
+      mkInv('Chanderi Anarkali', 'Chanderi Silk', 'SS-SAL-003', 'Salwar Suits', 0, 5),
+      mkInv('Block Print Kurti', 'Mulmul Cotton', 'SS-KUR-007', 'Kurtis', 22, 10),
+      mkInv('Fusion Crop Lehenga', 'Net & Velvet', 'SS-IW-002', 'Indo-Western', 0, 4),
+      mkInv('Banarasi Dupatta', 'Banarasi Silk', 'SS-ACC-004', 'Accessories', 14, 5),
+      mkInv('Pashmina Salwar Suit', 'Pashmina Wool', 'SS-SAL-009', 'Salwar Suits', 2, 5),
+      mkInv('Ikat Cotton Saree', 'Cotton Silk', 'SS-SAR-006', 'Sarees', 7, 5),
+    ];
+
+    const sTabLabels = [
+      { id:'store', label:'Store Info' },
+      { id:'notifications', label:'Notifications' },
+      { id:'team', label:'Team' },
+      { id:'integrations', label:'Integrations' },
+    ];
+    const settingsTabs = sTabLabels.map(t => ({
+      label: t.label,
+      pick: () => this.setState({ settingsTab: t.id }),
+      bd: s.settingsTab === t.id ? gold : 'transparent',
+      c: s.settingsTab === t.id ? '#1A0F0A' : '#5C3D2E',
+    }));
+
+    const deliveryZones = [
+      { zone:'Dubai (All Areas)', threshold:'Free over د.إ 200', fee:'Free / د.إ 15' },
+      { zone:'Same Day · Downtown', threshold:'Orders before 2pm', fee:'د.إ 35' },
+      { zone:'Sharjah', threshold:'All orders', fee:'د.إ 25' },
+    ];
+
+    const notifLabels = [
+      { title:'New Order Alerts', desc:'Get notified when a new order is placed' },
+      { title:'Low Stock Warnings', desc:'Alert when stock falls below reorder level' },
+      { title:'Customer Reviews', desc:'Notify when a customer leaves a review' },
+      { title:'Delivery Updates', desc:'Track shipment status changes' },
+      { title:'Weekly Summary', desc:'Weekly email report every Monday' },
+    ];
+    const notifSettings = notifLabels.map((n, i) => ({
+      ...n,
+      bg: s.notifs[i] ? gold : '#E0D0B8',
+      knob: s.notifs[i] ? '21px' : '3px',
+      toggle: () => this.setState(prev => {
+        const notifs = [...prev.notifs]; notifs[i] = !notifs[i]; return { notifs };
+      }),
+    }));
+
+    const teamMembers = [
+      { name:'Sara Al-Mansoori', email:'sara@soulsisters.ae', role:'Owner', lastActive:'Just now', av:'#6E1A2C', initials:'SM', roleBg:'rgba(196,155,56,0.15)', roleC:'#8B6914' },
+      { name:'Nadia Kapoor', email:'nadia@soulsisters.ae', role:'Manager', lastActive:'2 hours ago', av:'#3D1C72', initials:'NK', roleBg:'rgba(61,28,114,0.1)', roleC:'#3D1C72' },
+      { name:'Reem Hassan', email:'reem@soulsisters.ae', role:'Support', lastActive:'Yesterday', av:'#1A4A3A', initials:'RH', roleBg:'rgba(26,90,60,0.12)', roleC:'#1A5A3C' },
+    ];
+
+    const integrations = [
+      { name:'WhatsApp Business', category:'Messaging', icon:'💬', iconBg:'#E8F5E9', status:'Connected', stBg:'rgba(26,90,60,0.12)', stC:'#1A5A3C', desc:'Send order confirmations and delivery updates directly via WhatsApp.', btnLabel:'Manage', btnC:'#1A0F0A', btnBg:'white', btnBd:'#E0D0B8' },
+      { name:'Stripe', category:'Payments', icon:'💳', iconBg:'#EEF0FC', status:'Connected', stBg:'rgba(26,90,60,0.12)', stC:'#1A5A3C', desc:'Accept card payments securely. Supports Visa, Mastercard, Apple Pay.', btnLabel:'Manage', btnC:'#1A0F0A', btnBg:'white', btnBd:'#E0D0B8' },
+      { name:'Shipsy', category:'Logistics', icon:'🚚', iconBg:'#FEF3E2', status:'Not Connected', stBg:'rgba(181,69,27,0.1)', stC:'#B5451B', desc:'UAE-based last-mile delivery platform. Dubai same-day delivery.', btnLabel:'Connect', btnC:'#1A0F0A', btnBg:'#C49B38', btnBd:'#C49B38' },
+      { name:'Google Analytics', category:'Analytics', icon:'📊', iconBg:'#E8F0FE', status:'Connected', stBg:'rgba(26,90,60,0.12)', stC:'#1A5A3C', desc:'Track website traffic, conversions, and customer behaviour.', btnLabel:'View Dashboard', btnC:'#1A0F0A', btnBg:'white', btnBd:'#E0D0B8' },
+    ];
+
+    return {
+      expanded: s.expanded,
+      sideW: s.expanded ? '220px' : '54px',
+      toggleExpand: () => this.setState(s => ({ expanded: !s.expanded })),
+      chevronRot: s.expanded ? 'rotate(0deg)' : 'rotate(180deg)',
+      setPage: page => () => this.setState({ page }),
+      goDashboard: () => this.setState({ page: 'dashboard' }),
+      goOrders: () => this.setState({ page: 'orders' }),
+      goProducts: () => this.setState({ page: 'products' }),
+      goCustomers: () => this.setState({ page: 'customers' }),
+      goAnalytics: () => this.setState({ page: 'analytics' }),
+      goInventory: () => this.setState({ page: 'inventory' }),
+      goSettings: () => this.setState({ page: 'settings' }),
+      nb, nc,
+      isDashboard: s.page === 'dashboard',
+      isOrders: s.page === 'orders',
+      isProducts: s.page === 'products',
+      isCustomers: s.page === 'customers',
+      isAnalytics: s.page === 'analytics',
+      isInventory: s.page === 'inventory',
+      isSettings: s.page === 'settings',
+      ordersMonth: 'د.إ 94k revenue',
+      orders, allOrders, productList, topSelling, customers,
+      revenueData, catSplit, topProductsAnalytics, trafficSources,
+      inventoryItems,
+      settingsTabs, settingsTab: s.settingsTab,
+      deliveryZones, notifSettings, teamMembers, integrations,
+      vatBg: s.vatOn ? gold : '#E0D0B8',
+      vatKnob: s.vatOn ? '21px' : '3px',
+      toggleVat: () => this.setState(s => ({ vatOn: !s.vatOn })),
+    };
+  }
+}
+</script>
+
+
+</body></html>

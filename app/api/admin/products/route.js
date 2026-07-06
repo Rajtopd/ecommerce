@@ -1,14 +1,12 @@
 import { NextResponse } from 'next/server';
+import { requireAdmin } from '@/lib/adminAuth';
 import { supabaseAdmin } from '@/lib/supabase';
 
 // Helper to check admin token
-const isAdmin = (request) => {
-  const token = request.cookies.get('admin_token')?.value;
-  return token === process.env.ADMIN_SECRET_TOKEN;
-};
+const isAdmin = (request) => requireAdmin(request);
 
 export async function GET(request) {
-  if (!isAdmin(request)) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  if (!(await isAdmin(request))) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 
   const { data: products, error } = await supabaseAdmin
     .from('products')
@@ -20,7 +18,7 @@ export async function GET(request) {
 }
 
 export async function POST(request) {
-  if (!isAdmin(request)) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  if (!(await isAdmin(request))) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 
   try {
     const body = await request.json();

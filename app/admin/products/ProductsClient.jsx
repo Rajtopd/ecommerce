@@ -130,7 +130,7 @@ export default function ProductsClient({ initialProducts }) {
             backgroundColor: '#fff'
           }}
         >
-          {['All Categories', 'Tops', 'Bottoms', 'Dresses', 'Co-ords', 'Outerwear', 'Accessories'].map(c => (
+          {['All Categories', ...Array.from(new Set(products.map(p => p.category).filter(Boolean)))].map(c => (
             <option key={c} value={c}>{c}</option>
           ))}
         </select>

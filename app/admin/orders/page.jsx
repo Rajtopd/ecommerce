@@ -1,8 +1,15 @@
-export default function AdminOrdersPage() {
-  return (
-    <div className="pt-24 pb-20 px-5 md:px-10 max-w-7xl mx-auto min-h-screen">
-      <h1 className="font-display text-[28px] text-[#1C1410] mb-4">Orders Management</h1>
-      <p className="text-[13px] text-[#6B5E54] font-light">Orders list placeholder.</p>
-    </div>
-  )
+import { supabaseAdmin } from '@/lib/supabase';
+import OrdersClient from './OrdersClient';
+
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+export const fetchCache = 'force-no-store';
+
+export default async function OrdersPage() {
+  const { data: orders } = await supabaseAdmin
+    .from('orders')
+    .select('*, order_items(*)')
+    .order('created_at', { ascending: false });
+
+  return <OrdersClient initialOrders={orders || []} />;
 }
