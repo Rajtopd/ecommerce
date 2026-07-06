@@ -6,6 +6,15 @@ import { evaluateDiscount } from '@/lib/discounts'
 
 export async function POST(req) {
   try {
+    // No guest checkout — a valid signed-in customer is required.
+    const authHeader = req.headers.get('Authorization')
+    const token = authHeader?.replace('Bearer ', '')
+    const { data: { user } } = token ? await supabaseAdmin.auth.getUser(token) : { data: { user: null } }
+
+    if (!user) {
+      return NextResponse.json({ error: 'Please sign in to checkout.' }, { status: 401 })
+    }
+
     const { items, discountCode } = await req.json()
 
     if (!items || items.length === 0) {
@@ -84,6 +93,7 @@ export async function POST(req) {
       .insert({
         order_number: 'SS-' + Math.random().toString(36).substring(2, 8).toUpperCase(),
         status: 'pending',
+        user_id: user.id,
         subtotal: subtotal,
         vat_amount: vatAmount,
         shipping_charge: shippingCharge,

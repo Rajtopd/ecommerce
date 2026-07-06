@@ -7,9 +7,11 @@ import useCartStore from '@/lib/cartStore'
 import CartItem from './CartItem'
 import { formatPrice, FREE_DELIVERY_THRESHOLD } from '@/lib/constants'
 import { useSiteData, useContent } from '@/components/SiteDataContext'
+import { useAuth } from '@/lib/authContext'
 
 export default function CartDrawer() {
   const pathname = usePathname()
+  const { isLoggedIn } = useAuth()
   const isDrawerOpen = useCartStore((state) => state.isDrawerOpen)
   const closeDrawer = useCartStore((state) => state.closeDrawer)
   const items = useCartStore((state) => state.items)
@@ -125,11 +127,17 @@ export default function CartDrawer() {
               </p>
 
               <a
-                href="/checkout"
+                href={isLoggedIn ? '/checkout' : '/login?redirect=/checkout'}
+                onClick={closeDrawer}
                 className="mt-5 w-full py-[16px] bg-brand-accent text-white rounded-[2px] text-[13px] font-semibold uppercase tracking-[0.1em] flex items-center justify-center hover:bg-[#8B2A3E] transition-colors"
               >
-                Checkout &rarr;
+                {isLoggedIn ? <>Checkout &rarr;</> : 'Sign In to Checkout'}
               </a>
+              {!isLoggedIn && (
+                <p className="text-[10px] text-brand-muted text-center mt-2">
+                  Sign in to place an order — no guest checkout.
+                </p>
+              )}
 
               <button
                 onClick={closeDrawer}
