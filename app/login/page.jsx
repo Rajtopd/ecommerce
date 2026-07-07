@@ -5,6 +5,10 @@ import { useRouter, useSearchParams } from 'next/navigation'
 import { useAuth } from '@/lib/authContext'
 import { supabase } from '@/lib/supabase'
 
+// Must match the OTP length Supabase actually generates for this project
+// (Authentication > Emails > Magic Link template uses {{ .Token }}).
+const OTP_LENGTH = 8
+
 function LoginContent() {
   const router = useRouter()
   const searchParams = useSearchParams()
@@ -71,7 +75,7 @@ function LoginContent() {
     eOrCode?.preventDefault?.()
     
     const codeToVerify = typeof eOrCode === 'string' ? eOrCode : otpCode
-    if (codeToVerify.length !== 6) return
+    if (codeToVerify.length !== OTP_LENGTH) return
 
     setLoading(true)
     setErrorMsg('')
@@ -134,9 +138,9 @@ function LoginContent() {
   }
 
   const handleOtpChange = (e) => {
-    const val = e.target.value.replace(/[^0-9]/g, '').substring(0, 6)
+    const val = e.target.value.replace(/[^0-9]/g, '').substring(0, OTP_LENGTH)
     setOtpCode(val)
-    if (val.length === 6) {
+    if (val.length === OTP_LENGTH) {
       handleVerifyCode(val)
     }
   }
@@ -216,23 +220,23 @@ function LoginContent() {
         <div className="w-full animate-in fade-in slide-in-from-right-4 duration-300">
           <h2 className="font-display text-[28px] text-[#1C1410] text-center">Check your email</h2>
           <p className="font-body font-light text-[12px] text-[#6B5E54] text-center mt-2 mb-7">
-            We sent a 6-digit code to {email}
+            We sent a {OTP_LENGTH}-digit code to {email}
           </p>
 
           <form onSubmit={handleVerifyCode} className="w-full flex flex-col items-center">
             <input
               type="text"
               inputMode="numeric"
-              maxLength={6}
-              placeholder="000000"
+              maxLength={OTP_LENGTH}
+              placeholder={'0'.repeat(OTP_LENGTH)}
               value={otpCode}
               onChange={handleOtpChange}
               className="w-full h-[56px] rounded-[2px] border-[0.5px] border-[#E8E4DF] font-body font-normal text-[24px] text-[#1C1410] text-center tracking-[0.3em] outline-none focus:border-[#1C1410] transition-colors"
             />
-            
+
             <button
               type="submit"
-              disabled={loading || otpCode.length !== 6}
+              disabled={loading || otpCode.length !== OTP_LENGTH}
               className="w-full h-[46px] mt-3 bg-[#C8726A] text-white rounded-[2px] font-body font-normal text-[10px] uppercase tracking-[0.12em] hover:opacity-90 transition-opacity disabled:opacity-50 flex items-center justify-center"
             >
               {loading ? (
