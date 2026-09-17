@@ -46,7 +46,7 @@ const CONTENT = [
   ['usp', 'usp.items', 'json', 'USP strip — 4 items (icon: truck | undo | shield | sparkles)', JSON.stringify([
     { icon: 'truck', title: 'Free Dubai Delivery', detail: 'On orders over د.إ 200' },
     { icon: 'undo', title: '7-Day Easy Returns', detail: 'No questions asked' },
-    { icon: 'shield', title: 'Secure Checkout', detail: 'Powered by Stripe' },
+    { icon: 'shield', title: 'Cash on Delivery', detail: 'Pay when your order arrives' },
     { icon: 'sparkles', title: 'Artisan Crafted', detail: '100+ artisans across India' },
   ])],
 

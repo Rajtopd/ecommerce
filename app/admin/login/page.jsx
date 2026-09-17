@@ -44,7 +44,7 @@ export default function AdminLogin() {
       flexDirection: 'column',
       justifyContent: 'center',
       alignItems: 'center',
-      fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif'
+      fontFamily: 'var(--font-admin), -apple-system, BlinkMacSystemFont, sans-serif'
     }}>
       <div style={{
         backgroundColor: 'white',
@@ -62,11 +62,11 @@ export default function AdminLogin() {
         </div>
         
         <h1 style={{
-          fontFamily: '"Cormorant Garamond", serif',
-          fontSize: '26px',
+          fontFamily: 'var(--font-admin)',
+          fontSize: 'var(--admin-text-2xl)',
           color: '#1A0F0A',
           textAlign: 'center',
-          fontWeight: 600,
+          fontWeight: 'var(--admin-weight-semibold)',
           margin: '0 0 4px 0'
         }}>
           Admin Panel

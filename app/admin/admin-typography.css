@@ -1,0 +1,39 @@
+/* Admin panel typography scale — scoped to .admin-shell so the storefront's
+   editorial serif/DM Sans branding is untouched. Loaded font comes from
+   --font-admin (Inter, set in app/layout.jsx). */
+
+.admin-shell {
+  font-family: var(--font-admin), -apple-system, BlinkMacSystemFont, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.admin-shell,
+.admin-shell h1,
+.admin-shell h2,
+.admin-shell h3,
+.admin-shell h4 {
+  /* h1-h4 are reset here because globals.css sets a global serif/italic
+     rule for headings that's meant for the storefront, not the dashboard. */
+  font-family: var(--font-admin), -apple-system, BlinkMacSystemFont, sans-serif;
+  font-style: normal;
+}
+
+:root {
+  /* Admin type scale — modeled on GitHub/Linear/Vercel/Stripe dashboards.
+     Sized a touch denser than a marketing page since most admin screens
+     here are data tables (orders, products, customers). */
+  --admin-text-2xl: 22px;  /* page title, e.g. "Orders" */
+  --admin-text-xl: 17px;   /* section header, card heading */
+  --admin-text-lg: 15px;   /* row/card title, modal heading */
+  --admin-text-base: 14px; /* body copy, form inputs, nav labels */
+  --admin-text-sm: 13px;   /* secondary text, table cells */
+  --admin-text-xs: 11px;   /* meta, badges, table headers (uppercase) */
+
+  --admin-weight-regular: 400;
+  --admin-weight-medium: 500;
+  --admin-weight-semibold: 600;
+
+  --admin-line-height-body: 1.5;
+  --admin-line-height-heading: 1.25;
+}

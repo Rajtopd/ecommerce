@@ -106,8 +106,8 @@ export default function AnalyticsClient({ days, topProducts, statusCounts, summa
 function Stat({ label, value, gold }) {
   return (
     <div style={{ background: '#fff', border: '1px solid #E0D0B8', borderRadius: '6px', padding: '18px 20px' }}>
-      <div style={{ fontSize: '10px', letterSpacing: '0.12em', textTransform: 'uppercase', color: '#9C7B5E', marginBottom: '8px', fontWeight: 600 }}>{label}</div>
-      <div style={{ fontFamily: '"Cormorant Garamond", serif', fontSize: '30px', fontWeight: 700, color: gold ? '#C49B38' : '#1A0F0A', lineHeight: 1 }}>{value}</div>
+      <div style={{ fontSize: '11px', letterSpacing: '0.12em', textTransform: 'uppercase', color: '#9C7B5E', marginBottom: '8px', fontWeight: 600 }}>{label}</div>
+      <div style={{ fontFamily: 'var(--font-admin)', fontSize: '28px', fontWeight: 700, fontVariantNumeric: 'tabular-nums', color: gold ? '#C49B38' : '#1A0F0A', lineHeight: 1 }}>{value}</div>
     </div>
   );
 }

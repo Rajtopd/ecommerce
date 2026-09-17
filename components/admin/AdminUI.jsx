@@ -3,12 +3,12 @@
 // Shared styled primitives for admin screens, following the existing
 // admin conventions (inline styles, #C49B38 accent, #E0D0B8 borders).
 
-export const FONT_HEAD = '"Cormorant Garamond", serif';
+export const FONT_HEAD = 'var(--font-admin)';
 
 export function PageTitle({ children, right }) {
   return (
     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
-      <h1 style={{ fontFamily: FONT_HEAD, fontSize: '28px', color: '#1A0F0A', margin: 0, fontWeight: 600 }}>{children}</h1>
+      <h1 style={{ fontFamily: FONT_HEAD, fontSize: 'var(--admin-text-2xl)', color: '#1A0F0A', margin: 0, fontWeight: 600 }}>{children}</h1>
       {right}
     </div>
   );
@@ -23,7 +23,7 @@ export function Card({ children, style }) {
 }
 
 export function SectionTitle({ children }) {
-  return <h2 style={{ fontFamily: FONT_HEAD, fontSize: '20px', color: '#1A0F0A', margin: '0 0 16px 0', fontWeight: 600 }}>{children}</h2>;
+  return <h2 style={{ fontFamily: FONT_HEAD, fontSize: 'var(--admin-text-xl)', color: '#1A0F0A', margin: '0 0 16px 0', fontWeight: 600 }}>{children}</h2>;
 }
 
 export function Label({ children }) {
@@ -96,7 +96,7 @@ export function Toggle({ checked, onChange, disabled }) {
 }
 
 export const th = {
-  fontSize: '10px', textTransform: 'uppercase', letterSpacing: '0.08em', color: '#9C7B5E',
+  fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.08em', color: '#9C7B5E',
   padding: '10px 14px', textAlign: 'left', backgroundColor: '#FAF7F0', borderBottom: '1px solid #E0D0B8', fontWeight: 600,
 };
 

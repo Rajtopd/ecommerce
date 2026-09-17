@@ -132,11 +132,7 @@ export default function Footer() {
             {c('footer.copyright', '© 2026 Soul Sisters. All rights reserved.')}
           </span>
           <div className="flex items-center gap-2">
-            <PaymentBadge label="VISA" />
-            <PaymentBadge label="Mastercard" />
-            <PaymentBadge label="AMEX" />
-            <PaymentBadge label="Apple Pay" />
-            <span className="text-[10px] text-[#6B5344] ml-2 hidden md:inline">Secure payments by Stripe</span>
+            <PaymentBadge label="Cash on Delivery" />
           </div>
         </div>
       </div>

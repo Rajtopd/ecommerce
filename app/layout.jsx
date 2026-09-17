@@ -1,4 +1,4 @@
-import { Cormorant_Garamond, DM_Sans } from 'next/font/google'
+import { Cormorant_Garamond, DM_Sans, Inter } from 'next/font/google'
 import './globals.css'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
@@ -26,6 +26,13 @@ const dmSans = DM_Sans({
   display: 'swap',
 })
 
+const inter = Inter({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-admin',
+  display: 'swap',
+})
+
 export const metadata = {
   title: 'Soul Sisters',
   description: "Contemporary women's fashion — Dubai",
@@ -35,7 +42,7 @@ export default async function RootLayout({ children }) {
   const siteData = await getSiteData()
 
   return (
-    <html lang="en" className={`${cormorantGaramond.variable} ${dmSans.variable}`}>
+    <html lang="en" className={`${cormorantGaramond.variable} ${dmSans.variable} ${inter.variable}`}>
       <body className="antialiased">
         <SiteDataProvider value={siteData}>
           <ToastProvider>

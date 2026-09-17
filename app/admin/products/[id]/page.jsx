@@ -29,7 +29,7 @@ export default function EditProductPage({ params }) {
 
   if (loading) {
     return (
-      <div style={{ padding: '32px', fontFamily: '"Josefin Sans", sans-serif', color: '#6B5E54' }}>
+      <div style={{ padding: '32px', fontFamily: 'var(--font-admin)', color: '#6B5E54' }}>
         Loading product...
       </div>
     );
@@ -37,7 +37,7 @@ export default function EditProductPage({ params }) {
 
   if (error || !initialData) {
     return (
-      <div style={{ padding: '32px', fontFamily: '"Josefin Sans", sans-serif', color: '#C8726A' }}>
+      <div style={{ padding: '32px', fontFamily: 'var(--font-admin)', color: '#C8726A' }}>
         {error || 'Product not found.'}
       </div>
     );

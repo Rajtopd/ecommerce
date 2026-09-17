@@ -39,8 +39,8 @@ export default function OrderConfirmedPage() {
           return
         }
 
-        if (data.payment_status !== 'paid') {
-          console.log('Order payment status is not paid:', data.payment_status, ', redirecting to /shop')
+        if (!['paid', 'cod'].includes(data.payment_status)) {
+          console.log('Order payment status is not confirmed:', data.payment_status, ', redirecting to /shop')
           router.push('/shop')
           return
         }

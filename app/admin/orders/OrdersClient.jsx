@@ -136,10 +136,10 @@ export default function OrdersClient({ initialOrders }) {
       {/* TOP BAR */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
         <div>
-          <span style={{ fontFamily: '"Cormorant Garamond", serif', fontWeight: 600, fontSize: '28px', color: '#1A0F0A' }}>
+          <span style={{ fontFamily: 'var(--font-admin)', fontWeight: 'var(--admin-weight-semibold)', fontSize: 'var(--admin-text-2xl)', color: '#1A0F0A' }}>
             Orders
           </span>
-          <span style={{ fontFamily: '"DM Sans", sans-serif', fontWeight: 300, fontSize: '13px', color: '#9C7B5E', marginLeft: '12px' }}>
+          <span style={{ fontFamily: 'var(--font-admin)', fontWeight: 400, fontSize: '13px', color: '#9C7B5E', marginLeft: '12px' }}>
             ({orders.length} total)
           </span>
         </div>
@@ -148,7 +148,7 @@ export default function OrdersClient({ initialOrders }) {
           display: 'flex', alignItems: 'center', gap: '8px',
           background: 'white', border: '0.5px solid #E0D0B8', color: '#1A0F0A',
           borderRadius: '4px', padding: '10px 20px', cursor: 'pointer',
-          fontFamily: '"DM Sans", sans-serif', fontSize: '9px', fontWeight: 400, textTransform: 'uppercase'
+          fontFamily: 'var(--font-admin)', fontSize: '12px', fontWeight: 600, textTransform: 'uppercase'
         }}>
           <Download size={13} />
           Export CSV
@@ -168,10 +168,10 @@ export default function OrdersClient({ initialOrders }) {
         ].map((stat, i) => (
           <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '40px', cursor: 'pointer' }} onClick={() => setStatusFilter(stat.filter.replace('_', ' '))}>
             <div>
-              <div style={{ fontFamily: '"Cormorant Garamond", serif', fontWeight: 600, fontSize: '28px', color: stat.color, lineHeight: 1 }}>
+              <div style={{ fontFamily: 'var(--font-admin)', fontWeight: 700, fontSize: '26px', fontVariantNumeric: 'tabular-nums', color: stat.color, lineHeight: 1 }}>
                 {stat.count}
               </div>
-              <div style={{ fontFamily: '"DM Sans", sans-serif', fontWeight: 400, fontSize: '8px', textTransform: 'uppercase', letterSpacing: '0.12em', color: '#9C7B5E', marginTop: '6px' }}>
+              <div style={{ fontFamily: 'var(--font-admin)', fontWeight: 600, fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.12em', color: '#9C7B5E', marginTop: '6px' }}>
                 {stat.label}
               </div>
             </div>
@@ -187,30 +187,30 @@ export default function OrdersClient({ initialOrders }) {
           placeholder="Search order number or email..."
           value={search}
           onChange={e => setSearch(e.target.value)}
-          style={{ height: '38px', width: '300px', border: '0.5px solid #E0D0B8', borderRadius: '4px', padding: '0 14px', fontFamily: '"DM Sans", sans-serif', fontSize: '12px', fontWeight: 300, color: '#1A0F0A', outline: 'none' }}
+          style={{ height: '38px', width: '300px', border: '0.5px solid #E0D0B8', borderRadius: '4px', padding: '0 14px', fontFamily: 'var(--font-admin)', fontSize: '13px', fontWeight: 400, color: '#1A0F0A', outline: 'none' }}
         />
-        <select value={statusFilter} onChange={e => setStatusFilter(e.target.value)} style={{ height: '38px', border: '0.5px solid #E0D0B8', borderRadius: '4px', padding: '0 14px', fontFamily: '"DM Sans", sans-serif', fontSize: '12px', fontWeight: 300, color: '#1A0F0A', outline: 'none', background: 'white' }}>
+        <select value={statusFilter} onChange={e => setStatusFilter(e.target.value)} style={{ height: '38px', border: '0.5px solid #E0D0B8', borderRadius: '4px', padding: '0 14px', fontFamily: 'var(--font-admin)', fontSize: '13px', fontWeight: 400, color: '#1A0F0A', outline: 'none', background: 'white' }}>
           {['All Statuses', 'Pending', 'Confirmed', 'Processing', 'Out for Delivery', 'Delivered', 'Cancelled', 'Returned'].map(s => <option key={s} value={s}>{s}</option>)}
         </select>
-        <select value={paymentFilter} onChange={e => setPaymentFilter(e.target.value)} style={{ height: '38px', border: '0.5px solid #E0D0B8', borderRadius: '4px', padding: '0 14px', fontFamily: '"DM Sans", sans-serif', fontSize: '12px', fontWeight: 300, color: '#1A0F0A', outline: 'none', background: 'white' }}>
+        <select value={paymentFilter} onChange={e => setPaymentFilter(e.target.value)} style={{ height: '38px', border: '0.5px solid #E0D0B8', borderRadius: '4px', padding: '0 14px', fontFamily: 'var(--font-admin)', fontSize: '13px', fontWeight: 400, color: '#1A0F0A', outline: 'none', background: 'white' }}>
           {['All', 'Paid', 'Pending', 'Failed', 'Refunded'].map(s => <option key={s} value={s}>{s}</option>)}
         </select>
         <input 
           type="date"
           value={dateFrom}
           onChange={e => setDateFrom(e.target.value)}
-          style={{ height: '38px', width: '150px', border: '0.5px solid #E0D0B8', borderRadius: '4px', padding: '0 14px', fontFamily: '"DM Sans", sans-serif', fontSize: '12px', fontWeight: 300, color: '#1A0F0A', outline: 'none' }}
+          style={{ height: '38px', width: '150px', border: '0.5px solid #E0D0B8', borderRadius: '4px', padding: '0 14px', fontFamily: 'var(--font-admin)', fontSize: '13px', fontWeight: 400, color: '#1A0F0A', outline: 'none' }}
         />
         <input 
           type="date"
           value={dateTo}
           onChange={e => setDateTo(e.target.value)}
-          style={{ height: '38px', width: '150px', border: '0.5px solid #E0D0B8', borderRadius: '4px', padding: '0 14px', fontFamily: '"DM Sans", sans-serif', fontSize: '12px', fontWeight: 300, color: '#1A0F0A', outline: 'none' }}
+          style={{ height: '38px', width: '150px', border: '0.5px solid #E0D0B8', borderRadius: '4px', padding: '0 14px', fontFamily: 'var(--font-admin)', fontSize: '13px', fontWeight: 400, color: '#1A0F0A', outline: 'none' }}
         />
         {hasFilters && (
           <span 
             onClick={() => { setSearch(''); setStatusFilter('All Statuses'); setPaymentFilter('All'); setDateFrom(''); setDateTo(''); }}
-            style={{ fontFamily: '"DM Sans", sans-serif', fontWeight: 400, fontSize: '9px', textTransform: 'uppercase', color: '#6E1A2C', cursor: 'pointer', marginLeft: '10px' }}>
+            style={{ fontFamily: 'var(--font-admin)', fontWeight: 600, fontSize: '11px', textTransform: 'uppercase', color: '#6E1A2C', cursor: 'pointer', marginLeft: '10px' }}>
             Clear Filters
           </span>
         )}
@@ -222,7 +222,7 @@ export default function OrdersClient({ initialOrders }) {
           <thead>
             <tr style={{ background: '#FAF7F0', borderBottom: '0.5px solid #E0D0B8' }}>
               {['Order #', 'Customer', 'Items', 'Amount', 'Payment', 'Status', 'Date', 'Actions'].map(h => (
-                <th key={h} style={{ fontFamily: '"DM Sans", sans-serif', fontWeight: 400, fontSize: '8px', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#9C7B5E', padding: '10px 16px' }}>
+                <th key={h} style={{ fontFamily: 'var(--font-admin)', fontWeight: 600, fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#9C7B5E', padding: '10px 16px' }}>
                   {h}
                 </th>
               ))}
@@ -231,15 +231,15 @@ export default function OrdersClient({ initialOrders }) {
           <tbody>
             {filteredOrders.length > 0 ? filteredOrders.map(order => (
               <tr key={order.id} style={{ borderBottom: '0.5px solid #E8E4DF', transition: 'background 0.15s', cursor: 'default' }} onMouseOver={e => e.currentTarget.style.background = '#FAF7F0'} onMouseOut={e => e.currentTarget.style.background = 'transparent'}>
-                <td style={{ padding: '14px 16px', fontFamily: '"Cormorant Garamond", serif', fontWeight: 500, fontSize: '14px', color: '#C49B38', letterSpacing: '0.04em' }}>
+                <td style={{ padding: '14px 16px', fontFamily: 'var(--font-admin)', fontWeight: 600, fontSize: '13px', color: '#C49B38', letterSpacing: '0.02em' }}>
                   {order.order_number}
                 </td>
                 <td style={{ padding: '14px 16px' }}>
-                  <div style={{ fontFamily: '"DM Sans", sans-serif', fontWeight: 300, fontSize: '11px', color: '#1A0F0A' }}>
+                  <div style={{ fontFamily: 'var(--font-admin)', fontWeight: 500, fontSize: '13px', color: '#1A0F0A' }}>
                     {order.guest_email || 'Unknown'}
                   </div>
                   {!order.user_id && (
-                    <span style={{ display: 'inline-block', background: '#F3E8FF', color: '#4A1A6E', fontFamily: '"DM Sans", sans-serif', fontWeight: 400, fontSize: '7px', textTransform: 'uppercase', padding: '2px 6px', borderRadius: '3px', marginTop: '4px' }}>
+                    <span style={{ display: 'inline-block', background: '#F3E8FF', color: '#4A1A6E', fontFamily: 'var(--font-admin)', fontWeight: 600, fontSize: '11px', textTransform: 'uppercase', padding: '2px 6px', borderRadius: '3px', marginTop: '4px' }}>
                       Guest
                     </span>
                   )}
@@ -250,25 +250,25 @@ export default function OrdersClient({ initialOrders }) {
                       <div key={idx} style={{ width: '28px', height: '36px', borderRadius: '3px', background: '#F0EBE1' }} /> // Placeholder for mini images
                     ))}
                     {order.order_items?.length > 3 && (
-                      <div style={{ width: '28px', height: '36px', borderRadius: '3px', background: '#F0EBE1', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: '"DM Sans", sans-serif', fontSize: '9px', color: '#9C7B5E' }}>
+                      <div style={{ width: '28px', height: '36px', borderRadius: '3px', background: '#F0EBE1', display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'var(--font-admin)', fontSize: '11px', color: '#9C7B5E' }}>
                         +{order.order_items.length - 3}
                       </div>
                     )}
                   </div>
-                  <div style={{ fontFamily: '"DM Sans", sans-serif', fontWeight: 300, fontSize: '9px', color: '#9C7B5E' }}>
+                  <div style={{ fontFamily: 'var(--font-admin)', fontWeight: 400, fontSize: '11px', color: '#9C7B5E' }}>
                     {order.order_items?.length || 0} item(s)
                   </div>
                 </td>
                 <td style={{ padding: '14px 16px' }}>
-                  <div style={{ fontFamily: '"DM Sans", sans-serif', fontWeight: 500, fontSize: '12px', color: '#1A0F0A' }}>
+                  <div style={{ fontFamily: 'var(--font-admin)', fontWeight: 600, fontSize: '13px', color: '#1A0F0A' }}>
                     د.إ {(order.total / 100).toFixed(2)}
                   </div>
-                  <div style={{ fontFamily: '"DM Sans", sans-serif', fontWeight: 300, fontSize: '8px', color: '#9C7B5E', marginTop: '2px' }}>
+                  <div style={{ fontFamily: 'var(--font-admin)', fontWeight: 400, fontSize: '11px', color: '#9C7B5E', marginTop: '2px' }}>
                     incl. VAT
                   </div>
                 </td>
                 <td style={{ padding: '14px 16px' }}>
-                  <span style={{ ...STATUS_COLORS[order.payment_status || 'pending'], fontFamily: '"DM Sans", sans-serif', fontWeight: 400, fontSize: '8px', textTransform: 'uppercase', letterSpacing: '0.08em', padding: '4px 10px', borderRadius: '3px' }}>
+                  <span style={{ ...STATUS_COLORS[order.payment_status || 'pending'], fontFamily: 'var(--font-admin)', fontWeight: 600, fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.08em', padding: '4px 10px', borderRadius: '3px' }}>
                     {order.payment_status || 'pending'}
                   </span>
                 </td>
@@ -276,7 +276,7 @@ export default function OrdersClient({ initialOrders }) {
                   <select 
                     value={order.status}
                     onChange={(e) => handleStatusChange(order.id, e.target.value)}
-                    style={{ border: '0.5px solid #E0D0B8', borderRadius: '4px', fontFamily: '"DM Sans", sans-serif', fontWeight: 400, fontSize: '10px', color: '#1A0F0A', background: 'white', padding: '4px', outline: 'none' }}
+                    style={{ border: '0.5px solid #E0D0B8', borderRadius: '4px', fontFamily: 'var(--font-admin)', fontWeight: 500, fontSize: '12px', color: '#1A0F0A', background: 'white', padding: '4px', outline: 'none' }}
                   >
                     {['pending', 'confirmed', 'processing', 'out_for_delivery', 'delivered', 'cancelled', 'returned'].map(s => (
                       <option key={s} value={s}>{s.replace(/_/g, ' ')}</option>
@@ -284,15 +284,15 @@ export default function OrdersClient({ initialOrders }) {
                   </select>
                 </td>
                 <td style={{ padding: '14px 16px' }}>
-                  <div style={{ fontFamily: '"DM Sans", sans-serif', fontWeight: 300, fontSize: '10px', color: '#1A0F0A' }}>
+                  <div style={{ fontFamily: 'var(--font-admin)', fontWeight: 500, fontSize: '12px', color: '#1A0F0A' }}>
                     {new Date(order.created_at).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}
                   </div>
-                  <div style={{ fontFamily: '"DM Sans", sans-serif', fontWeight: 300, fontSize: '9px', color: '#9C7B5E', marginTop: '2px' }}>
+                  <div style={{ fontFamily: 'var(--font-admin)', fontWeight: 400, fontSize: '11px', color: '#9C7B5E', marginTop: '2px' }}>
                     {new Date(order.created_at).toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' })}
                   </div>
                 </td>
                 <td style={{ padding: '14px 16px' }}>
-                  <Link href={`/admin/orders/${order.id}`} style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '4px', color: '#C49B38', fontFamily: '"DM Sans", sans-serif', fontWeight: 400, fontSize: '9px', textTransform: 'uppercase' }}>
+                  <Link href={`/admin/orders/${order.id}`} style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '4px', color: '#C49B38', fontFamily: 'var(--font-admin)', fontWeight: 600, fontSize: '11px', textTransform: 'uppercase' }}>
                     <span style={{ fontSize: '13px' }}>👁</span> View
                   </Link>
                 </td>
@@ -302,10 +302,10 @@ export default function OrdersClient({ initialOrders }) {
                 <td colSpan={8} style={{ padding: '48px', textAlign: 'center' }}>
                   <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                     <ShoppingBag size={32} color="#9C7B5E" />
-                    <div style={{ fontFamily: '"Cormorant Garamond", serif', fontWeight: 500, fontSize: '22px', color: '#1A0F0A', marginTop: '12px' }}>
+                    <div style={{ fontFamily: 'var(--font-admin)', fontWeight: 600, fontSize: 'var(--admin-text-xl)', color: '#1A0F0A', marginTop: '12px' }}>
                       No orders found
                     </div>
-                    <div style={{ fontFamily: '"DM Sans", sans-serif', fontWeight: 300, fontSize: '11px', color: '#9C7B5E', marginTop: '6px' }}>
+                    <div style={{ fontFamily: 'var(--font-admin)', fontWeight: 400, fontSize: '11px', color: '#9C7B5E', marginTop: '6px' }}>
                       Try adjusting your filters
                     </div>
                   </div>

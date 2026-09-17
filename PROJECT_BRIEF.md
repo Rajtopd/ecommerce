@@ -1,21 +1,21 @@
-`# Soul Sisters — Project Brief
+# Soul Sisters — Project Brief
 
 **Type:** Custom E-Commerce System
 **Location:** Dubai, UAE
 **Delivery Zone:** Dubai only
-**Build Time:** 30 – 40 Days
-**Architecture:** Multi-Page Application (MPA)
+**Architecture:** Next.js App Router (server-rendered pages + API routes)
+**Status:** 🟢 **Live** — [soulsistersdubai.com](https://soulsistersdubai.com), Cash on Delivery only (no online payment gateway)
 
 ---
 
 ## What We Are Building
 
-A complete, fully custom e-commerce system for Soul Sisters — a women's clothing brand based in Dubai, UAE. No Shopify. No templates. Everything is built from scratch and fully owned by the client.
+A complete, fully custom e-commerce system for Soul Sisters — a women's ethnic-wear brand based in Dubai, UAE. No Shopify. No templates. Everything is built from scratch and fully owned by the client.
 
 The system has two parts:
 
 1. **Customer Website** — where shoppers browse, explore, and purchase
-2. **Admin CMS Dashboard** — where the Soul Sisters team manages the store
+2. **Admin CMS Dashboard** — where the Soul Sisters team manages the store, **including every piece of text and imagery on the storefront** — the admin panel is the single control plane; no code changes are needed to run the day-to-day business
 
 ---
 
@@ -25,13 +25,16 @@ The system has two parts:
 |---|---|
 | Framework | Next.js 14 (App Router) |
 | Styling | Tailwind CSS |
-| Database | Supabase (PostgreSQL) |
-| Auth | Supabase Auth |
-| Payments | Stripe |
-| Image Storage | Cloudinary |
-| Hosting | Vercel |
-| Cart State | Zustand |
-| Charts | Recharts |
+| Database | Supabase (PostgreSQL), Row-Level Security enabled on every table |
+| Customer Auth | Supabase Auth — passwordless email code (OTP) + Google OAuth |
+| Admin Auth | Custom — scrypt-hashed passwords, HMAC-signed session cookies, owner/staff roles (not Supabase Auth) |
+| Transactional Email | Resend (custom SMTP) — branded auth emails from `noreply@soulsistersdubai.com` |
+| Payments | Cash on Delivery (no payment gateway integrated) |
+| Image Storage | Cloudinary (unsigned upload preset, admin-only widgets) |
+| Hosting | Vercel, auto-deploys on push to `main` |
+| Domain / DNS | GoDaddy → Vercel |
+| Cart State | Zustand (persisted to `localStorage`, survives login redirect) |
+| Charts | Recharts (admin analytics) |
 | Icons | Lucide React |
 
 ---
@@ -42,13 +45,15 @@ The system has two parts:
 |---|---|
 | Currency | AED (د.إ) — fils as smallest unit |
 | Delivery | Dubai, UAE only |
-| VAT | 5% UAE VAT applied at checkout |
-| Phone format | +971 5X XXX XXXX |
-| Order number format | SS-2026-00001 |
-| Address format | Area → Street → Building → Flat number |
-| Delivery areas | Dropdown selection (not open text) |
+| VAT | 5% UAE VAT, admin-configurable |
+| Free delivery threshold | Admin-configurable (default: orders over د.إ 200) |
+| Delivery fee | Admin-configurable flat rate (default: د.إ 15), same for every zone |
+| Order number format | `SS-` + 6 random alphanumeric characters (e.g. `SS-8BPX8O`) — not sequential |
+| Guest checkout | **Not allowed** — login required to place an order, enforced server-side |
+| Delivery areas | Dropdown, admin-managed list (Admin → Delivery) |
+| Discount codes | Percent or fixed amount, min order, usage limits, date windows — admin-managed |
 
-### Dubai Delivery Areas
+### Dubai Delivery Areas (seeded, admin-editable)
 
 Jumeirah, Downtown Dubai, Dubai Marina, JLT, Business Bay, Al Barsha,
 Deira, Bur Dubai, Mirdif, Palm Jumeirah, DIFC, Al Quoz, Sports City,
@@ -58,9 +63,9 @@ Silicon Oasis, Discovery Gardens, Al Nahda, Karama, Satwa, Oud Metha, Rashidiya
 
 XS, S, M, L, XL, XXL
 
-### Product Categories
+### Product Categories (seeded, admin-editable — no longer hardcoded)
 
-Tops, Bottoms, Dresses, Co-ords, Outerwear, Accessories
+Dresses, Tops, Bottoms, Co-ords, Outerwear, Accessories
 
 ---
 
@@ -68,64 +73,77 @@ Tops, Bottoms, Dresses, Co-ords, Outerwear, Accessories
 
 ### Pages
 
-| Page | URL | Description |
+| Page | URL | Status |
 |---|---|---|
-| Homepage | `/` | Hero, featured products, brand story |
-| Shop | `/shop` | All products with filters and sorting |
-| Product Detail | `/product/[slug]` | Images, size/colour selector, add to cart |
-| Cart | `/cart` | Cart items, quantities, subtotal |
-| Checkout | `/checkout` | Address, payment, order summary |
-| Order Confirmed | `/order-confirmed/[id]` | Success page with order details |
-| Track Order | `/track` | Order status timeline |
-| Account | `/account` | Order history, saved addresses |
+| Homepage | `/` | ✅ Hero (scroll-reveal animation), USP strip, category tiles, featured products, brand story — all content editable from Admin → Site Content |
+| Shop | `/shop` | ✅ Filters (category/size), sorting, pagination, loading skeleton |
+| Product Detail | `/product/[slug]` | ✅ Image gallery with hover-zoom + parallax, size/colour selector, breadcrumbs, related products |
+| Cart | `/cart` | ⚠️ Placeholder page only — the real cart UI is the slide-out **Cart Drawer**, accessible from any page |
+| Login | `/login` | ✅ Passwordless email code (8-digit, sent via branded Resend email) or Google OAuth |
+| Checkout | `/checkout` | ✅ **Requires login** (redirects to `/login?redirect=/checkout` otherwise), address form, discount code field, Cash on Delivery |
+| Order Confirmed | `/order-confirmed/[id]` | ✅ Success page with order details |
+| Track Order | `/track` | ✅ Order status timeline |
+| Account | `/account` | ✅ Order history + saved addresses (tabbed) |
 
 ### Customer Features
 
-- Browse products by category, size, and colour
-- Product image gallery with zoom
-- Size and colour variant selector
-- Stock availability per variant
-- Persistent cart (survives page refresh)
-- Cart drawer with item count badge
-- Dubai area dropdown at checkout
-- UAE 5% VAT calculated at checkout
-- Stripe card payment in AED
-- Guest checkout + account checkout
+- Browse products by category, size, and colour (categories are admin-managed, not hardcoded)
+- Product image gallery with hover-zoom and scroll parallax
+- Size and colour variant selector, live stock availability per variant
+- Persistent cart (localStorage — survives refresh and the login redirect)
+- Cart drawer with item count badge and a free-delivery progress bar
+- **Login required to check out — no guest checkout**, enforced both in the UI and at the API layer (server rejects unauthenticated payment/order requests)
+- Passwordless email-code login (branded, sent from the store's own domain) + "Continue with Google"
+- Discount codes at checkout (validated server-side)
+- Dubai area dropdown at checkout (admin-managed list)
+- UAE VAT + delivery fee calculated server-side from admin settings (not trusted from the client)
+- Cash on Delivery — no online payment gateway, order is placed and confirmed immediately, paid in cash on arrival
 - Order confirmation page with order number
 - Order tracking with status timeline
-- Account page — order history and addresses
-- Wishlist (save products for later)
+- Account page — order history and saved addresses
+- Hero section: curtain-wipe image reveal, Ken Burns zoom, scroll parallax, staggered text reveal — reduced-motion safe
+- Wishlist heart icon on product cards — ⚠️ UI-only right now, not yet saved to the account (the `wishlists` table exists but isn't wired up)
 
 ---
 
 ## Part 2 — Admin CMS Dashboard
 
+The admin panel was rebuilt from a basic products/orders tool into a **full control plane** — the store owner can now change anything a customer sees or any way the business processes orders, without a code deploy.
+
 ### Pages
 
 | Page | URL | Description |
 |---|---|---|
-| Dashboard Home | `/admin` | Stats overview — orders, revenue, stock alerts |
-| Products | `/admin/products` | List all products |
-| Add Product | `/admin/products/new` | Add new product with images |
-| Edit Product | `/admin/products/[id]` | Edit product details and stock |
-| Orders | `/admin/orders` | All orders with status and filters |
-| Order Detail | `/admin/orders/[id]` | Full order info, update status |
-| Analytics | `/admin/analytics` | Revenue charts, top products, order trends |
+| Dashboard | `/admin` | Stats overview (orders today, revenue, total orders, low-stock alerts), recent orders, quick links |
+| Admin Login | `/admin/login` | Email + password, per-person accounts (no more shared password) |
+| Products | `/admin/products` | List, search, filter by category/status |
+| Add Product | `/admin/products/new` | New product with Cloudinary image upload |
+| Edit Product | `/admin/products/[id]` | Edit details, variants, stock |
+| **Categories** | `/admin/categories` | 🆕 Add/rename/reorder/hide categories, upload tile images — feeds the storefront nav, shop filters, homepage tiles, and footer |
+| **Site Content** | `/admin/content` | 🆕 Edit every storefront text/image: announcement bar, hero copy + image, USP strip, homepage headings, brand story, footer, product trust badges, cart copy, and email/SMS notification templates |
+| **Delivery** | `/admin/delivery` | 🆕 Manage delivery areas (add/remove/toggle) and set the delivery fee, free-delivery threshold, and VAT rate |
+| **Discounts** | `/admin/discounts` | 🆕 Create percent/fixed discount codes with min order, usage limits, and date windows |
+| Orders | `/admin/orders` | List with search, status filter, date range, CSV export |
+| Order Detail | `/admin/orders/[id]` | Full order info, status timeline, tracking info, notes; cancelling/returning an order restores stock (no online refund — Cash on Delivery, refunds are handled in person) |
+| **Customers** | `/admin/customers` | 🆕 Customer list with order count and lifetime spend |
+| Analytics | `/admin/analytics` | Rebuilt from an empty placeholder into real charts: daily revenue, orders/day, top products, order-status breakdown |
+| **Admins** | `/admin/admins` | 🆕 Owner-only — create/deactivate admin accounts, assign **owner** or **staff** role |
 
 ### Admin Features
 
-- Password-protected admin area
-- Add, edit, and delete products
-- Upload product images via Cloudinary (drag and drop)
-- Set sizes, colours, and stock quantity per variant
-- Mark variants as out of stock
-- View all customer orders
-- Update order status (confirmed → processing → out for delivery → delivered)
-- Filter orders by status and date
-- Sales analytics — daily/weekly/monthly revenue in AED
-- Top selling products chart
-- Low stock alerts (variants with less than 5 units)
-- Order value breakdown with VAT
+- **Role-based accounts** (owner / staff) with per-person login — replaced the single shared admin password
+- Add, edit, and delete products; upload images via Cloudinary (drag and drop)
+- Set sizes, colours, and stock quantity per variant; mark variants out of stock
+- **Manage categories** — previously a hardcoded list in code, now fully admin-editable
+- **Manage every storefront text and image** — hero, announcement bar, footer, brand story, USP strip, product page trust badges, cart copy, and notification templates — with image upload + preview where relevant
+- **Manage delivery** — areas, delivery fee, free-delivery threshold, VAT rate (previously hardcoded and duplicated in two files)
+- **Manage discount codes** — percent or fixed, minimum order, usage caps, start/end dates
+- **View customers** — order count and lifetime spend per customer
+- View all customer orders; update status (confirmed → processing → out for delivery → delivered); search, filter by status/date; **export to CSV**
+- **Cancel or return an order** — restores stock automatically (refunds for Cash on Delivery orders are handled in person, not through the system)
+- Sales analytics — daily revenue, orders/day, top products, status breakdown (previously an empty placeholder page)
+- Low stock alerts (variants with 5 or fewer units)
+- **Manage other admins** (owner role only) — add staff accounts, deactivate, reset passwords
 
 ---
 
@@ -137,68 +155,17 @@ Tops, Bottoms, Dresses, Co-ords, Outerwear, Accessories
 | `addresses` | Saved delivery addresses (Dubai areas) |
 | `products` | Product listings |
 | `product_variants` | Size + colour + stock per product |
-| `orders` | Customer orders |
-| `order_items` | Products inside each order |
+| `orders` | Customer orders — plus `refunded_at`, `refund_amount`, `refund_id`, `cancelled_at`, `discount_code`, `discount_amount` |
+| `order_items` | Products inside each order (stores a price/name/image snapshot at purchase time) |
 | `shipments` | Delivery tracking info |
-| `wishlists` | Saved products per customer |
+| `wishlists` | Saved products per customer (table exists; storefront UI not yet wired to it) |
+| `categories` 🆕 | Admin-managed product categories (name, slug, image, sort order, visibility) |
+| `delivery_zones` 🆕 | Admin-managed Dubai delivery areas |
+| `discounts` 🆕 | Discount/promo codes |
+| `admin_users` 🆕 | Admin accounts — scrypt password hash, role (owner/staff), active flag |
+| `site_content` 🆕 | Every editable text/image/JSON block on the storefront, keyed by section |
 
----
-
-## Folder Structure
-
-```
-/app
-  /page.jsx
-  /shop/page.jsx
-  /product/[slug]/page.jsx
-  /cart/page.jsx
-  /checkout/page.jsx
-  /order-confirmed/[id]/page.jsx
-  /track/page.jsx
-  /account/page.jsx
-  /admin/page.jsx
-  /admin/products/page.jsx
-  /admin/products/new/page.jsx
-  /admin/products/[id]/page.jsx
-  /admin/orders/page.jsx
-  /admin/orders/[id]/page.jsx
-  /admin/analytics/page.jsx
-  /api/products/route.js
-  /api/orders/route.js
-  /api/payments/route.js
-  /api/webhooks/stripe/route.js
-  /api/auth/route.js
-
-/components
-  /layout
-    Navbar.jsx
-    Footer.jsx
-    AdminSidebar.jsx
-  /ui
-    Button.jsx
-    Badge.jsx
-    Modal.jsx
-    Toast.jsx
-    Input.jsx
-    Spinner.jsx
-  /product
-    ProductCard.jsx
-    ProductGrid.jsx
-    ProductFilters.jsx
-  /cart
-    CartDrawer.jsx
-    CartItem.jsx
-  /admin
-    StatsCard.jsx
-    OrderTable.jsx
-    ProductForm.jsx
-
-/lib
-  supabase.js
-  stripe.js
-  cloudinary.js
-  constants.js
-```
+All Row-Level Security policies were audited; two overly-permissive policies (`orders`, `order_items` were publicly readable by anyone with the public API key) were found and removed — see **Security**, below.
 
 ---
 
@@ -206,33 +173,54 @@ Tops, Bottoms, Dresses, Co-ords, Outerwear, Accessories
 
 ```
 NEXT_PUBLIC_SUPABASE_URL=
-NEXT_PUBLIC_SUPABASE_ANON_KEY=
-SUPABASE_SERVICE_ROLE_KEY=
-NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=
-STRIPE_SECRET_KEY=
-STRIPE_WEBHOOK_SECRET=
+NEXT_PUBLIC_SUPABASE_ANON_KEY=        # now a "publishable" key (sb_publishable_...), not a JWT
+SUPABASE_SERVICE_ROLE_KEY=            # now a "secret" key (sb_secret_...), not a JWT
 NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=
-CLOUDINARY_API_KEY=
-CLOUDINARY_API_SECRET=
-ADMIN_PASSWORD=
+NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET= # unsigned preset, admin upload widgets only
+ADMIN_SECRET_TOKEN=                   # signs admin session cookies — high-entropy random value
+DATABASE_URL=                         # local dev/debug scripts only, not read by the deployed app
 ```
+
+`ADMIN_PASSWORD` is legacy — only used once by the seed script to create the initial owner account; the running app no longer reads it. Resend's SMTP credentials are configured directly in the Supabase dashboard (Authentication → Emails → SMTP Settings), not as an app environment variable.
 
 ---
 
-## Build Phases
+## Status by Phase
 
-| Phase | What Gets Built | Timeline |
+| Phase | What Was Built | Status |
 |---|---|---|
-| **Phase 1** | Scaffold — folder structure, dependencies, env setup | Days 1–2 |
-| **Phase 2** | Supabase database schema + RLS policies | Days 3–4 |
-| **Phase 3** | Homepage + Shop page + Product detail pages | Days 5–10 |
-| **Phase 4** | Cart + Checkout + Stripe payments | Days 11–16 |
-| **Phase 5** | Order confirmation + Order tracking | Days 17–19 |
-| **Phase 6** | Customer account + Supabase Auth | Days 20–22 |
-| **Phase 7** | Admin CMS — product management + image upload | Days 23–27 |
-| **Phase 8** | Admin CMS — order management | Days 28–30 |
-| **Phase 9** | Admin analytics dashboard | Days 31–34 |
-| **Phase 10** | Polish, mobile testing, deploy to Vercel | Days 35–40 |
+| Scaffold, schema, RLS | Folder structure, dependencies, Supabase schema | ✅ Done |
+| Homepage + Shop + Product pages | Built, then later given a full visual pass (hero animations, category imagery, product card polish) | ✅ Done |
+| Cart + Checkout | Built; checkout later locked behind login (no guest checkout); Stripe removed in favour of Cash on Delivery | ✅ Done (Cash on Delivery) |
+| Order confirmation + tracking | Built | ✅ Done |
+| Customer account + auth | Built with Supabase email OTP + Google OAuth; OTP length bug (app expected 6 digits, Supabase sends 8) fixed | ✅ Done |
+| Admin CMS — products + images | Built | ✅ Done |
+| Admin CMS — orders | Built, later extended with CSV export; Stripe refund flow removed with Cash on Delivery switch | ✅ Done |
+| Admin analytics | Originally a placeholder; rebuilt with real charts | ✅ Done |
+| **Admin control-plane rebuild** | Categories, Site Content, Delivery, Discounts, Customers, and Admins screens added; role-based admin auth; storefront rewired to read from these tables instead of hardcoded values | ✅ Done |
+| **Security hardening** | Full audit + critical fixes (see below) | ✅ Critical items done; some High-severity items open |
+| **Deployment** | Vercel + custom domain (soulsistersdubai.com) via GoDaddy DNS, branded transactional email via Resend | ✅ Live |
+| Polish / mobile testing | Ongoing | 🔶 In progress |
+
+---
+
+## Security
+
+A full security audit was performed (OWASP Top 10 + e-commerce-specific checks: payment integrity, RLS, admin auth, secrets hygiene). All 5 **critical** findings have been fixed and verified:
+
+1. ✅ **Orders/order-items were publicly readable** by anyone holding the public API key — insecure RLS policies dropped
+2. ✅ **Database password had leaked into public git history** — rotated; old password confirmed dead
+3. ✅ **Supabase service-role key had leaked into public git history** — migrated to the new publishable/secret key system; old key confirmed dead
+4. ✅ **Admin session secret was a weak, guessable string** — rotated to a random 256-bit value
+5. ✅ **Negative/zero/fractional cart quantities could zero out a charge or corrupt stock** — server-side validation added to `/api/payments`
+
+**Known follow-ups (High severity, not yet fixed):**
+- Order-tracking endpoint leaks customer PII to anyone who guesses an order number (order numbers were made non-sequential, but tracking still needs an additional secret/login check)
+- No check that a customer confirming an order actually owns it (order-hijack risk)
+- Discount code usage counter has a race condition (a limited-use code could be over-redeemed)
+- No rate limiting on admin login (brute-force risk)
+- No security headers configured (`X-Frame-Options`, CSP, etc.)
+- Next.js version has known CVEs, needs upgrading
 
 ---
 
@@ -240,23 +228,24 @@ ADMIN_PASSWORD=
 
 | Service | Status | Used For |
 |---|---|---|
-| GitHub | ✅ Created | Code storage + deployment pipeline |
-| Vercel | ✅ Created | Hosting (connect to GitHub repo) |
-| Supabase | ✅ Created | Database + Auth |
-| Stripe | ✅ Created | Card payments in AED |
+| GitHub | ✅ Created (repo is **public**) | Code storage + deployment pipeline |
+| Vercel | ✅ Live | Hosting, connected to GitHub `main`, auto-deploys on push |
+| Supabase | ✅ Live | Database + customer auth; secrets rotated post-audit |
 | Cloudinary | ✅ Created | Product image storage + CDN |
-| Domain | ✅ Purchased | Point DNS to Vercel when ready |
+| Resend | ✅ Created | Branded transactional email (login codes) from the store's own domain |
+| Domain | ✅ **Live** — soulsistersdubai.com | DNS on GoDaddy, pointed at Vercel |
 
 ---
 
-## Deployment Plan
+## Deployment Status
 
-1. Push code to GitHub repository
-2. Connect GitHub repo to Vercel
-3. Add all environment variables in Vercel dashboard
-4. Vercel auto-deploys on every push to `main`
-5. Point purchased domain DNS to Vercel
-6. SSL certificate is automatic and free via Vercel
+1. ✅ Code pushed to GitHub (`main` branch)
+2. ✅ Vercel project connected to the GitHub repo
+3. ✅ Environment variables configured in Vercel
+4. ✅ Vercel auto-deploys on every push to `main`
+5. ✅ Domain DNS pointed at Vercel (A record + CNAME in GoDaddy)
+6. ✅ SSL certificate automatic via Vercel
+7. ✅ Stripe removed — checkout is Cash on Delivery only, no payment gateway integrated
 
 ---
 
@@ -269,9 +258,10 @@ ADMIN_PASSWORD=
 | Hosting (Vercel) | Free |
 | Database (Supabase) | Free tier |
 | Images (Cloudinary) | Free tier |
-| Payments (Stripe) | 2.9% + ~INR 25 per transaction |
-| WhatsApp Notifications | INR 2,000–2,500/month (optional) |
+| Email (Resend) | Free tier |
+| Payments | Cash on Delivery — no gateway fees |
+| WhatsApp Notifications | INR 2,000–2,500/month (optional, not yet built) |
 
 ---
 
-*Soul Sisters | Dubai, UAE | Built on Next.js + Supabase + Stripe*
+*Soul Sisters | Dubai, UAE | Built on Next.js + Supabase — live at [soulsistersdubai.com](https://soulsistersdubai.com)*

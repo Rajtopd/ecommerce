@@ -1,19 +1,15 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { useStripe, useElements, CardElement } from '@stripe/react-stripe-js'
+import { Banknote } from 'lucide-react'
 import { useToast } from '@/components/ui/ToastContext'
-import useCartStore from '@/lib/cartStore'
 import { useAuth } from '@/lib/authContext'
 import { supabase } from '@/lib/supabase'
 import { useSiteData } from '@/components/SiteDataContext'
 import { DUBAI_AREAS } from '@/lib/constants'
 
-export default function CheckoutForm({ clientSecret, totalAmount, onSuccess }) {
-  const stripe = useStripe()
-  const elements = useElements()
+export default function CheckoutForm({ items, discountCode, totalAmount, onSuccess }) {
   const { showToast } = useToast()
-  const clearCart = useCartStore(state => state.clearCart)
   const { user, isLoggedIn } = useAuth()
   const { zones } = useSiteData()
 
@@ -43,7 +39,7 @@ export default function CheckoutForm({ clientSecret, totalAmount, onSuccess }) {
   useEffect(() => {
     if (isLoggedIn && user) {
       setFormData(prev => ({ ...prev, email: user.email }))
-      
+
       const fetchAddress = async () => {
         const { data } = await supabase
           .from('addresses')
@@ -51,7 +47,7 @@ export default function CheckoutForm({ clientSecret, totalAmount, onSuccess }) {
           .eq('user_id', user.id)
           .eq('is_default', true)
           .single()
-          
+
         if (data) {
           const names = (data.full_name || '').split(' ')
           const firstName = names[0] || ''
@@ -77,62 +73,40 @@ export default function CheckoutForm({ clientSecret, totalAmount, onSuccess }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    
-    if (!stripe || !elements || !clientSecret) return
-
     setIsProcessing(true)
 
-    // 1. Confirm Payment with Stripe
-    const { error: stripeError, paymentIntent } = await stripe.confirmCardPayment(
-      clientSecret,
-      {
-        payment_method: {
-          card: elements.getElement(CardElement),
-          billing_details: {
-            name: `${formData.firstName} ${formData.lastName}`,
-            email: formData.email,
-            phone: formData.phone,
-          },
-        },
-      }
-    )
-
-    if (stripeError) {
-      showToast(stripeError.message || 'Payment failed', 'error')
-      setIsProcessing(false)
-      return
-    }
-
-    // 2. Confirm order in our database
     try {
       const { data: { session } } = await supabase.auth.getSession()
       const token = session?.access_token
-      
+
       const res = await fetch('/api/orders', {
         method: 'POST',
-        headers: { 
+        headers: {
           'Content-Type': 'application/json',
           ...(token ? { 'Authorization': `Bearer ${token}` } : {})
         },
         body: JSON.stringify({
-          paymentIntentId: paymentIntent.id,
-          shippingAddress: formData
+          items,
+          ...(discountCode ? { discountCode } : {}),
+          shippingAddress: formData,
         })
       })
 
+      const data = await res.json()
+
       if (!res.ok) {
-        throw new Error('Failed to confirm order in database')
+        showToast(data.error || 'Could not place your order. Please try again.', 'error')
+        setIsProcessing(false)
+        return
       }
 
       showToast('Order placed successfully!', 'success')
-      clearCart()
-      onSuccess(paymentIntent.id)
+      onSuccess(data.orderId)
     } catch (err) {
       console.error(err)
-      showToast('Payment successful but order creation failed. Please contact support.', 'error')
+      showToast('A network error occurred. Please try again.', 'error')
+      setIsProcessing(false)
     }
-    
-    setIsProcessing(false)
   }
 
   return (
@@ -151,8 +125,8 @@ export default function CheckoutForm({ clientSecret, totalAmount, onSuccess }) {
         <div className="flex justify-between items-end mb-4">
           <h2 className="font-display text-[22px] text-[#1C1410]">Delivery Address</h2>
           {useSavedAddress && (
-            <button 
-              type="button" 
+            <button
+              type="button"
               onClick={() => {
                 setUseSavedAddress(false)
                 setFormData(prev => ({
@@ -180,31 +154,21 @@ export default function CheckoutForm({ clientSecret, totalAmount, onSuccess }) {
       {/* Payment */}
       <section>
         <h2 className="font-display text-[22px] text-[#1C1410] mb-4">Payment</h2>
-        <div className="border border-[#E8E4DF] rounded-[2px] p-4 bg-[#FAFAF8]">
-          <CardElement options={{
-            style: {
-              base: {
-                fontSize: '14px',
-                color: '#1C1410',
-                fontFamily: 'Josefin Sans, sans-serif',
-                '::placeholder': {
-                  color: '#B5A89E',
-                },
-              },
-              invalid: {
-                color: '#C8726A',
-              },
-            },
-          }} />
+        <div className="border border-[#E8E4DF] rounded-[2px] p-4 bg-[#FAFAF8] flex items-center gap-3">
+          <Banknote size={20} className="text-[#1C1410] shrink-0" strokeWidth={1.5} />
+          <div>
+            <p className="text-[13px] text-[#1C1410]">Cash on Delivery</p>
+            <p className="text-[12px] text-[#6B5E54] font-light">Pay in cash when your order arrives at your door.</p>
+          </div>
         </div>
       </section>
 
       <button
         type="submit"
-        disabled={isProcessing || !stripe || !elements || !clientSecret}
+        disabled={isProcessing}
         className="w-full bg-[#1C1410] text-white h-[54px] rounded-[2px] text-[12px] uppercase tracking-[0.14em] mt-2 hover:opacity-90 disabled:opacity-50 transition-opacity flex items-center justify-center"
       >
-        {isProcessing ? 'Processing...' : `Pay د.إ ${(totalAmount / 100).toFixed(2)}`}
+        {isProcessing ? 'Placing order...' : `Place Order — Pay د.إ ${(totalAmount / 100).toFixed(2)} on Delivery`}
       </button>
     </form>
   )

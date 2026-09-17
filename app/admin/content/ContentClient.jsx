@@ -177,7 +177,7 @@ function JsonField({ row, value, onChange }) {
               <div style={{ flex: 1, display: 'grid', gridTemplateColumns: `repeat(${Math.min(3, Object.keys(item).length)}, 1fr)`, gap: '8px' }}>
                 {Object.keys(item).map(k => (
                   <div key={k}>
-                    <div style={{ fontSize: '10px', color: '#9C7B5E', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: '3px' }}>{k}</div>
+                    <div style={{ fontSize: '11px', color: '#9C7B5E', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: '3px' }}>{k}</div>
                     <Input value={String(item[k] ?? '')} onChange={e => update(parsed.map((x, j) => j === i ? { ...x, [k]: e.target.value } : x))} />
                   </div>
                 ))}

@@ -40,7 +40,7 @@ export default async function AdminDashboard() {
       {/* HEADER */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '28px', flexWrap: 'wrap', gap: '12px' }}>
         <div>
-          <h1 style={{ fontFamily: '"Cormorant Garamond", serif', fontSize: '30px', fontWeight: 600, color: '#1A0F0A', margin: 0 }}>Dashboard</h1>
+          <h1 style={{ fontFamily: 'var(--font-admin)', fontSize: 'var(--admin-text-2xl)', fontWeight: 'var(--admin-weight-semibold)', color: '#1A0F0A', margin: 0 }}>Dashboard</h1>
           <div style={{ fontSize: '13px', color: '#5C3D2E', marginTop: '3px' }}>{formattedDate} · Dubai, UAE</div>
         </div>
         <div style={{ display: 'flex', gap: '10px' }}>
@@ -52,20 +52,20 @@ export default async function AdminDashboard() {
       {/* STATS ROW */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '16px', marginBottom: '24px' }}>
         <div style={{ background: 'white', borderRadius: '6px', padding: '22px', border: '1px solid #E0D0B8' }}>
-          <div style={{ fontSize: '10px', letterSpacing: '0.12em', textTransform: 'uppercase', color: '#5C3D2E', marginBottom: '10px', fontWeight: 600 }}>Orders Today</div>
-          <div style={{ fontFamily: '"Cormorant Garamond", serif', fontSize: '40px', fontWeight: 700, color: '#1A0F0A', lineHeight: 1 }}>{ordersToday || 0}</div>
+          <div style={{ fontSize: '11px', letterSpacing: '0.12em', textTransform: 'uppercase', color: '#5C3D2E', marginBottom: '10px', fontWeight: 600 }}>Orders Today</div>
+          <div style={{ fontFamily: 'var(--font-admin)', fontSize: '32px', fontWeight: 700, fontVariantNumeric: 'tabular-nums', color: '#1A0F0A', lineHeight: 1 }}>{ordersToday || 0}</div>
         </div>
         <div style={{ background: 'white', borderRadius: '6px', padding: '22px', border: '1px solid #E0D0B8' }}>
-          <div style={{ fontSize: '10px', letterSpacing: '0.12em', textTransform: 'uppercase', color: '#5C3D2E', marginBottom: '10px', fontWeight: 600 }}>Total Revenue</div>
-          <div style={{ fontFamily: '"Cormorant Garamond", serif', fontSize: '40px', fontWeight: 700, color: '#C49B38', lineHeight: 1 }}>د.إ {(totalRevenue / 100).toFixed(0)}</div>
+          <div style={{ fontSize: '11px', letterSpacing: '0.12em', textTransform: 'uppercase', color: '#5C3D2E', marginBottom: '10px', fontWeight: 600 }}>Total Revenue</div>
+          <div style={{ fontFamily: 'var(--font-admin)', fontSize: '32px', fontWeight: 700, fontVariantNumeric: 'tabular-nums', color: '#C49B38', lineHeight: 1 }}>د.إ {(totalRevenue / 100).toFixed(0)}</div>
         </div>
         <div style={{ background: 'white', borderRadius: '6px', padding: '22px', border: '1px solid #E0D0B8' }}>
-          <div style={{ fontSize: '10px', letterSpacing: '0.12em', textTransform: 'uppercase', color: '#5C3D2E', marginBottom: '10px', fontWeight: 600 }}>Total Orders</div>
-          <div style={{ fontFamily: '"Cormorant Garamond", serif', fontSize: '40px', fontWeight: 700, color: '#1A0F0A', lineHeight: 1 }}>{totalOrders || 0}</div>
+          <div style={{ fontSize: '11px', letterSpacing: '0.12em', textTransform: 'uppercase', color: '#5C3D2E', marginBottom: '10px', fontWeight: 600 }}>Total Orders</div>
+          <div style={{ fontFamily: 'var(--font-admin)', fontSize: '32px', fontWeight: 700, fontVariantNumeric: 'tabular-nums', color: '#1A0F0A', lineHeight: 1 }}>{totalOrders || 0}</div>
         </div>
         <div style={{ background: 'white', borderRadius: '6px', padding: '22px', border: lowStockAlerts.length > 0 ? '1px solid rgba(139,26,44,0.25)' : '1px solid #E0D0B8' }}>
-          <div style={{ fontSize: '10px', letterSpacing: '0.12em', textTransform: 'uppercase', color: '#5C3D2E', marginBottom: '10px', fontWeight: 600 }}>Low Stock Alerts</div>
-          <div style={{ fontFamily: '"Cormorant Garamond", serif', fontSize: '40px', fontWeight: 700, color: lowStockAlerts.length > 0 ? '#8B1A2C' : '#1A0F0A', lineHeight: 1 }}>{lowStockAlerts.length}</div>
+          <div style={{ fontSize: '11px', letterSpacing: '0.12em', textTransform: 'uppercase', color: '#5C3D2E', marginBottom: '10px', fontWeight: 600 }}>Low Stock Alerts</div>
+          <div style={{ fontFamily: 'var(--font-admin)', fontSize: '32px', fontWeight: 700, fontVariantNumeric: 'tabular-nums', color: lowStockAlerts.length > 0 ? '#8B1A2C' : '#1A0F0A', lineHeight: 1 }}>{lowStockAlerts.length}</div>
           {lowStockAlerts.length > 0 && <div style={{ fontSize: '12px', color: '#8B1A2C', marginTop: '8px', fontWeight: 500 }}>⚠ Needs restocking</div>}
         </div>
       </div>
@@ -81,11 +81,11 @@ export default async function AdminDashboard() {
           <table style={{ width: '100%', borderCollapse: 'collapse' }}>
             <thead>
               <tr style={{ borderBottom: '1px solid #E0D0B8' }}>
-                <th style={{ textAlign: 'left', padding: '10px 22px', fontSize: '10px', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#5C3D2E', fontWeight: 600 }}>Order</th>
-                <th style={{ textAlign: 'left', padding: '10px 22px', fontSize: '10px', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#5C3D2E', fontWeight: 600 }}>Customer</th>
-                <th style={{ textAlign: 'left', padding: '10px 22px', fontSize: '10px', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#5C3D2E', fontWeight: 600 }}>Date</th>
-                <th style={{ textAlign: 'left', padding: '10px 22px', fontSize: '10px', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#5C3D2E', fontWeight: 600 }}>Status</th>
-                <th style={{ textAlign: 'right', padding: '10px 22px', fontSize: '10px', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#5C3D2E', fontWeight: 600 }}>Amount</th>
+                <th style={{ textAlign: 'left', padding: '10px 22px', fontSize: '11px', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#5C3D2E', fontWeight: 600 }}>Order</th>
+                <th style={{ textAlign: 'left', padding: '10px 22px', fontSize: '11px', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#5C3D2E', fontWeight: 600 }}>Customer</th>
+                <th style={{ textAlign: 'left', padding: '10px 22px', fontSize: '11px', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#5C3D2E', fontWeight: 600 }}>Date</th>
+                <th style={{ textAlign: 'left', padding: '10px 22px', fontSize: '11px', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#5C3D2E', fontWeight: 600 }}>Status</th>
+                <th style={{ textAlign: 'right', padding: '10px 22px', fontSize: '11px', letterSpacing: '0.1em', textTransform: 'uppercase', color: '#5C3D2E', fontWeight: 600 }}>Amount</th>
               </tr>
             </thead>
             <tbody>
@@ -104,7 +104,7 @@ export default async function AdminDashboard() {
                   </td>
                   <td style={{ padding: '12px 22px' }}>
                     <span style={{
-                      fontSize: '10px',
+                      fontSize: '11px',
                       padding: '3px 10px',
                       borderRadius: '100px',
                       fontWeight: 600,
@@ -149,7 +149,7 @@ export default async function AdminDashboard() {
                 </div>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '16px' }}>
                   <span style={{
-                    fontSize: '10px',
+                    fontSize: '11px',
                     padding: '3px 10px',
                     borderRadius: '100px',
                     fontWeight: 600,

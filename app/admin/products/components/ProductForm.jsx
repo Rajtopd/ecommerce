@@ -169,8 +169,8 @@ export default function ProductForm({ initialData = null }) {
     height: '46px',
     border: '0.5px solid #E8E4DF',
     borderRadius: '2px',
-    fontFamily: '"Josefin Sans", sans-serif',
-    fontWeight: 300,
+    fontFamily: 'var(--font-admin)',
+    fontWeight: 400,
     fontSize: '13px',
     padding: '0 16px',
     boxSizing: 'border-box',
@@ -179,9 +179,9 @@ export default function ProductForm({ initialData = null }) {
   };
 
   const labelStyle = {
-    fontFamily: '"Josefin Sans", sans-serif',
-    fontWeight: 400,
-    fontSize: '9px',
+    fontFamily: 'var(--font-admin)',
+    fontWeight: 600,
+    fontSize: '11px',
     textTransform: 'uppercase',
     color: '#6B5E54',
     marginBottom: '8px',
@@ -191,9 +191,9 @@ export default function ProductForm({ initialData = null }) {
   return (
     <div>
       <Link href="/admin/products" style={{
-        fontFamily: '"Josefin Sans", sans-serif',
-        fontWeight: 400,
-        fontSize: '9px',
+        fontFamily: 'var(--font-admin)',
+        fontWeight: 600,
+        fontSize: '11px',
         textTransform: 'uppercase',
         color: '#6B5E54',
         textDecoration: 'none',
@@ -204,7 +204,7 @@ export default function ProductForm({ initialData = null }) {
       </Link>
 
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '32px' }}>
-        <h1 style={{ fontFamily: '"DM Serif Display", serif', fontSize: '28px', color: '#1C1410', margin: 0 }}>
+        <h1 style={{ fontFamily: 'var(--font-admin)', fontSize: 'var(--admin-text-2xl)', fontWeight: 600, color: '#1C1410', margin: 0 }}>
           {isEdit ? 'Edit Product' : 'Add New Product'}
         </h1>
         {isEdit && (
@@ -212,9 +212,9 @@ export default function ProductForm({ initialData = null }) {
             border: '0.5px solid #C8726A',
             color: '#C8726A',
             backgroundColor: 'transparent',
-            fontFamily: '"Josefin Sans", sans-serif',
-            fontWeight: 400,
-            fontSize: '9px',
+            fontFamily: 'var(--font-admin)',
+            fontWeight: 600,
+            fontSize: '11px',
             textTransform: 'uppercase',
             padding: '8px 16px',
             borderRadius: '2px',
@@ -249,7 +249,7 @@ export default function ProductForm({ initialData = null }) {
                 value={formData.slug}
                 onChange={e => setFormData({ ...formData, slug: e.target.value })}
               />
-              <div style={{ fontFamily: '"Josefin Sans", sans-serif', fontWeight: 300, fontSize: '10px', color: '#B5A89E', marginTop: '4px' }}>
+              <div style={{ fontFamily: 'var(--font-admin)', fontWeight: 400, fontSize: '11px', color: '#B5A89E', marginTop: '4px' }}>
                 URL: /product/{formData.slug || '[slug]'}
               </div>
             </div>
@@ -311,7 +311,7 @@ export default function ProductForm({ initialData = null }) {
                 value={formData.base_price}
                 onChange={e => setFormData({ ...formData, base_price: e.target.value })}
               />
-              <div style={{ fontFamily: '"Josefin Sans", sans-serif', fontWeight: 300, fontSize: '10px', color: '#B5A89E', marginTop: '4px' }}>
+              <div style={{ fontFamily: 'var(--font-admin)', fontWeight: 400, fontSize: '11px', color: '#B5A89E', marginTop: '4px' }}>
                 Stored internally in fils
               </div>
             </div>
@@ -331,7 +331,7 @@ export default function ProductForm({ initialData = null }) {
 
           {/* SECTION C — Images */}
           <div>
-            <h3 style={{ ...labelStyle, fontSize: '9px', marginBottom: '16px' }}>Product Images</h3>
+            <h3 style={{ ...labelStyle, fontSize: '11px', marginBottom: '16px' }}>Product Images</h3>
             
             <CldUploadWidget 
               uploadPreset={process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET || "soul_sisters_products"}
@@ -354,10 +354,10 @@ export default function ProductForm({ initialData = null }) {
                   onMouseOut={e => { e.currentTarget.style.borderColor = '#E8E4DF'; e.currentTarget.style.backgroundColor = '#FAFAF8'; }}
                 >
                   <ImagePlus size={24} color="#B5A89E" style={{ margin: '0 auto' }} />
-                  <div style={{ fontFamily: '"DM Serif Display", serif', fontSize: '16px', color: '#6B5E54', marginTop: '8px' }}>
+                  <div style={{ fontFamily: 'var(--font-admin)', fontSize: '16px', color: '#6B5E54', marginTop: '8px' }}>
                     Click to upload images
                   </div>
-                  <div style={{ fontFamily: '"Josefin Sans", sans-serif', fontWeight: 300, fontSize: '10px', color: '#B5A89E', marginTop: '4px' }}>
+                  <div style={{ fontFamily: 'var(--font-admin)', fontWeight: 400, fontSize: '11px', color: '#B5A89E', marginTop: '4px' }}>
                     JPG, PNG, WEBP · Max 8 images
                   </div>
                 </div>
@@ -396,9 +396,9 @@ export default function ProductForm({ initialData = null }) {
                         bottom: 0, left: 0, right: 0,
                         backgroundColor: 'rgba(28,20,16,0.7)',
                         color: '#fff',
-                        fontFamily: '"Josefin Sans", sans-serif',
-                        fontWeight: 400,
-                        fontSize: '7px',
+                        fontFamily: 'var(--font-admin)',
+                        fontWeight: 600,
+                        fontSize: '11px',
                         textTransform: 'uppercase',
                         padding: '3px 0',
                         textAlign: 'center'
@@ -414,8 +414,8 @@ export default function ProductForm({ initialData = null }) {
 
           {/* SECTION D — Variants */}
           <div>
-            <h3 style={{ ...labelStyle, fontSize: '9px', marginBottom: '8px' }}>Sizes & Stock</h3>
-            <div style={{ fontFamily: '"Josefin Sans", sans-serif', fontWeight: 300, fontSize: '10px', color: '#B5A89E', marginBottom: '16px' }}>
+            <h3 style={{ ...labelStyle, fontSize: '11px', marginBottom: '8px' }}>Sizes & Stock</h3>
+            <div style={{ fontFamily: 'var(--font-admin)', fontWeight: 400, fontSize: '11px', color: '#B5A89E', marginBottom: '16px' }}>
               Add at least one variant to publish this product.
             </div>
 
@@ -471,9 +471,9 @@ export default function ProductForm({ initialData = null }) {
               alignItems: 'center',
               gap: '8px',
               color: '#B5A89E',
-              fontFamily: '"Josefin Sans", sans-serif',
-              fontWeight: 400,
-              fontSize: '9px',
+              fontFamily: 'var(--font-admin)',
+              fontWeight: 600,
+              fontSize: '11px',
               textTransform: 'uppercase',
               cursor: 'pointer',
               marginTop: '8px'
@@ -484,22 +484,22 @@ export default function ProductForm({ initialData = null }) {
 
           {/* SECTION E — Settings */}
           <div>
-            <h3 style={{ ...labelStyle, fontSize: '9px', marginBottom: '16px' }}>Settings</h3>
+            <h3 style={{ ...labelStyle, fontSize: '11px', marginBottom: '16px' }}>Settings</h3>
             
             <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
               <label style={{ display: 'flex', alignItems: 'center', gap: '12px', cursor: 'pointer' }}>
                 <input type="checkbox" checked={formData.is_active} onChange={e => setFormData({ ...formData, is_active: e.target.checked })} />
                 <div>
-                  <div style={{ fontFamily: '"Josefin Sans", sans-serif', fontWeight: 400, fontSize: '13px', color: '#1C1410' }}>Publish product</div>
-                  <div style={{ fontFamily: '"Josefin Sans", sans-serif', fontWeight: 300, fontSize: '11px', color: '#6B5E54' }}>Active products are visible to customers</div>
+                  <div style={{ fontFamily: 'var(--font-admin)', fontWeight: 400, fontSize: '13px', color: '#1C1410' }}>Publish product</div>
+                  <div style={{ fontFamily: 'var(--font-admin)', fontWeight: 400, fontSize: '11px', color: '#6B5E54' }}>Active products are visible to customers</div>
                 </div>
               </label>
 
               <label style={{ display: 'flex', alignItems: 'center', gap: '12px', cursor: 'pointer' }}>
                 <input type="checkbox" checked={formData.is_featured} onChange={e => setFormData({ ...formData, is_featured: e.target.checked })} />
                 <div>
-                  <div style={{ fontFamily: '"Josefin Sans", sans-serif', fontWeight: 400, fontSize: '13px', color: '#1C1410' }}>Feature on homepage</div>
-                  <div style={{ fontFamily: '"Josefin Sans", sans-serif', fontWeight: 300, fontSize: '11px', color: '#6B5E54' }}>Shows in the Featured Pieces section</div>
+                  <div style={{ fontFamily: 'var(--font-admin)', fontWeight: 400, fontSize: '13px', color: '#1C1410' }}>Feature on homepage</div>
+                  <div style={{ fontFamily: 'var(--font-admin)', fontWeight: 400, fontSize: '11px', color: '#6B5E54' }}>Shows in the Featured Pieces section</div>
                 </div>
               </label>
 
@@ -523,9 +523,9 @@ export default function ProductForm({ initialData = null }) {
               style={{
                 border: '0.5px solid #E8E4DF',
                 backgroundColor: '#fff',
-                fontFamily: '"Josefin Sans", sans-serif',
-                fontWeight: 400,
-                fontSize: '9px',
+                fontFamily: 'var(--font-admin)',
+                fontWeight: 600,
+                fontSize: '11px',
                 textTransform: 'uppercase',
                 color: '#6B5E54',
                 padding: '11px 24px',
@@ -542,9 +542,9 @@ export default function ProductForm({ initialData = null }) {
                 backgroundColor: '#C8726A',
                 color: '#fff',
                 border: 'none',
-                fontFamily: '"Josefin Sans", sans-serif',
-                fontWeight: 400,
-                fontSize: '9px',
+                fontFamily: 'var(--font-admin)',
+                fontWeight: 600,
+                fontSize: '11px',
                 textTransform: 'uppercase',
                 letterSpacing: '0.1em',
                 padding: '11px 24px',
@@ -560,7 +560,7 @@ export default function ProductForm({ initialData = null }) {
         {/* RIGHT COLUMN - LIVE PREVIEW */}
         <div style={{ flex: '1 1 30%', minWidth: '280px' }}>
           <div style={{ position: 'sticky', top: '100px' }}>
-            <div style={{ fontFamily: '"Josefin Sans", sans-serif', fontWeight: 400, fontSize: '9px', textTransform: 'uppercase', color: '#6B5E54', marginBottom: '16px' }}>
+            <div style={{ fontFamily: 'var(--font-admin)', fontWeight: 600, fontSize: '11px', textTransform: 'uppercase', color: '#6B5E54', marginBottom: '16px' }}>
               Preview
             </div>
             
@@ -571,10 +571,10 @@ export default function ProductForm({ initialData = null }) {
                   <img src={formData.images[0]} alt="Preview" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                 )}
               </div>
-              <div style={{ fontFamily: '"DM Serif Display", serif', fontSize: '18px', color: '#1C1410', marginBottom: '4px' }}>
+              <div style={{ fontFamily: 'var(--font-admin)', fontSize: '15px', fontWeight: 600, color: '#1C1410', marginBottom: '4px' }}>
                 {formData.name || 'Product Name'}
               </div>
-              <div style={{ fontFamily: '"Josefin Sans", sans-serif', fontWeight: 400, fontSize: '14px', marginBottom: '12px' }}>
+              <div style={{ fontFamily: 'var(--font-admin)', fontWeight: 400, fontSize: '14px', marginBottom: '12px' }}>
                 {formData.sale_price ? (
                   <>
                     <span style={{ color: '#C8726A', marginRight: '8px' }}>د.إ {formData.sale_price}</span>
@@ -590,8 +590,8 @@ export default function ProductForm({ initialData = null }) {
                   <div key={size} style={{
                     border: '0.5px solid #E8E4DF',
                     padding: '4px 8px',
-                    fontFamily: '"Josefin Sans", sans-serif',
-                    fontSize: '10px',
+                    fontFamily: 'var(--font-admin)',
+                    fontSize: '11px',
                     color: '#6B5E54'
                   }}>
                     {size}

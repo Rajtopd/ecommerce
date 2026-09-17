@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { supabase } from '@/lib/supabase';
 import '../globals.css';
+import './admin-typography.css';
 
 export default function AdminLayout({ children }) {
   const pathname = usePathname();
@@ -74,7 +75,7 @@ export default function AdminLayout({ children }) {
   const sideW = expanded ? '220px' : '64px';
 
   return (
-    <div style={{ display: 'flex', minHeight: '100vh', background: '#F0EBE1', fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif' }}>
+    <div className="admin-shell" style={{ display: 'flex', minHeight: '100vh', background: '#F0EBE1' }}>
       
       {/* ── SIDEBAR ── */}
       <div style={{
@@ -148,9 +149,9 @@ export default function AdminLayout({ children }) {
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      fontFamily: '"Cormorant Garamond", serif',
+                      fontFamily: 'var(--font-admin)',
                       fontWeight: 600,
-                      fontSize: '10px',
+                      fontSize: '11px',
                       padding: '0 4px',
                       marginLeft: expanded ? '0' : 'auto',
                       position: expanded ? 'relative' : 'absolute',

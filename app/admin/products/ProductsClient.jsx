@@ -68,8 +68,9 @@ export default function ProductsClient({ initialProducts }) {
       {/* TOP BAR */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '24px' }}>
         <h1 style={{
-          fontFamily: '"DM Serif Display", serif',
-          fontSize: '24px',
+          fontFamily: 'var(--font-admin)',
+          fontSize: 'var(--admin-text-2xl)',
+          fontWeight: 'var(--admin-weight-semibold)',
           color: '#1C1410',
           margin: 0
         }}>
@@ -79,9 +80,9 @@ export default function ProductsClient({ initialProducts }) {
           backgroundColor: '#C8726A',
           color: '#fff',
           borderRadius: '2px',
-          fontFamily: '"Josefin Sans", sans-serif',
-          fontWeight: 400,
-          fontSize: '9px',
+          fontFamily: 'var(--font-admin)',
+          fontWeight: 600,
+          fontSize: '12px',
           textTransform: 'uppercase',
           letterSpacing: '0.1em',
           padding: '10px 20px',
@@ -105,9 +106,9 @@ export default function ProductsClient({ initialProducts }) {
             height: '38px',
             border: '0.5px solid #E8E4DF',
             borderRadius: '2px',
-            fontFamily: '"Josefin Sans", sans-serif',
-            fontWeight: 300,
-            fontSize: '12px',
+            fontFamily: 'var(--font-admin)',
+            fontWeight: 400,
+            fontSize: '13px',
             padding: '0 14px',
             width: '280px',
             outline: 'none'
@@ -121,9 +122,9 @@ export default function ProductsClient({ initialProducts }) {
             height: '38px',
             border: '0.5px solid #E8E4DF',
             borderRadius: '2px',
-            fontFamily: '"Josefin Sans", sans-serif',
-            fontWeight: 300,
-            fontSize: '12px',
+            fontFamily: 'var(--font-admin)',
+            fontWeight: 400,
+            fontSize: '13px',
             padding: '0 14px',
             width: '180px',
             outline: 'none',
@@ -142,9 +143,9 @@ export default function ProductsClient({ initialProducts }) {
             height: '38px',
             border: '0.5px solid #E8E4DF',
             borderRadius: '2px',
-            fontFamily: '"Josefin Sans", sans-serif',
-            fontWeight: 300,
-            fontSize: '12px',
+            fontFamily: 'var(--font-admin)',
+            fontWeight: 400,
+            fontSize: '13px',
             padding: '0 14px',
             width: '180px',
             outline: 'none',
@@ -167,8 +168,9 @@ export default function ProductsClient({ initialProducts }) {
         {filteredProducts.length === 0 ? (
           <div style={{ padding: '48px', textAlign: 'center' }}>
             <div style={{
-              fontFamily: '"DM Serif Display", serif',
-              fontSize: '20px',
+              fontFamily: 'var(--font-admin)',
+              fontSize: 'var(--admin-text-xl)',
+              fontWeight: 600,
               color: '#1C1410',
               marginBottom: '16px'
             }}>
@@ -178,9 +180,9 @@ export default function ProductsClient({ initialProducts }) {
               backgroundColor: '#C8726A',
               color: '#fff',
               borderRadius: '2px',
-              fontFamily: '"Josefin Sans", sans-serif',
-              fontWeight: 400,
-              fontSize: '9px',
+              fontFamily: 'var(--font-admin)',
+              fontWeight: 600,
+              fontSize: '12px',
               textTransform: 'uppercase',
               letterSpacing: '0.1em',
               padding: '10px 20px',
@@ -201,9 +203,9 @@ export default function ProductsClient({ initialProducts }) {
               }}>
                 {['Image', 'Product', 'Category', 'Price', 'Stock', 'Status', 'Actions'].map(h => (
                   <th key={h} style={{
-                    fontFamily: '"Josefin Sans", sans-serif',
-                    fontWeight: 400,
-                    fontSize: '8px',
+                    fontFamily: 'var(--font-admin)',
+                    fontWeight: 600,
+                    fontSize: '11px',
                     textTransform: 'uppercase',
                     letterSpacing: '0.1em',
                     color: '#6B5E54',
@@ -240,22 +242,22 @@ export default function ProductsClient({ initialProducts }) {
                       </div>
                     </td>
                     <td style={{ padding: '14px 16px' }}>
-                      <div style={{ fontFamily: '"DM Serif Display", serif', fontSize: '13px', color: '#1C1410' }}>
+                      <div style={{ fontFamily: 'var(--font-admin)', fontWeight: 600, fontSize: '13px', color: '#1C1410' }}>
                         {product.name}
                       </div>
-                      <div style={{ fontFamily: '"Josefin Sans", sans-serif', fontWeight: 300, fontSize: '9px', color: '#B5A89E' }}>
+                      <div style={{ fontFamily: 'var(--font-admin)', fontWeight: 400, fontSize: '11px', color: '#B5A89E' }}>
                         {product.slug}
                       </div>
                     </td>
-                    <td style={{ padding: '14px 16px', fontFamily: '"Josefin Sans", sans-serif', fontWeight: 300, fontSize: '11px', color: '#6B5E54' }}>
+                    <td style={{ padding: '14px 16px', fontFamily: 'var(--font-admin)', fontWeight: 400, fontSize: '11px', color: '#6B5E54' }}>
                       {product.category}
                     </td>
-                    <td style={{ padding: '14px 16px', fontFamily: '"Josefin Sans", sans-serif', fontWeight: 400, fontSize: '12px' }}>
+                    <td style={{ padding: '14px 16px', fontFamily: 'var(--font-admin)', fontWeight: 600, fontSize: '13px' }}>
                       {product.sale_price ? (
                         <>
                           <span style={{ color: '#C8726A' }}>د.إ {(product.sale_price / 100).toFixed(2)}</span>
                           <br />
-                          <span style={{ color: '#B5A89E', fontSize: '10px', textDecoration: 'line-through' }}>
+                          <span style={{ color: '#B5A89E', fontSize: '11px', textDecoration: 'line-through' }}>
                             د.إ {(product.base_price / 100).toFixed(2)}
                           </span>
                         </>
@@ -263,7 +265,7 @@ export default function ProductsClient({ initialProducts }) {
                         <span style={{ color: '#1C1410' }}>د.إ {(product.base_price / 100).toFixed(2)}</span>
                       )}
                     </td>
-                    <td style={{ padding: '14px 16px', fontFamily: '"Josefin Sans", sans-serif', fontWeight: 400, fontSize: '11px', color: stockColor }}>
+                    <td style={{ padding: '14px 16px', fontFamily: 'var(--font-admin)', fontWeight: 400, fontSize: '11px', color: stockColor }}>
                       {totalStock === 0 ? 'Out of stock' : `${totalStock} units`}
                     </td>
                     <td style={{ padding: '14px 16px' }}>
@@ -275,9 +277,9 @@ export default function ProductsClient({ initialProducts }) {
                           border: 'none',
                           borderRadius: '12px',
                           padding: '4px 8px',
-                          fontFamily: '"Josefin Sans", sans-serif',
-                          fontWeight: 400,
-                          fontSize: '8px',
+                          fontFamily: 'var(--font-admin)',
+                          fontWeight: 600,
+                          fontSize: '11px',
                           textTransform: 'uppercase',
                           cursor: 'pointer'
                         }}
@@ -290,9 +292,9 @@ export default function ProductsClient({ initialProducts }) {
                         <Link href={`/admin/products/${product.id}`} style={{
                           textDecoration: 'none',
                           color: '#6B5E54',
-                          fontFamily: '"Josefin Sans", sans-serif',
-                          fontWeight: 400,
-                          fontSize: '9px',
+                          fontFamily: 'var(--font-admin)',
+                          fontWeight: 600,
+                          fontSize: '11px',
                           textTransform: 'uppercase',
                           display: 'flex',
                           alignItems: 'center',
@@ -304,9 +306,9 @@ export default function ProductsClient({ initialProducts }) {
                           background: 'none',
                           border: 'none',
                           color: '#C8726A',
-                          fontFamily: '"Josefin Sans", sans-serif',
-                          fontWeight: 400,
-                          fontSize: '9px',
+                          fontFamily: 'var(--font-admin)',
+                          fontWeight: 600,
+                          fontSize: '11px',
                           textTransform: 'uppercase',
                           display: 'flex',
                           alignItems: 'center',

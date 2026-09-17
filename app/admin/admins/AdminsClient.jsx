@@ -76,7 +76,7 @@ export default function AdminsClient({ initialAdmins, selfEmail }) {
               return (
                 <tr key={a.id}>
                   <td style={td}>
-                    <div style={{ fontWeight: 600 }}>{a.full_name || '—'} {isSelf && <span style={{ fontSize: '10px', color: '#C49B38' }}>(you)</span>}</div>
+                    <div style={{ fontWeight: 600 }}>{a.full_name || '—'} {isSelf && <span style={{ fontSize: '11px', color: '#C49B38' }}>(you)</span>}</div>
                     <div style={{ fontSize: '12px', color: '#9C7B5E' }}>{a.email}</div>
                   </td>
                   <td style={td}>
