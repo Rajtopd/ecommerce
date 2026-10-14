@@ -86,43 +86,119 @@ export async function POST(req) {
     const vatAmount = Math.round(discountedSubtotal * (settings.vatRatePercent / 100))
     const totalAmount = discountedSubtotal + shippingCharge + vatAmount
 
-    // TODO(human): Write the order.
-    //
-    // At this point `variants` holds each { variant, quantity, currentPrice }
-    // with `variant.products` already joined in, and the totals above
-    // (subtotal, discountAmount, appliedCode, shippingCharge, vatAmount,
-    // totalAmount) are the authoritative, server-checked numbers.
-    //
-    // Implement, in order:
-    //   1. Insert one row into `orders`: order_number ('SS-' + 6 random
-    //      uppercase alphanumeric chars — e.g.
-    //      'SS-' + Math.random().toString(36).substring(2, 8).toUpperCase()),
-    //      status 'confirmed', payment_status 'cod', user_id: user.id,
-    //      subtotal, vat_amount: vatAmount, shipping_charge: shippingCharge,
-    //      discount_code: appliedCode, discount_amount: discountAmount,
-    //      total: totalAmount, shipping_address: shippingAddress,
-    //      guest_email: shippingAddress.email, guest_phone:
-    //      shippingAddress.phone, confirmed_at: new Date().toISOString().
-    //      Capture the inserted row's id — everything below needs it.
-    //   2. For each entry in `variants`: insert an `order_items` row
-    //      (order_id, product_id: variant.product_id, variant_id: variant.id,
-    //      quantity, unit_price: currentPrice, total_price: currentPrice *
-    //      quantity, product_snapshot: { name: variant.products.name, color:
-    //      variant.color, size: variant.size, sku: variant.sku, image:
-    //      variant.products.images?.[0] || '' }), then decrement stock via
-    //      the existing `decrement_stock` RPC (variant_id, quantity).
-    //   3. If appliedCode was set: read the discount's current used_count
-    //      from `discounts` by code, then update it to used_count + 1.
-    //   4. Return NextResponse.json({ success: true, orderId, orderNumber }).
-    //
-    // Decide how to handle a failure partway through (e.g. an order_items
-    // insert or stock decrement fails after the order row is already
-    // created) — the previous Stripe flow just logged and moved on since a
-    // failed webhook could retry; there's no retry here, so consider
-    // whether that's still good enough for cash orders, or whether a
-    // failed step should be surfaced back to the customer/admin instead.
+    // 1. Reserve stock first. decrement_stock raises if stock is short, so two
+    //    customers racing for the last unit can't both succeed. There is no
+    //    webhook retry for cash orders, so anything that fails after this
+    //    point is undone via `rollback` and reported to the customer.
+    const reserved = []
+    let orderId = null
+    const rollback = async () => {
+      for (const { variant, quantity } of reserved) {
+        const { data: current } = await supabaseAdmin
+          .from('product_variants')
+          .select('stock_quantity')
+          .eq('id', variant.id)
+          .single()
+        if (current) {
+          await supabaseAdmin
+            .from('product_variants')
+            .update({ stock_quantity: current.stock_quantity + quantity })
+            .eq('id', variant.id)
+        }
+      }
+      // order_items rows are removed by ON DELETE CASCADE
+      if (orderId) await supabaseAdmin.from('orders').delete().eq('id', orderId)
+    }
 
-    return NextResponse.json({ error: 'Not implemented' }, { status: 501 })
+    for (const entry of variants) {
+      const { error: stockError } = await supabaseAdmin.rpc('decrement_stock', {
+        variant_id: entry.variant.id,
+        quantity: entry.quantity,
+      })
+      if (stockError) {
+        console.error('Stock reservation failed:', stockError)
+        await rollback()
+        return NextResponse.json(
+          { error: 'Sorry, an item just sold out. Please review your cart.' },
+          { status: 409 }
+        )
+      }
+      reserved.push(entry)
+    }
+
+    // 2. Create the order. COD orders are confirmed immediately.
+    const orderNumber = 'SS-' + Math.random().toString(36).substring(2, 8).toUpperCase()
+    const { data: order, error: orderError } = await supabaseAdmin
+      .from('orders')
+      .insert({
+        order_number: orderNumber,
+        user_id: user.id,
+        status: 'confirmed',
+        payment_status: 'cod',
+        subtotal,
+        vat_amount: vatAmount,
+        shipping_charge: shippingCharge,
+        discount_code: appliedCode,
+        discount_amount: discountAmount,
+        total: totalAmount,
+        shipping_address: shippingAddress,
+        guest_email: shippingAddress.email,
+        guest_phone: shippingAddress.phone,
+        confirmed_at: new Date().toISOString(),
+      })
+      .select('id')
+      .single()
+
+    if (orderError || !order) {
+      console.error('Order insert failed:', orderError)
+      await rollback()
+      return NextResponse.json({ error: 'Could not place your order. Please try again.' }, { status: 500 })
+    }
+    orderId = order.id
+
+    // 3. Line items, snapshotting product details at the time of purchase.
+    const { error: itemsError } = await supabaseAdmin.from('order_items').insert(
+      variants.map(({ variant, quantity, currentPrice }) => ({
+        order_id: orderId,
+        product_id: variant.product_id,
+        variant_id: variant.id,
+        quantity,
+        unit_price: currentPrice,
+        total_price: currentPrice * quantity,
+        product_snapshot: {
+          name: variant.products.name,
+          color: variant.color,
+          size: variant.size,
+          sku: variant.sku,
+          image: variant.products.images?.[0] || '',
+        },
+      }))
+    )
+
+    if (itemsError) {
+      console.error('Order items insert failed:', itemsError)
+      await rollback()
+      return NextResponse.json({ error: 'Could not place your order. Please try again.' }, { status: 500 })
+    }
+
+    // 4. Count the discount use. The order is already placed, so a failure
+    //    here is logged rather than failing the customer's checkout.
+    if (appliedCode) {
+      const { data: discount } = await supabaseAdmin
+        .from('discounts')
+        .select('used_count')
+        .eq('code', appliedCode)
+        .single()
+      if (discount) {
+        const { error: usageError } = await supabaseAdmin
+          .from('discounts')
+          .update({ used_count: discount.used_count + 1 })
+          .eq('code', appliedCode)
+        if (usageError) console.error('Discount usage update failed:', usageError)
+      }
+    }
+
+    return NextResponse.json({ success: true, orderId, orderNumber })
   } catch (error) {
     console.error('Order creation error:', error)
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
