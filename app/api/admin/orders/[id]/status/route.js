@@ -37,7 +37,11 @@ export async function PATCH(request, { params }) {
 
     const { error } = await supabaseAdmin
       .from('orders')
-      .update({ status, updated_at: new Date().toISOString() })
+      .update({
+        status,
+        updated_at: new Date().toISOString(),
+        ...(status === 'confirmed' ? { confirmed_at: new Date().toISOString() } : {}),
+      })
       .eq('id', params.id);
 
     if (error) return NextResponse.json({ error: error.message }, { status: 500 });

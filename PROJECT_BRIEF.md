@@ -45,7 +45,7 @@ The system has two parts:
 |---|---|
 | Currency | AED (د.إ) — fils as smallest unit |
 | Delivery | Dubai, UAE only |
-| VAT | 5% UAE VAT, admin-configurable |
+| VAT | Inclusive in product prices — not added at checkout |
 | Free delivery threshold | Admin-configurable (default: orders over د.إ 200) |
 | Delivery fee | Admin-configurable flat rate (default: د.إ 15), same for every zone |
 | Order number format | `SS-` + 6 random alphanumeric characters (e.g. `SS-8BPX8O`) — not sequential |
@@ -96,7 +96,7 @@ Dresses, Tops, Bottoms, Co-ords, Outerwear, Accessories
 - Passwordless email-code login (branded, sent from the store's own domain) + "Continue with Google"
 - Discount codes at checkout (validated server-side)
 - Dubai area dropdown at checkout (admin-managed list)
-- UAE VAT + delivery fee calculated server-side from admin settings (not trusted from the client)
+- Delivery fee calculated server-side from admin settings (VAT is inclusive in prices) (not trusted from the client)
 - Cash on Delivery — no online payment gateway, order is placed and confirmed immediately, paid in cash on arrival
 - Order confirmation page with order number
 - Order tracking with status timeline
@@ -121,7 +121,7 @@ The admin panel was rebuilt from a basic products/orders tool into a **full cont
 | Edit Product | `/admin/products/[id]` | Edit details, variants, stock |
 | **Categories** | `/admin/categories` | 🆕 Add/rename/reorder/hide categories, upload tile images — feeds the storefront nav, shop filters, homepage tiles, and footer |
 | **Site Content** | `/admin/content` | 🆕 Edit every storefront text/image: announcement bar, hero copy + image, USP strip, homepage headings, brand story, footer, product trust badges, cart copy, and email/SMS notification templates |
-| **Delivery** | `/admin/delivery` | 🆕 Manage delivery areas (add/remove/toggle) and set the delivery fee, free-delivery threshold, and VAT rate |
+| **Delivery** | `/admin/delivery` | 🆕 Manage delivery areas (add/remove/toggle) and set the delivery fee, and free-delivery threshold |
 | **Discounts** | `/admin/discounts` | 🆕 Create percent/fixed discount codes with min order, usage limits, and date windows |
 | Orders | `/admin/orders` | List with search, status filter, date range, CSV export |
 | Order Detail | `/admin/orders/[id]` | Full order info, status timeline, tracking info, notes; cancelling/returning an order restores stock (no online refund — Cash on Delivery, refunds are handled in person) |
@@ -136,7 +136,7 @@ The admin panel was rebuilt from a basic products/orders tool into a **full cont
 - Set sizes, colours, and stock quantity per variant; mark variants out of stock
 - **Manage categories** — previously a hardcoded list in code, now fully admin-editable
 - **Manage every storefront text and image** — hero, announcement bar, footer, brand story, USP strip, product page trust badges, cart copy, and notification templates — with image upload + preview where relevant
-- **Manage delivery** — areas, delivery fee, free-delivery threshold, VAT rate (previously hardcoded and duplicated in two files)
+- **Manage delivery** — areas, delivery fee, free-delivery threshold (previously hardcoded and duplicated in two files)
 - **Manage discount codes** — percent or fixed, minimum order, usage caps, start/end dates
 - **View customers** — order count and lifetime spend per customer
 - View all customer orders; update status (confirmed → processing → out for delivery → delivered); search, filter by status/date; **export to CSV**

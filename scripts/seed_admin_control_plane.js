@@ -89,11 +89,10 @@ const CONTENT = [
   ['product', 'product.size_guide_url', 'text', 'Product page — size guide link', '#'],
 
   ['cart', 'cart.empty_text', 'text', 'Cart drawer — empty state text', 'Your bag is empty.'],
-  ['cart', 'cart.footer_note', 'text', 'Cart drawer — note under subtotal', 'Shipping and VAT calculated at checkout'],
+  ['cart', 'cart.footer_note', 'text', 'Cart drawer — note under subtotal', 'Shipping calculated at checkout'],
 
   ['settings', 'settings.free_delivery_threshold_fils', 'text', 'Free delivery threshold (fils, e.g. 20000 = د.إ 200)', '20000'],
   ['settings', 'settings.delivery_fee_fils', 'text', 'Standard delivery fee (fils, e.g. 1500 = د.إ 15)', '1500'],
-  ['settings', 'settings.vat_rate_percent', 'text', 'VAT rate (%)', '5'],
 
   ['notifications', 'notifications.order_confirmed_email_subject', 'text', 'Email — order confirmed subject', 'Your Soul Sisters order {{order_number}} is confirmed'],
   ['notifications', 'notifications.order_confirmed_email_body', 'text', 'Email — order confirmed body', 'Dear {{customer_name}},\n\nThank you for shopping with Soul Sisters! Your order {{order_number}} has been confirmed and is being prepared.\n\nOrder total: {{total}}\nDelivery to: {{area}}, Dubai\n\nWe will notify you when your order is out for delivery.\n\nWith love,\nSoul Sisters'],

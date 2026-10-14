@@ -101,7 +101,7 @@ export default function OrdersClient({ initialOrders }) {
   };
 
   const downloadCSV = () => {
-    const headers = ['Order Number', 'Date', 'Customer Email', 'Items Count', 'Subtotal (AED)', 'VAT (AED)', 'Shipping (AED)', 'Total (AED)', 'Payment Status', 'Order Status'];
+    const headers = ['Order Number', 'Date', 'Customer Email', 'Items Count', 'Subtotal (AED)', 'Shipping (AED)', 'Total (AED)', 'Payment Status', 'Order Status'];
     const rows = filteredOrders.map(o => {
       return [
         o.order_number || '',
@@ -109,7 +109,6 @@ export default function OrdersClient({ initialOrders }) {
         o.guest_email || 'Guest',
         o.order_items?.length || 0,
         (o.subtotal / 100).toFixed(2),
-        (o.vat_amount / 100).toFixed(2),
         (o.shipping_charge / 100).toFixed(2),
         (o.total / 100).toFixed(2),
         o.payment_status,
@@ -262,9 +261,6 @@ export default function OrdersClient({ initialOrders }) {
                 <td style={{ padding: '14px 16px' }}>
                   <div style={{ fontFamily: 'var(--font-admin)', fontWeight: 600, fontSize: '13px', color: '#1A0F0A' }}>
                     د.إ {(order.total / 100).toFixed(2)}
-                  </div>
-                  <div style={{ fontFamily: 'var(--font-admin)', fontWeight: 400, fontSize: '11px', color: '#9C7B5E', marginTop: '2px' }}>
-                    incl. VAT
                   </div>
                 </td>
                 <td style={{ padding: '14px 16px' }}>

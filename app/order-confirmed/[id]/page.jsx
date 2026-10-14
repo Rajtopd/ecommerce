@@ -145,10 +145,12 @@ export default function OrderConfirmedPage() {
               <span>د.إ {(order.shipping_charge / 100).toFixed(2)}</span>
             )}
           </div>
-          <div className="flex justify-between font-body font-light text-[11px] text-[#6B5E54]">
-            <span>VAT (5%)</span>
-            <span>د.إ {(order.vat_amount / 100).toFixed(2)}</span>
-          </div>
+          {order.vat_amount > 0 && (
+            <div className="flex justify-between font-body font-light text-[11px] text-[#6B5E54]">
+              <span>VAT (5%)</span>
+              <span>د.إ {(order.vat_amount / 100).toFixed(2)}</span>
+            </div>
+          )}
 
           <div className="h-[0.5px] bg-[#E8E4DF] w-full my-2"></div>
 

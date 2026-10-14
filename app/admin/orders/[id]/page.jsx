@@ -298,10 +298,12 @@ export default function OrderDetailPage({ params }) {
                   {order.shipping_charge === 0 ? 'Free' : `د.إ ${(order.shipping_charge / 100).toFixed(2)}`}
                 </span>
               </div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', fontFamily: 'var(--font-admin)', fontWeight: 400, fontSize: '11px' }}>
-                <span style={{ color: '#9C7B5E' }}>VAT (5%)</span>
-                <span style={{ color: '#1A0F0A' }}>د.إ {(order.vat_amount / 100).toFixed(2)}</span>
-              </div>
+              {order.vat_amount > 0 && (
+                <div style={{ display: 'flex', justifyContent: 'space-between', fontFamily: 'var(--font-admin)', fontWeight: 400, fontSize: '11px' }}>
+                  <span style={{ color: '#9C7B5E' }}>VAT (5%)</span>
+                  <span style={{ color: '#1A0F0A' }}>د.إ {(order.vat_amount / 100).toFixed(2)}</span>
+                </div>
+              )}
               
               <div style={{ borderTop: '0.5px solid #E0D0B8', margin: '8px 0' }} />
               

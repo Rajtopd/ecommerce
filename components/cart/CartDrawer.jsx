@@ -123,7 +123,7 @@ export default function CartDrawer() {
                 <span className="text-[18px] font-semibold text-brand-dark">{formatPrice(total)}</span>
               </div>
               <p className="text-[11px] text-brand-muted">
-                {c('cart.footer_note', 'Shipping and VAT calculated at checkout')}
+                {c('cart.footer_note', 'Shipping calculated at checkout')}
               </p>
 
               <a

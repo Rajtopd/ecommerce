@@ -6,13 +6,12 @@ import { PageTitle, Card, SectionTitle, Label, Input, Btn, Toggle, Notice, th, t
 const SETTING_META = {
   'settings.free_delivery_threshold_fils': { label: 'Free delivery over (AED)', toDisplay: v => (v / 100).toString(), toStored: v => String(Math.round(+v * 100)) },
   'settings.delivery_fee_fils': { label: 'Standard delivery fee (AED)', toDisplay: v => (v / 100).toString(), toStored: v => String(Math.round(+v * 100)) },
-  'settings.vat_rate_percent': { label: 'VAT rate (%)', toDisplay: v => String(v), toStored: v => String(Math.round(+v)) },
 };
 
 export default function DeliveryClient({ initialZones, initialSettings }) {
   const [zones, setZones] = useState(initialZones);
   const [settings, setSettings] = useState(() =>
-    Object.fromEntries(initialSettings.map(s => {
+    Object.fromEntries(initialSettings.filter(s => s.key in SETTING_META).map(s => {
       const meta = SETTING_META[s.key];
       return [s.key, meta ? meta.toDisplay(parseInt(s.value, 10) || 0) : s.value];
     }))
@@ -82,8 +81,8 @@ export default function DeliveryClient({ initialZones, initialSettings }) {
       {notice && <Notice kind={notice.kind}>{notice.text}</Notice>}
 
       <Card>
-        <SectionTitle>Rates & VAT</SectionTitle>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '16px', marginBottom: '16px' }}>
+        <SectionTitle>Delivery Rates</SectionTitle>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '16px', marginBottom: '16px' }}>
           {Object.keys(SETTING_META).filter(k => k in settings).map(key => (
             <div key={key}>
               <Label>{SETTING_META[key].label}</Label>

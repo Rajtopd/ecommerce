@@ -24,15 +24,13 @@ export default function CheckoutPage() {
 
   // Totals are estimates from admin-managed settings; /api/orders recomputes
   // and returns the authoritative total when the order is placed.
-  const vatRate = settings?.vatRatePercent ?? 5
   const threshold = settings?.freeDeliveryThresholdFils ?? 20000
   const fee = settings?.deliveryFeeFils ?? 1500
 
   const discountedSubtotal = subtotal - discountAmount
   const isFreeShipping = discountedSubtotal >= threshold
   const shippingCharge = isFreeShipping ? 0 : fee
-  const vatAmount = Math.round(discountedSubtotal * (vatRate / 100))
-  const totalAmount = discountedSubtotal + shippingCharge + vatAmount
+  const totalAmount = discountedSubtotal + shippingCharge // prices already include VAT
 
   // Guest checkout isn't allowed — bounce unauthenticated visitors to login
   // and bring them straight back here once they're signed in.
@@ -187,10 +185,6 @@ export default function CheckoutPage() {
               <div className="flex justify-between text-[14px] text-[#6B5E54] font-light">
                 <span>Shipping</span>
                 <span>{shippingCharge === 0 ? 'Free' : `د.إ ${(shippingCharge / 100).toFixed(2)}`}</span>
-              </div>
-              <div className="flex justify-between text-[14px] text-[#6B5E54] font-light">
-                <span>VAT ({vatRate}%)</span>
-                <span>د.إ {(vatAmount / 100).toFixed(2)}</span>
               </div>
 
               <div className="border-t border-[#E8E4DF] mt-4 pt-6 flex justify-between items-baseline">

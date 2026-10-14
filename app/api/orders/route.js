@@ -65,7 +65,8 @@ export async function POST(req) {
       variants.push({ variant, quantity: item.quantity, currentPrice })
     }
 
-    // Delivery fee, free-delivery threshold and VAT rate are admin-managed settings
+    // Delivery fee and free-delivery threshold are admin-managed settings.
+    // Product prices already include VAT, so no tax is added on top.
     const settings = await getStoreSettings()
 
     // Optional discount code (validated server-side)
@@ -83,8 +84,7 @@ export async function POST(req) {
     const discountedSubtotal = subtotal - discountAmount
     const isFreeShipping = discountedSubtotal >= settings.freeDeliveryThresholdFils
     const shippingCharge = isFreeShipping ? 0 : settings.deliveryFeeFils
-    const vatAmount = Math.round(discountedSubtotal * (settings.vatRatePercent / 100))
-    const totalAmount = discountedSubtotal + shippingCharge + vatAmount
+    const totalAmount = discountedSubtotal + shippingCharge
 
     // 1. Reserve stock first. decrement_stock raises if stock is short, so two
     //    customers racing for the last unit can't both succeed. There is no
@@ -126,17 +126,18 @@ export async function POST(req) {
       reserved.push(entry)
     }
 
-    // 2. Create the order. COD orders are confirmed immediately.
+    // 2. Create the order as 'pending'. An admin confirms it (and moves it
+    //    through later statuses) from the admin panel.
     const orderNumber = 'SS-' + Math.random().toString(36).substring(2, 8).toUpperCase()
     const { data: order, error: orderError } = await supabaseAdmin
       .from('orders')
       .insert({
         order_number: orderNumber,
         user_id: user.id,
-        status: 'confirmed',
+        status: 'pending',
         payment_status: 'cod',
         subtotal,
-        vat_amount: vatAmount,
+        vat_amount: 0, // column is NOT NULL; VAT is inclusive in prices
         shipping_charge: shippingCharge,
         discount_code: appliedCode,
         discount_amount: discountAmount,
@@ -144,7 +145,6 @@ export async function POST(req) {
         shipping_address: shippingAddress,
         guest_email: shippingAddress.email,
         guest_phone: shippingAddress.phone,
-        confirmed_at: new Date().toISOString(),
       })
       .select('id')
       .single()
